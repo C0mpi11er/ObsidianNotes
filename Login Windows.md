@@ -5,3 +5,6 @@
 #Downloading files sever from linux 
 
 Invoke-WebRequest -Uri http://linux-ip:8000/filename.ext -OutFile "C:\Users\YourUser\Downloads\filename.ext"
+
+**Grant Full Control To User For file**
+icacls "C:\Path\To\File.ext" /grant YourUser:F
