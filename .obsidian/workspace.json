@@ -266,6 +266,100 @@
             }
           },
           {
+            "id": "0303af26a5b6c455",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Networking commands (cmd.exe).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Networking commands (cmd.exe)"
+            }
+          },
+          {
+            "id": "9e63a754db5ac593",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CMD.EXE (Windows).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CMD.EXE (Windows)"
+            }
+          },
+          {
+            "id": "6ffefaa7e0a11cb9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows (Disk,Drivers,etc).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows (Disk,Drivers,etc)"
+            }
+          },
+          {
+            "id": "1981b30270413155",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "1931992ff722fff3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Telnet.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Telnet"
+            }
+          },
+          {
+            "id": "f0776fce28e9ddb2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Networking.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Networking"
+            }
+          },
+          {
+            "id": "5398ba81f08b4d6f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Protocols.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Protocols"
+            }
+          },
+          {
             "id": "8f4b8125eea0c63e",
             "type": "leaf",
             "state": {
@@ -294,7 +388,7 @@
             }
           }
         ],
-        "currentTab": 18
+        "currentTab": 25
       }
     ],
     "direction": "vertical"
@@ -367,7 +461,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Censys.md",
+                "file": "Protocols.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -377,7 +471,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Censys"
+              "title": "Backlinks for Protocols"
             }
           },
           {
@@ -428,7 +522,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -440,10 +534,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7a78ebbab1d28af0",
+  "active": "5398ba81f08b4d6f",
   "lastOpenFiles": [
-    "VirusTotal.md",
+    "Networking.md",
+    "Protocols.md",
+    "Telnet.md",
+    "PowerShell.md",
+    "Windows (Disk,Drivers,etc).md",
+    "Windows Networking commands (cmd.exe).md",
+    "Eye Witness.md",
+    "CMD.EXE (Windows).md",
     "Censys.md",
+    "VirusTotal.md",
     "Shodan.md",
     "Login Windows.md",
     "John.md",
@@ -456,13 +558,9 @@
     "Socat.md",
     "Pthon3 server.md",
     "Hacking Notes.md",
-    "Telnet.md",
     "MsVenom.md",
     "Metasploit.md",
     "BurpeSuite.md",
-    "GoBuster.md",
-    "Hydra.md",
-    "Nmap.md",
-    "Welcome.md"
+    "GoBuster.md"
   ]
 }
