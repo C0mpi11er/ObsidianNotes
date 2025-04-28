@@ -76,6 +76,18 @@ nmap -A -T4 -p 1-1000 --open example.com
 - Show only open ports
     
 
+
+
+
+
+|**Timing Template**|**Total Duration**|
+|---|---|
+|**T0 (Paranoid)**|9.8 hours|
+|**T1 (Sneaky)**|27.53 minutes|
+|**T2 (Polite)**|40.56 seconds|
+|**T3 (Normal)**|0.15 seconds|
+|**T4 (Aggressive)**|0.13 seconds|
+
 ---
 
 # 🎯 Summary
