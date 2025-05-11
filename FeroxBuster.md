@@ -1,210 +1,207 @@
-### **📜 Feroxbuster Cheat Sheet 🚀**
+Awesome! Here's the **combined “Best of Both Worlds” Feroxbuster Cheat Sheet** — blending clarity, depth, and practical use.
 
-#### **🔹 Basic Usage**
+---
 
-```bash
-feroxbuster --url <target_url>
-```
+# 🦊 **Feroxbuster Ultimate Cheat Sheet** 🚀
 
-- Scans for **hidden directories and files** on a web server.
-    
+> For CTFs, Red Team Ops, Web Enumeration, and Daily Pentesting.
 
-#### **🔹 Using a Custom Wordlist**
+---
 
-```bash
-feroxbuster --url <target_url> -w /path/to/wordlist.txt
-```
+## 🔰 **What is Feroxbuster?**
 
-- Uses a specific **wordlist** for brute-forcing directories/files.
-    
+**Feroxbuster** is a **fast, recursive content discovery tool** written in Rust. It bruteforces **hidden directories and files** on web servers.
 
-#### **🔹 Multithreading for Faster Scans**
+---
+
+## 📌 **Basic Syntax**
 
 ```bash
-feroxbuster --url <target_url> -t 50
+feroxbuster -u <target_url>
 ```
 
-- Uses **50 threads** for parallel scanning (default is **10**).
-    
-
-#### **🔹 Recursively Scan Found Directories**
-
-```bash
-feroxbuster --url <target_url> -r
-```
-
-- **Automatically scans subdirectories** when found.
-    
-
-#### **🔹 Filtering Out Unwanted Status Codes**
-
-```bash
-feroxbuster --url <target_url> -C 404,403
-```
-
-- Hides **404 (Not Found)** and **403 (Forbidden)** responses.
-    
-
-#### **🔹 Saving Output to a File**
-
-```bash
-feroxbuster --url <target_url> -o results.txt
-```
-
-- Saves scan results to **results.txt**.
-    
-
-#### **🔹 Quiet Mode (No Banner, Minimal Output)**
-
-```bash
-feroxbuster --url <target_url> -q
-```
-
-- Runs **silently**, showing only valid results.
-    
-
-#### **🔹 Customizing Request Headers**
-
-```bash
-feroxbuster --url <target_url> -H "User-Agent: CustomUA"
-```
-
-- Sets a **custom User-Agent** to bypass basic detection.
-    
-
-#### **🔹 Using a Proxy for Anonymity**
-
-```bash
-feroxbuster --url <target_url> --proxy http://127.0.0.1:8080
-```
-
-- Sends traffic through a **proxy (e.g., Burp Suite, SOCKS5, or VPN)**.
-    
-
-#### **🔹 Scanning Only for Specific Extensions**
-
-```bash
-feroxbuster --url <target_url> -x php,html,txt
-```
-
-- Searches only for **.php, .html, .txt** files.
-    
-
-#### **🔹 Rate Limiting to Avoid Detection**
-
-```bash
-feroxbuster --url <target_url> --rate-limit 5
-```
-
-- Limits requests to **5 per second** (useful for stealth scans).
-    
-
-#### **🔹 Skipping SSL Certificate Verification**
-
-```bash
-feroxbuster --url https://target.com --insecure
-```
-
-- Ignores **SSL/TLS certificate errors** (useful for self-signed certs).
-    
-
-#### **🔹 Output in JSON Format**
-
-```bash
-feroxbuster --url <target_url> -o results.json --json
-```
-
-- Saves output as **JSON** for easier parsing.
-    
-
-#### **🔹 Running with Default Wordlist**
-
-```bash
-feroxbuster --url <target_url> -w /usr/share/wordlists/dirb/common.txt
-```
-
-- Uses **common.txt** from **Dirb** for standard enumeration.
-    
-
-#### **🔹 Checking Response Length to Detect WAF/Evasion**
-
-```bash
-feroxbuster --url <target_url> -n
-```
-
-- **Disables automatic filtering** based on response length.
-    
-
-#### **🔹 Avoiding Redirects (Preventing Scanning External Domains)**
-
-```bash
-feroxbuster --url <target_url> --no-recursion
-```
-
-- Stops recursion from following redirects.
+- `-u`: Target URL (e.g., `http://example.com`)
     
 
 ---
 
-### **💡 Common Use Cases**
+## 🔧 **Common Options**
 
-✅ **Fast directory brute-force with recursion:**
+|Option|Description|
+|---|---|
+|`-w`|Path to wordlist|
+|`-t`|Number of threads (default: 10)|
+|`-r`|Enable recursion|
+|`-x`|Extensions to append (e.g., `php,html,txt`)|
+|`-o`|Output file|
+|`-C`|Filter status codes (e.g., `404,403`)|
+|`-q`|Quiet mode (no banner or progress)|
+|`--proxy`|Use HTTP/SOCKS proxy (e.g., `http://127.0.0.1:8080`)|
+|`-H`|Custom request headers|
+|`--insecure`|Skip TLS cert validation|
+|`--rate-limit`|Throttle request rate (e.g., `5`)|
+|`--json`|JSON output format|
+|`-n`|Disable response size filtering|
+|`--depth`|Limit recursion depth|
+
+---
+
+## 🚀 **Most Used Commands**
+
+### 🔹 Basic Scan
 
 ```bash
-feroxbuster --url http://target.com -t 60 -r
+feroxbuster -u http://target.com
 ```
 
-✅ **Only scan for PHP and TXT files:**
+### 🔹 Use a Custom Wordlist
 
 ```bash
-feroxbuster --url http://target.com -x php,txt
+feroxbuster -u http://target.com -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
 ```
 
-✅ **Bypass WAF with custom headers & User-Agent:**
+### 🔹 Multithreaded Scan (Speed Boost)
 
 ```bash
-feroxbuster --url http://target.com -H "X-Forwarded-For: 127.0.0.1" -H "User-Agent: Googlebot"
+feroxbuster -u http://target.com -t 50
 ```
 
-✅ **Stealth scan with proxy, low threads & rate limit:**
+### 🔹 Recursively Find Subdirs
 
 ```bash
-feroxbuster --url http://target.com --proxy http://127.0.0.1:8080 -t 10 --rate-limit 2
+feroxbuster -u http://target.com -r
 ```
 
-✅ **Export results in JSON for automation:**
+### 🔹 Filter Out 404s and 403s
 
 ```bash
-feroxbuster --url http://target.com -o output.json --json
+feroxbuster -u http://target.com -C 404,403
+```
+
+### 🔹 Save Results to File
+
+```bash
+feroxbuster -u http://target.com -o scan.txt
+```
+
+### 🔹 Quiet Mode
+
+```bash
+feroxbuster -u http://target.com -q
 ```
 
 ---
 
-### **🔥 Why Use Feroxbuster Over Gobuster?**
+## 🕵️ **Advanced Techniques**
 
-|Feature|**Feroxbuster** 🚀|**Gobuster** ⚡|
+### 🔸 Scan for Specific Extensions
+
+```bash
+feroxbuster -u http://target.com -x php,txt,html
+```
+
+### 🔸 Add Custom Headers (WAF Bypass / Spoof)
+
+```bash
+feroxbuster -u http://target.com -H "User-Agent: Googlebot"
+```
+
+### 🔸 Send Through a Proxy (e.g., Burp Suite)
+
+```bash
+feroxbuster -u http://target.com --proxy http://127.0.0.1:8080
+```
+
+### 🔸 Rate Limiting for Stealth
+
+```bash
+feroxbuster -u http://target.com --rate-limit 5
+```
+
+### 🔸 Skip SSL Verification (For Self-Signed Certs)
+
+```bash
+feroxbuster -u https://target.com --insecure
+```
+
+### 🔸 Disable Length Filtering (WAF/Evasion)
+
+```bash
+feroxbuster -u http://target.com -n
+```
+
+### 🔸 Output JSON for Automation
+
+```bash
+feroxbuster -u http://target.com -o result.json --json
+```
+
+### 🔸 Limit Recursion Depth
+
+```bash
+feroxbuster -u http://target.com -r --depth 2
+```
+
+---
+
+## 💡 **Top Use Cases**
+
+✅ **Fast Recursive Scan**
+
+```bash
+feroxbuster -u http://target.com -t 60 -r
+```
+
+✅ **Stealthy + Proxy + Rate-Limited**
+
+```bash
+feroxbuster -u http://target.com --proxy http://127.0.0.1:8080 -t 10 --rate-limit 2
+```
+
+✅ **Scan Only for .php Files**
+
+```bash
+feroxbuster -u http://target.com -x php
+```
+
+✅ **Filter Noise (Show Only 200s)**
+
+```bash
+feroxbuster -u http://target.com -C 403,404,301,302
+```
+
+✅ **Bypass Filters**
+
+```bash
+feroxbuster -u http://target.com -H "X-Forwarded-For: 127.0.0.1"
+```
+
+---
+
+## ⚔️ **Feroxbuster vs Gobuster**
+
+|Feature|**Feroxbuster** 🦊|**Gobuster** ⚡|
 |---|---|---|
-|**Speed**|Faster (Rust-based)|Fast (Go-based)|
-|**Recursion**|✅ Built-in|❌ Manual input required|
-|**Wildcard Handling**|✅ Yes|❌ No|
-|**Response Filtering**|✅ Yes (`-C 404,403`)|✅ Yes (`-b 404`)|
-|**Output Formats**|✅ JSON, CSV, TXT|✅ Plain text only|
-|**Proxy Support**|✅ Yes|✅ Yes|
-|**TLS Certificate Handling**|✅ Yes|❌ No|
-
-💡 **TL;DR:** Use **Feroxbuster** for **speed, recursion, and automation**, but **Gobuster** is still good for lightweight tasks.
+|Speed|🚀 Faster (Rust)|Fast (Go)|
+|Recursion|✅ Yes|❌ No|
+|Wildcard Filtering|✅ Yes|❌ No|
+|Output Formats|✅ JSON, CSV, TXT|❌ Plain only|
+|Proxy Support|✅|✅|
+|WAF Bypass|✅ Headers, Rate Limit|⚠️ Manual|
 
 ---
 
-### **🛠️ Final Tips**
+## 🛠️ Pro Tips
 
-- **Increase threads (`-t`)** for **faster scans**, but beware of **rate limits.**
+- Start small (`-t 10 -w common.txt`) to avoid rate limits.
     
-- **Use proxies (`--proxy`)** to **anonymize** and evade detection.
+- Use large wordlists only during off-peak hours.
     
-- **Filter responses (`-C 403,404`)** to reduce clutter.
+- Always check for wildcard responses or WAF behavior.
     
-- **Use recursion (`-r`)** to find **deeper directories automatically.**
+- Pair with tools like **Burp**, **FFUF**, or **dirsearch**.
     
 
-Would you like me to add any advanced techniques? 🚀
+---
+
+Would you like this exported as a **PDF**, **Markdown**, or **Notion-compatible format**?

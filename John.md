@@ -1,88 +1,96 @@
-Here’s an **enhanced John the Ripper Cheat Sheet** with **real-world, out-of-the-box commands** that you can copy and run immediately (assuming hash files are prepared and you have John and the relevant scripts/tools installed):
+Absolutely! Here's the **ultimate, enhanced John the Ripper Cheat Sheet**, combining **core usage**, **real-world commands**, and **out-of-the-box examples** into one powerful, ready-to-run reference.
 
 ---
 
-# 🧠 **John the Ripper Cheat Sheet with Out-of-the-Box Commands**
+# 🧠 John the Ripper Ultimate Cheat Sheet (2025 Edition)
 
 ---
 
-## 🏁 **Basic Wordlist Attack**
+## 🏁 Basic Cracking Modes
+
+### 🔹 Wordlist Attack
 
 ```bash
 john --wordlist=/usr/share/john/password.lst hashes.txt
 ```
 
-> 📌 Uses a default wordlist to crack hashes in `hashes.txt`.
+> Uses a default wordlist to crack hashes in `hashes.txt`.
 
----
-
-## 💪 **Wordlist + Rules (Stronger)**
+### 🔹 Wordlist + Rules (Stronger)
 
 ```bash
 john --wordlist=/usr/share/john/password.lst --rules hashes.txt
 ```
 
-> 📌 Tries mangled variations (e.g., Password1, p@ssword, etc.).
+> Applies mangling rules to create variants like `Password1`, `p@ssw0rd`.
 
----
+### 🔹 Wordlist + Rules + Fork (Multithread)
 
-## 🔐 **Incremental (Brute-force)**
+```bash
+john --wordlist=rockyou.txt --rules --fork=4 hashes.txt
+```
+
+> Runs rule-based cracking on 4 CPU cores.
+
+### 🔹 Brute-force (Incremental)
 
 ```bash
 john --incremental hashes.txt
 ```
 
-> 🔁 Tries all possible character combinations (slow but thorough).
+> Pure brute-force using built-in charsets (slow but complete).
 
----
-
-## 🧩 **Mask Attack (Custom Brute-force)**
+### 🔹 Mask Attack (Pattern Matching)
 
 ```bash
 john --mask=?l?l?l?l?d?d hashes.txt
 ```
 
-> 🎯 Attempts 4 lowercase letters + 2 digits (e.g., `word12`).
+> E.g., cracks like `pass12`, `love99`.
 
 ---
 
-## 🧠 **Crack Office 2010+ Password (GPU)**
+## 🔐 Format-Specific Cracking
+
+### 🔹 NTLM
+
+```bash
+john --format=nt hashes.txt
+```
+
+### 🔹 bcrypt
+
+```bash
+john --format=bcrypt hashes.txt
+```
+
+### 🔹 SHA-512 Crypt (Linux)
+
+```bash
+john --format=sha512crypt hashes.txt
+```
+
+### 🔹 Office 2010+ (GPU)
 
 ```bash
 john --format=office-opencl officehash.txt
 ```
 
-> 🚀 GPU cracking for MS Office docs (2010+).
-
----
-
-## 📦 **Extract Hash from Office File**
-
-```bash
-office2john.py protected.docx > officehash.txt
-```
-
----
-
-## 📦 **Extract Hash from ZIP**
+### 🔹 ZIP Archive
 
 ```bash
 zip2john secret.zip > ziphash.txt
 john ziphash.txt
 ```
 
----
-
-## 🧾 **Extract Hash from RAR**
+### 🔹 RAR Archive
 
 ```bash
 rar2john secret.rar > rarhash.txt
 john rarhash.txt
 ```
 
----
-
-## 🔏 **Extract Hash from PDF**
+### 🔹 PDF File
 
 ```bash
 pdf2john.pl protected.pdf > pdfhash.txt
@@ -91,34 +99,33 @@ john pdfhash.txt
 
 ---
 
-## 🧪 **Benchmark John**
+## 🧰 Hash Extraction Tools
+
+|Format|Command|
+|---|---|
+|Office|`office2john.py file.docx > hash.txt`|
+|ZIP|`zip2john file.zip > hash.txt`|
+|RAR|`rar2john file.rar > hash.txt`|
+|PDF|`pdf2john.pl file.pdf > hash.txt`|
+
+---
+
+## 💻 GPU / Performance Commands
+
+### 🔹 Run Benchmark
 
 ```bash
 john --test
 john --test --format=office-opencl
 ```
 
-> ⚙️ Test your CPU/GPU speed on various hash types.
-
----
-
-## 🔎 **Show Cracked Passwords**
-
-```bash
-john --show hashes.txt
-```
-
----
-
-## 📋 **List Supported Hash Formats**
+### 🔹 List Supported Formats
 
 ```bash
 john --list=formats
 ```
 
----
-
-## ⚙️ **List OpenCL GPU Devices**
+### 🔹 List GPU Devices (OpenCL)
 
 ```bash
 john --list=opencl-devices
@@ -126,40 +133,97 @@ john --list=opencl-devices
 
 ---
 
-## ⏳ **Save and Restore Sessions**
+## 🔍 Monitoring, Session, and Output
+
+### 🔹 Show Cracked Passwords
+
+```bash
+john --show hashes.txt
+```
+
+### 🔹 Monitor Cracking Progress
+
+```bash
+john --status
+```
+
+### 🔹 Save and Resume Sessions
 
 ```bash
 john --session=mycrack --wordlist=rockyou.txt hashes.txt
-# Later...
+# Later
 john --restore=mycrack
 ```
 
 ---
 
-## 📈 **Monitor Status**
+## 🧠 Other Useful Flags
+
+|Flag|Description|
+|---|---|
+|`--format=auto`|Autodetect hash type|
+|`--pot=FILE`|Specify custom potfile|
+|`--fork=N`|Parallelize using N processes|
+|`--mask=?d?d?d?d`|Custom brute mask (4 digits)|
+|`--rules=RULESET`|Use specific rule set|
+|`--incremental=MODE`|Use specific charset (e.g., `ascii`, `digits`)|
+|`--wordlist=FILE` or `-w=FILE`|Use a specific wordlist|
+|`--stdout`|Output generated candidates without cracking|
+|`--list=rules`|Show available rule sets|
+|`--list=encodings`|Show charset encodings|
+|`--nolog`|Disable logging to `john.log`|
+|`--max-run-time=N`|Run for N seconds then stop|
+
+---
+
+## 🛠️ Installation Tips
+
+### 💻 Community Version
 
 ```bash
-john --status=mycrack
+sudo apt install john
+```
+
+### 🧰 Jumbo Version (full features)
+
+```bash
+git clone https://github.com/openwall/john.git
+cd john/src
+./configure && make -sj$(nproc)
 ```
 
 ---
 
-## 📁 **Use Custom Wordlist**
+## 🧪 Real-World Use Cases
+
+### Crack NTLM from hashdump:
 
 ```bash
-john --wordlist=rockyou.txt hashes.txt
+john --format=nt hashdump.txt
+```
+
+### Crack bcrypt with wordlist + rules:
+
+```bash
+john --format=bcrypt --wordlist=rockyou.txt --rules bcrypts.txt
+```
+
+### GPU crack Office 2016 password:
+
+```bash
+office2john.py encrypted.docx > officehash.txt
+john --format=office-opencl officehash.txt
 ```
 
 ---
 
-## 💣 **Try All at Once (Smart Combo)**
+Would you like this exported as:
 
-```bash
-john --wordlist=rockyou.txt --rules --fork=4 hashes.txt
-```
+- ✅ **PDF**
+    
+- ✅ **Markdown**
+    
+- ✅ **One-page terminal-friendly text file**
+    
 
-> 💡 Combines speed, rules, and multi-core CPU cracking.
-
----
-
-Would you like me to compile this into a **PDF** or **Markdown** file for your toolkit?
+Let me know your preferred format!
