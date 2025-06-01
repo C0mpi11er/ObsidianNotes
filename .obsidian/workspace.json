@@ -20,8 +20,247 @@
               "icon": "lucide-file",
               "title": "Snort"
             }
+          },
+          {
+            "id": "92a99486f4ff5425",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OpenVas.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "OpenVas"
+            }
+          },
+          {
+            "id": "2166d079b69f51cc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Login Windows.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Login Windows"
+            }
+          },
+          {
+            "id": "a6e84144a58f2406",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "MBC.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "MBC"
+            }
+          },
+          {
+            "id": "d57331d0aff7a54a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CAPA.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CAPA"
+            }
+          },
+          {
+            "id": "6273333905bb3da6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OleDump.py.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "OleDump.py"
+            }
+          },
+          {
+            "id": "f0310cca97fb46b7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Preprocessing of Evidence.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Preprocessing of Evidence"
+            }
+          },
+          {
+            "id": "7777539be93536d1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Protocols.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Protocols"
+            }
+          },
+          {
+            "id": "e5367f3b70847897",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CIA.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CIA"
+            }
+          },
+          {
+            "id": "a78fecf6916e08d8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OSINT.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "OSINT"
+            }
+          },
+          {
+            "id": "ce5ec65b1bcc1475",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "FFuF.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "FFuF"
+            }
+          },
+          {
+            "id": "125a0b26066d1dc1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SubDomain Enumeration.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SubDomain Enumeration"
+            }
+          },
+          {
+            "id": "1b31dcf17b3fe9f6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "IDor(Web Hacking).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "IDor(Web Hacking)"
+            }
+          },
+          {
+            "id": "4fd61be351e16b35",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Curl.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Curl"
+            }
+          },
+          {
+            "id": "c68d6bf6193f3e6b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SSRF (Web Hacking).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SSRF (Web Hacking)"
+            }
+          },
+          {
+            "id": "49790c15aebfd234",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "XXS (web hacking).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "XXS (web hacking)"
+            }
+          },
+          {
+            "id": "7f73056d7316a7a6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SQL.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SQL"
+            }
+          },
+          {
+            "id": "97c15e35cde61936",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SQLMAP Tool.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SQLMAP Tool"
+            }
           }
-        ]
+        ],
+        "currentTab": 17
       }
     ],
     "direction": "vertical"
@@ -53,7 +292,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "sql inje",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +333,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Snort.md",
+                "file": "Curl.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +343,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Snort"
+              "title": "Backlinks for Curl"
             }
           },
           {
@@ -142,20 +381,22 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Socat.md",
+                "file": "Curl.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Socat"
+              "title": "Outline of Curl"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -167,33 +408,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "efc8e7d2e20c536e",
+  "active": "97c15e35cde61936",
   "lastOpenFiles": [
-    "Snortconfig.png",
-    "Snort.md",
-    "Login Windows.md",
-    "Windows Networking commands (cmd.exe).md",
-    "Windows (Disk,Drivers,etc).md",
-    "HashCat.md",
-    "John.md",
+    "SQL Injection.md",
     "SQLMAP Tool.md",
-    "GoBuster.md",
-    "Ncat && rlwrap.md",
-    "NetCat.md",
-    "FeroxBuster.md",
-    "Hydra.md",
-    "Protocols.md",
     "SQL.md",
-    "Fixing SQL Corruption.md",
-    "Responder.md",
-    "Types of Cryptography Algorithm.md",
-    "Cryptography maths.md",
-    "Nmap.md",
-    "TCPDump.md",
-    "Protocols Uses and summary.md",
-    "Networking.md",
-    "Telnet.md",
-    "PowerShell.md",
-    "Eye Witness.md"
+    "Hacking Notes.md",
+    "CAPA.md",
+    "BurpeSuite.md",
+    "NetCat.md",
+    "Command injection (Web Hacking).md",
+    "XXS (web hacking).md",
+    "images/XXS.png",
+    "SSRF (Web Hacking).md",
+    "images/ssrf_3.png",
+    "images/ssrf_2.png",
+    "images/ssrf_1.png",
+    "Curl.md",
+    "File inclusion (Web Hacking).md",
+    "images/RFI.png",
+    "IDor(Web Hacking).md",
+    "SubDomain Enumeration.md",
+    "2025-05-21.md",
+    "Welcome.md",
+    "OSINT.md",
+    "cookies.txt",
+    "images/Curl_image.png",
+    "images",
+    "Curl_image.png",
+    "Downloads/php-reverse-shell-1.0/grey.php",
+    "Downloads/php-reverse-shell-1.0/COPYING.PHP-REVERSE-SHELL",
+    "Downloads/php-reverse-shell-1.0/COPYING.GPL",
+    "Downloads/php-reverse-shell-1.0/CHANGELOG",
+    "Downloads/icons/oxtheta.face.icon",
+    "Downloads/WallPapers/cool.jpg",
+    "Downloads/php-reverse-shell-1.0.tar",
+    "Downloads/php-reverse-shell-1.0",
+    "Downloads/icons",
+    "Downloads/desktop.png",
+    "Downloads/busy-workspace.png",
+    "FFuF.md",
+    "curl-cheat-sheet.md",
+    "Sublisr3r.md",
+    "CIA.md",
+    "Protocols.md",
+    "Flare Vm.md",
+    "Preprocessing of Evidence.md",
+    "OleDump.py.md",
+    "MBC.md"
   ]
 }
