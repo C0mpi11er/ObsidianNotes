@@ -251,16 +251,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SQLMAP Tool.md",
+                "file": "Networking.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SQLMAP Tool"
+              "title": "Networking"
+            }
+          },
+          {
+            "id": "d011d6c5a9078246",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spoof mac Addresss.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Spoof mac Addresss"
             }
           }
         ],
-        "currentTab": 17
+        "currentTab": 18
       }
     ],
     "direction": "vertical"
@@ -292,7 +306,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "sql inje",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -317,7 +331,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 339.5
   },
   "right": {
     "id": "c12504f04b728176",
@@ -408,30 +422,39 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "97c15e35cde61936",
+  "active": "d011d6c5a9078246",
   "lastOpenFiles": [
-    "SQL Injection.md",
-    "SQLMAP Tool.md",
-    "SQL.md",
+    "Networking.md",
+    "Spoof mac Addresss.md",
+    "OpenVas.md",
+    "Nikto.md",
+    "IDor(Web Hacking).md",
+    "HashCat.md",
     "Hacking Notes.md",
+    "GoBuster.md",
+    "File inclusion (Web Hacking).md",
+    "FFuF.md",
+    "FeroxBuster.md",
+    "CyberChef.md",
+    "Curl.md",
+    "Cryptography maths.md",
+    "Command injection (Web Hacking).md",
+    "CIA.md",
+    "Censys.md",
     "CAPA.md",
     "BurpeSuite.md",
-    "NetCat.md",
-    "Command injection (Web Hacking).md",
-    "XXS (web hacking).md",
+    "2025-05-21.md",
+    "Eye Witness.md",
+    "Sublisr3r.md",
+    "MBC.md",
+    "SQLMAP Tool.md",
+    "SQL Injection.md",
+    "SQL.md",
     "images/XXS.png",
-    "SSRF (Web Hacking).md",
     "images/ssrf_3.png",
     "images/ssrf_2.png",
     "images/ssrf_1.png",
-    "Curl.md",
-    "File inclusion (Web Hacking).md",
     "images/RFI.png",
-    "IDor(Web Hacking).md",
-    "SubDomain Enumeration.md",
-    "2025-05-21.md",
-    "Welcome.md",
-    "OSINT.md",
     "cookies.txt",
     "images/Curl_image.png",
     "images",
@@ -446,15 +469,6 @@
     "Downloads/php-reverse-shell-1.0",
     "Downloads/icons",
     "Downloads/desktop.png",
-    "Downloads/busy-workspace.png",
-    "FFuF.md",
-    "curl-cheat-sheet.md",
-    "Sublisr3r.md",
-    "CIA.md",
-    "Protocols.md",
-    "Flare Vm.md",
-    "Preprocessing of Evidence.md",
-    "OleDump.py.md",
-    "MBC.md"
+    "Downloads/busy-workspace.png"
   ]
 }
