@@ -265,16 +265,128 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "FeroxBuster.md",
+                "file": "OpenVas.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "FeroxBuster"
+              "title": "OpenVas"
+            }
+          },
+          {
+            "id": "b5d0eacc238c807e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Protocols Uses and summary.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Protocols Uses and summary"
+            }
+          },
+          {
+            "id": "6889a236a8678a1c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Nmap.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Nmap"
+            }
+          },
+          {
+            "id": "cb533a89478bcd2c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "NetCat.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "NetCat"
+            }
+          },
+          {
+            "id": "e3425184df833919",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "NetCat.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "NetCat"
+            }
+          },
+          {
+            "id": "e4a1dc3c1cfae1c5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Linux Priv Esc.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux Priv Esc"
+            }
+          },
+          {
+            "id": "5e83509d78da5fc0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Linux Priv Esc.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux Priv Esc"
+            }
+          },
+          {
+            "id": "0861a8447e3c0c7d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Linux Priv Esc.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux Priv Esc"
+            }
+          },
+          {
+            "id": "8f97133c1396b3f8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Types_PrivEsc(Linux).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Types_PrivEsc(Linux)"
             }
           }
         ],
-        "currentTab": 18
+        "currentTab": 26
       }
     ],
     "direction": "vertical"
@@ -331,7 +443,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 339.5
+    "width": 367.5
   },
   "right": {
     "id": "c12504f04b728176",
@@ -422,34 +534,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d011d6c5a9078246",
+  "active": "8f97133c1396b3f8",
   "lastOpenFiles": [
-    "SQLMAP Tool.md",
-    "Spoof mac Addresss.md",
-    "Networking.md",
-    "OpenVas.md",
-    "Nikto.md",
-    "IDor(Web Hacking).md",
+    "Linux Priv Esc.md",
+    "Types_PrivEsc(Linux).md",
     "HashCat.md",
-    "Hacking Notes.md",
-    "GoBuster.md",
-    "File inclusion (Web Hacking).md",
+    "John.md",
+    "Prive_Escal_App_Function.md",
+    "GTFOBins.md",
+    "images/linux_priv.png",
+    "NetCat.md",
+    "Tar unziping.md",
+    "SearchSploit.md",
+    "Vulnerability.md",
+    "VirusTotal.md",
+    "Socat.md",
+    "Responder.md",
+    "OpenVas.md",
+    "OSINT.md",
+    "MsVenom.md",
+    "IDor(Web Hacking).md",
+    "Hydra.md",
     "FFuF.md",
-    "FeroxBuster.md",
-    "CyberChef.md",
-    "Curl.md",
-    "Cryptography maths.md",
-    "Command injection (Web Hacking).md",
-    "CIA.md",
-    "Censys.md",
-    "CAPA.md",
-    "BurpeSuite.md",
-    "2025-05-21.md",
-    "Eye Witness.md",
-    "Sublisr3r.md",
-    "MBC.md",
-    "SQL Injection.md",
-    "SQL.md",
+    "Nmap.md",
+    "Protocols.md",
+    "RustScan.md",
+    "Protocols Uses and summary.md",
+    "Ncat && rlwrap.md",
+    "Telnet.md",
+    "XXS (web hacking).md",
     "images/XXS.png",
     "images/ssrf_3.png",
     "images/ssrf_2.png",
@@ -468,7 +581,6 @@
     "Downloads/php-reverse-shell-1.0.tar",
     "Downloads/php-reverse-shell-1.0",
     "Downloads/icons",
-    "Downloads/desktop.png",
-    "Downloads/busy-workspace.png"
+    "Downloads/desktop.png"
   ]
 }

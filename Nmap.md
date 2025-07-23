@@ -98,5 +98,178 @@ nmap -A -T4 -p 1-1000 --open example.com
 
 ---
 
-Would you also like me to create a **super compact printable version** of this in a fancy **one-page PDF** for quick reference? 📄🔥  
-(Perfect if you're planning to do a lot of scanning!)
+
+### 🔍 Nmap Firewall Detection Notes
+
+#### 🛡️ `-sW` (Window Scan)
+
+- The `-sW` flag helps **detect firewall rules**.
+    
+- It uses the **TCP window size** to infer port state.
+    
+- If a port responds, it may **not be behind a firewall**.
+    
+- If **no response**, the port is likely **filtered by a firewall**.
+    
+
+#### 🔥 `-sA` (ACK Scan)
+
+- The `-sA` scan is useful to **determine if ports are filtered**.
+    
+- It sends ACK packets to probe firewall behavior.
+    
+- If the port is **guarded by a firewall**, it typically **does not show up at all**.
+    
+- If the port is **not guarded**, it **shows up as "unfiltered"**, even if it's closed.
+    
+
+#### ✅ Summary
+
+- Use `-sW` to **observe firewall responses** via TCP window behavior.
+    
+- Use `-sA` to **map out which ports are filtered** by checking if ACKs are blocked or allowed.
+
+
+## 👻 IP Spoofing & Decoy Scanning – Explained Like a Baby
+
+---
+
+### 🍼 What is IP Spoofing?
+
+- Pretend to be someone else on the internet by **faking your IP address**.
+- 📦 You send a scan to the target using a fake IP.
+- 📨 Target sends replies to that **fake IP**, not to you.
+
+> ⚠️ You only benefit if you can **see the replies on the network**, e.g., using Wireshark.
+
+---
+
+### 🧃 Steps in IP Spoofing Scan:
+
+1. Attacker sends packet with **spoofed source IP**.
+2. Target replies to **spoofed IP**.
+3. Attacker uses packet sniffer to **see replies** and find open ports.
+
+---
+
+### 🛠️ Nmap Command (With Spoofed IP)
+
+Use this format:
+```bash
+nmap -e [NET_INTERFACE] -Pn -S [SPOOFED_IP] [TARGET_IP]
+```
+
+📝 Example:
+```bash
+nmap -e wlan0 -Pn -S 192.168.1.100 192.168.1.10
+```
+
+- `-e`: Select network interface (e.g. `wlan0`, `eth0`)
+- `-Pn`: Don’t ping (target won't reply to you)
+- `-S`: Spoofed source IP
+
+---
+
+### 🧢 MAC Address Spoofing (Local Network Only)
+
+If you're on the **same LAN/WiFi**, you can spoof MAC address too.
+
+```bash
+nmap --spoof-mac 00:11:22:33:44:55 -e wlan0 -Pn -S 192.168.1.100 192.168.1.10
+```
+
+---
+
+### 🫥 Decoy Scanning
+
+If spoofing won’t help, use **decoys** to hide your real IP among fake ones.
+
+🧠 Idea: Make the scan appear to come from **many IPs** to confuse the target.
+
+```bash
+nmap -D 192.168.1.3,192.168.1.4,ME 192.168.1.10
+```
+
+- `-D`: Decoys list
+- `ME`: Your real IP (hidden among fake ones)
+
+Target thinks:
+```
+"Wait, who scanned me? Was it 192.168.1.3? 1.4? ME?? 😵‍💫"
+```
+
+---
+
+### ⚠️ Limitations
+
+- IP spoofing won’t work **unless you can see replies** (same subnet or sniffing from a privileged spot).
+- MAC spoofing only works if you’re **on the same WiFi/Ethernet**.
+- Decoy scans help avoid detection but **don't guarantee anonymity**.
+
+---
+### 🧟 What Is a Zombie?
+
+A **zombie** is a quiet machine (like a printer or an idle server) that:
+
+- Doesn’t talk to many people
+    
+- Increases a small number every time it sends something (called the **IP ID**)
+    
+
+This **IP ID** lets you spy on what it did for you.
+
+---
+
+### 🕵️‍♂️ Step-by-Step Trick:
+
+1. **Check the zombie’s current number (IP ID)**
+    
+    - You ask the zombie something tiny and see its current number.
+        
+2. **Send a fake knock to the target’s door**
+    
+    - You tell the target: “Hi! I’m the zombie!” (Spoofed packet with zombie’s IP)
+        
+3. **Ask the zombie again**
+    
+    - Check if the number changed.
+        
+
+---
+
+### 📊 How to Read the Results:
+
+- If the number went up by **1**:  
+    ❌ Port is **closed** or **blocked**.
+    
+- If the number went up by **2**:  
+    ✅ Port is **open**! (Zombie replied to the target silently)
+    
+
+---
+
+### ### 🧪 Nmap Command:
+
+nmap -sI ZOMBIE_IP TARGET_IP
+
+    -sI = Idle scan (zombie)
+
+    ZOMBIE_IP = Quiet helper
+
+    TARGET_IP = Target computer
+
+🔒 Why Use It?
+
+    ✅ Super stealthy
+
+    ✅ Target never knows you scanned it
+
+    ✅ Helps bypass firewalls and intrusion detection systems
+
+⚠️ Requirements:
+
+    Zombie must be quiet (idle)
+
+    Zombie must use predictable IP ID
+
+    You must be able to see replies that come back to the zombie
