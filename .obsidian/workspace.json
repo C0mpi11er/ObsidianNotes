@@ -377,16 +377,184 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Types_PrivEsc(Linux).md",
+                "file": "Vulnerability.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Types_PrivEsc(Linux)"
+              "title": "Vulnerability"
+            }
+          },
+          {
+            "id": "d0334dd3b7ad238e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Web Pentest.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Web Pentest"
+            }
+          },
+          {
+            "id": "84d950adbfccfb13",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "MBC.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "MBC"
+            }
+          },
+          {
+            "id": "2f9e08cf837ce50d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Priviledge escalation.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Priviledge escalation"
+            }
+          },
+          {
+            "id": "6cc8a83e5dfc2e73",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Priviledge escalation.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Priviledge escalation"
+            }
+          },
+          {
+            "id": "a5d7a412658f6d86",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Priv Esc(SVC).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Priv Esc(SVC)"
+            }
+          },
+          {
+            "id": "02055816ec739892",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Priviledge escalation.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Priviledge escalation"
+            }
+          },
+          {
+            "id": "038f1269e5c511e4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Priv SEBackup,SERestore.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Priv SEBackup,SERestore"
+            }
+          },
+          {
+            "id": "a3f1c694d48d50d0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Priviledge escalation.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Priviledge escalation"
+            }
+          },
+          {
+            "id": "074e58e9f87faf20",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Priv (Seimpersonate).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Priv (Seimpersonate)"
+            }
+          },
+          {
+            "id": "efb3000ca44de4c2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows Priv Esc Tools.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows Priv Esc Tools"
+            }
+          },
+          {
+            "id": "40b5c91e8eae40eb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Race Condition Vulnerabilities – Detection & Mitigation.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Race Condition Vulnerabilities – Detection & Mitigation"
+            }
+          },
+          {
+            "id": "d3b3ebac63cb5f43",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "XXS (web hacking).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "XXS (web hacking)"
             }
           }
         ],
-        "currentTab": 26
+        "currentTab": 38
       }
     ],
     "direction": "vertical"
@@ -534,35 +702,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8f97133c1396b3f8",
+  "active": "d3b3ebac63cb5f43",
   "lastOpenFiles": [
-    "Linux Priv Esc.md",
-    "Types_PrivEsc(Linux).md",
-    "HashCat.md",
-    "John.md",
-    "Prive_Escal_App_Function.md",
-    "GTFOBins.md",
-    "images/linux_priv.png",
-    "NetCat.md",
-    "Tar unziping.md",
-    "SearchSploit.md",
-    "Vulnerability.md",
-    "VirusTotal.md",
-    "Socat.md",
-    "Responder.md",
-    "OpenVas.md",
-    "OSINT.md",
-    "MsVenom.md",
-    "IDor(Web Hacking).md",
-    "Hydra.md",
-    "FFuF.md",
-    "Nmap.md",
-    "Protocols.md",
-    "RustScan.md",
-    "Protocols Uses and summary.md",
+    "🛡️ Ultimate Anonymity Guide for Covert Pentesting.md",
+    "Race Condition Vulnerabilities – Detection & Mitigation.md",
+    "Windows Priv Esc Tools.md",
+    "Windows Priv (Seimpersonate).md",
+    "Windows Priviledge escalation.md",
+    "WpScan.md",
+    "🔒 Privilege Escalation via `SeTakeOwnershipPrivilege` & `utilman.exe` Abuse.md",
+    "Windows Priv SEBackup,SERestore.md",
+    "Login Windows.md",
+    "Type Of Windows Privileges.md",
+    "Windows Priv Esc(SVC).md",
+    "Windows Priv Esc(Sheduled task).md",
     "Ncat && rlwrap.md",
-    "Telnet.md",
-    "XXS (web hacking).md",
+    "NetCat.md",
+    "MBC.md",
+    "Windows (Disk,Drivers,etc).md",
+    "Welcome.md",
+    "Windows Networking commands (cmd.exe).md",
+    "Types_PrivEsc(Linux).md",
+    "Linux Priv Esc.md",
+    "Vuln hubs to finish.md",
+    "Web Pentest.md",
+    "Nikto.md",
+    "Vulnerability.md",
+    "Eye Witness.md",
+    "Censys.md",
+    "images/linux_priv.png",
     "images/XXS.png",
     "images/ssrf_3.png",
     "images/ssrf_2.png",

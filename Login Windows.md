@@ -8,3 +8,6 @@ Invoke-WebRequest -Uri http://linux-ip:8000/filename.ext -OutFile "C:\Users\Your
 
 **Grant Full Control To User For file**
 icacls "C:\Path\To\File.ext" /grant YourUser:F
+# note!! use this methode it is better 
+
+xfreerdp /u:username /p:password /v:<ip>:3389 /dynamic-resolution /network:auto +heartbeat
