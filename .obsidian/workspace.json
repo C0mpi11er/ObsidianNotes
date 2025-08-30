@@ -4,697 +4,123 @@
     "type": "split",
     "children": [
       {
-        "id": "2c39830b06369504",
+        "id": "901bf53c16964a93",
         "type": "tabs",
         "children": [
           {
-            "id": "efc8e7d2e20c536e",
+            "id": "818478410a3646c9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Snort.md",
+                "file": "PortSwigger_FileUpload.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Snort"
+              "title": "PortSwigger_FileUpload"
             }
           },
           {
-            "id": "92a99486f4ff5425",
+            "id": "9655c316a70561ee",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OpenVas.md",
+                "file": "THM hack notes/Shodan.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "OpenVas"
+              "title": "Shodan"
             }
           },
           {
-            "id": "2166d079b69f51cc",
+            "id": "a0bf1967375ee2f7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Login Windows.md",
+                "file": "Port_SQL_Injection.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Login Windows"
+              "title": "Port_SQL_Injection"
             }
           },
           {
-            "id": "a6e84144a58f2406",
+            "id": "a0d8cc33737d70b6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MBC.md",
+                "file": "PortSwigger_WebSecurity/Port_SQLi part2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MBC"
+              "title": "Port_SQLi part2"
             }
           },
           {
-            "id": "d57331d0aff7a54a",
+            "id": "96ffb0497aa58421",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CAPA.md",
+                "file": "PortSwigger_WebSecurity/Port_SQLI_Part3.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CAPA"
+              "title": "Port_SQLI_Part3"
             }
           },
           {
-            "id": "6273333905bb3da6",
+            "id": "3519fdda9e1a4ef4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OleDump.py.md",
+                "file": "PortSwigger_Examine_Database in SQLi.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "OleDump.py"
+              "title": "PortSwigger_Examine_Database in SQLi"
             }
           },
           {
-            "id": "f0310cca97fb46b7",
+            "id": "9e5e874c180617f3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Preprocessing of Evidence.md",
+                "file": "PortSwigger_WebSecurity/PortSwigger_Contents of database(SQLI).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Preprocessing of Evidence"
+              "title": "PortSwigger_Contents of database(SQLI)"
             }
           },
           {
-            "id": "7777539be93536d1",
+            "id": "4f563124f5b41cca",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Protocols.md",
+                "file": "Port_Swigger_Blind_Sql.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Protocols"
-            }
-          },
-          {
-            "id": "e5367f3b70847897",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CIA.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CIA"
-            }
-          },
-          {
-            "id": "a78fecf6916e08d8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OSINT.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "OSINT"
-            }
-          },
-          {
-            "id": "ce5ec65b1bcc1475",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "FFuF.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "FFuF"
-            }
-          },
-          {
-            "id": "125a0b26066d1dc1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SubDomain Enumeration.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "SubDomain Enumeration"
-            }
-          },
-          {
-            "id": "1b31dcf17b3fe9f6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "IDor(Web Hacking).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "IDor(Web Hacking)"
-            }
-          },
-          {
-            "id": "4fd61be351e16b35",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Curl.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Curl"
-            }
-          },
-          {
-            "id": "c68d6bf6193f3e6b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SSRF (Web Hacking).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "SSRF (Web Hacking)"
-            }
-          },
-          {
-            "id": "49790c15aebfd234",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "XXS (web hacking).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "XXS (web hacking)"
-            }
-          },
-          {
-            "id": "7f73056d7316a7a6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SQL.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "SQL"
-            }
-          },
-          {
-            "id": "97c15e35cde61936",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Networking.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Networking"
-            }
-          },
-          {
-            "id": "d011d6c5a9078246",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OpenVas.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "OpenVas"
-            }
-          },
-          {
-            "id": "b5d0eacc238c807e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Protocols Uses and summary.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Protocols Uses and summary"
-            }
-          },
-          {
-            "id": "6889a236a8678a1c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Nmap.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Nmap"
-            }
-          },
-          {
-            "id": "cb533a89478bcd2c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "NetCat.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "NetCat"
-            }
-          },
-          {
-            "id": "e3425184df833919",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "NetCat.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "NetCat"
-            }
-          },
-          {
-            "id": "e4a1dc3c1cfae1c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Linux Priv Esc.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Linux Priv Esc"
-            }
-          },
-          {
-            "id": "5e83509d78da5fc0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Linux Priv Esc.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Linux Priv Esc"
-            }
-          },
-          {
-            "id": "0861a8447e3c0c7d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Linux Priv Esc.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Linux Priv Esc"
-            }
-          },
-          {
-            "id": "8f97133c1396b3f8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Vulnerability.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Vulnerability"
-            }
-          },
-          {
-            "id": "d0334dd3b7ad238e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Web Pentest.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Web Pentest"
-            }
-          },
-          {
-            "id": "84d950adbfccfb13",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "MBC.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "MBC"
-            }
-          },
-          {
-            "id": "2f9e08cf837ce50d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows Priviledge escalation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Windows Priviledge escalation"
-            }
-          },
-          {
-            "id": "6cc8a83e5dfc2e73",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows Priviledge escalation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Windows Priviledge escalation"
-            }
-          },
-          {
-            "id": "a5d7a412658f6d86",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows Priv Esc(SVC).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Windows Priv Esc(SVC)"
-            }
-          },
-          {
-            "id": "02055816ec739892",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows Priviledge escalation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Windows Priviledge escalation"
-            }
-          },
-          {
-            "id": "038f1269e5c511e4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows Priv SEBackup,SERestore.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Windows Priv SEBackup,SERestore"
-            }
-          },
-          {
-            "id": "a3f1c694d48d50d0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows Priviledge escalation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Windows Priviledge escalation"
-            }
-          },
-          {
-            "id": "074e58e9f87faf20",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows Priv (Seimpersonate).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Windows Priv (Seimpersonate)"
-            }
-          },
-          {
-            "id": "efb3000ca44de4c2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows Priv Esc Tools.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Windows Priv Esc Tools"
-            }
-          },
-          {
-            "id": "40b5c91e8eae40eb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Race Condition Vulnerabilities – Detection & Mitigation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Race Condition Vulnerabilities – Detection & Mitigation"
-            }
-          },
-          {
-            "id": "d3b3ebac63cb5f43",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "🛡️ Ultimate Anonymity Guide for Covert Pentesting.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "🛡️ Ultimate Anonymity Guide for Covert Pentesting"
-            }
-          },
-          {
-            "id": "ad72ed5cfc19b448",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "FFuF.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "FFuF"
-            }
-          },
-          {
-            "id": "1b4e3e8c3f00bb88",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Web_Pentest.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Web_Pentest"
-            }
-          },
-          {
-            "id": "5c2c275e69c673f6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "HashCat.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "HashCat"
-            }
-          },
-          {
-            "id": "2f1a817c060074fd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM hack notes/Linux Priv Esc.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Linux Priv Esc"
-            }
-          },
-          {
-            "id": "bc6551a0adb3fbc0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM hack notes/🛡️ Ultimate Anonymity Guide for Covert Pentesting.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "🛡️ Ultimate Anonymity Guide for Covert Pentesting"
-            }
-          },
-          {
-            "id": "bbe06038136cf68c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM hack notes/2025-05-21.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2025-05-21"
-            }
-          },
-          {
-            "id": "ea8073922a893388",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_path_Traversal.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PortSwigger_path_Traversal"
-            }
-          },
-          {
-            "id": "46a346b4705fd28d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_Access_Control.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PortSwigger_Access_Control"
-            }
-          },
-          {
-            "id": "bf8f44fbb3a006ac",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_WebSecurity/Portswigger_Authentication.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Portswigger_Authentication"
-            }
-          },
-          {
-            "id": "05418fbc5a1c6ded",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_SSRF.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PortSwigger_SSRF"
+              "title": "Port_Swigger_Blind_Sql"
             }
           }
         ],
-        "currentTab": 48
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -842,36 +268,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "05418fbc5a1c6ded",
+  "active": "4f563124f5b41cca",
   "lastOpenFiles": [
-    "PortSwigger_WebSecurity/Portswigger_Authentication.md",
-    "PortSwigger_SSRF.md",
-    "THM hack notes/Hydra.md",
+    "PortSwigger_WebSecurity/Port_SQLI_Part3 CHEAT.md",
+    "Port_Swigger_Blind_Sql.md",
+    "PortSwigger_WebSecurity/PortSwigger_Contents of database(SQLI).md",
+    "THM hack notes/SQL Injection.md",
+    "THM hack notes/SQL.md",
+    "PortSwigger_WebSecurity/PortSwigger_Examine_Database in SQLi.md",
+    "THM hack notes/SQLMAP Tool.md",
+    "PortSwigger_WebSecurity/Port_SQLi part2.md",
     "PortSwigger_WebSecurity/PortSwigger_Access_Control.md",
-    "PortSwigger_WebSecurity/PortSwigger_path_Traversal.md",
-    "THM hack notes/2025-05-21.md",
-    "PortSwigger_WebSecurity",
-    "THM hack notes/🛡️ Ultimate Anonymity Guide for Covert Pentesting.md",
-    "THM hack notes/Linux Priv Esc.md",
-    "THM hack notes",
-    "THM hack notes/JWT.md",
-    "THM hack notes/HashCat.md",
-    "THM hack notes/John.md",
-    "THM hack notes/XXS (web hacking).md",
-    "THM hack notes/Crunch.md",
-    "THM hack notes/Web_Pentest.md",
-    "THM hack notes/FFuF.md",
-    "THM hack notes/WAF Bypass Skills.md",
-    "THM hack notes/Race Condition Vulnerabilities – Detection & Mitigation.md",
-    "THM hack notes/Windows Priv Esc Tools.md",
-    "THM hack notes/Windows Priv (Seimpersonate).md",
-    "THM hack notes/Windows Priviledge escalation.md",
-    "THM hack notes/WpScan.md",
-    "THM hack notes/🔒 Privilege Escalation via `SeTakeOwnershipPrivilege` & `utilman.exe` Abuse.md",
-    "THM hack notes/Windows Priv SEBackup,SERestore.md",
+    "PortSwigger_WebSecurity/Port_SQL_Injection.md",
     "THM hack notes/Login Windows.md",
-    "THM hack notes/Type Of Windows Privileges.md",
-    "THM hack notes/Windows Priv Esc(SVC).md",
+    "THM hack notes/Hydra.md",
+    "THM hack notes/Eye Witness.md",
+    "THM hack notes/Windows Priviledge escalation.md",
+    "THM hack notes/Windows Priv SEBackup,SERestore.md",
+    "THM hack notes/Shodan.md",
+    "THM hack notes/Protocols Uses and summary.md",
+    "THM hack notes/Telnet.md",
+    "THM hack notes/Protocols.md",
+    "PortSwigger_WebSecurity/PortSwigger_OS command injection?.md",
+    "PortSwigger_WebSecurity/PortSwigger_FileUpload.md",
+    "THM hack notes/Web Pentest.md",
+    "THM hack notes/FeroxBuster.md",
+    "THM hack notes/Ncat && rlwrap.md",
+    "Penetration Testing Engagement Agreement.md",
+    "THM hack notes/XXS (web hacking).md",
+    "PortSwigger_WebSecurity",
+    "THM hack notes",
     "images/linux_priv.png",
     "images/XXS.png",
     "images/ssrf_3.png",

@@ -18,26 +18,26 @@ sqlmap -u "http://example.com/page.php?id=1"
 
 ## 🔍 Detection & Scanning
 
-|Option|Description|Example|
-|---|---|---|
-|`--batch`|Run without asking for user input|`--batch`|
-|`--level=1-5`|Risk level of tests (default 1)|`--level=5`|
-|`--risk=1-3`|Risk of payloads (default 1)|`--risk=3`|
-|`--random-agent`|Use random User-Agent|`--random-agent`|
-|`--tor --tor-type=SOCKS5`|Route traffic through Tor|`--tor --tor-type=SOCKS5`|
-|`--threads=N`|Number of concurrent HTTP requests|`--threads=10`|
+| Option                    | Description                        | Example                   |
+| ------------------------- | ---------------------------------- | ------------------------- |
+| `--batch`                 | Run without asking for user input  | `--batch`                 |
+| `--level=1-5`             | Risk level of tests (default 1)    | `--level=5`               |
+| `--risk=1-3`              | Risk of payloads (default 1)       | `--risk=3`                |
+| `--random-agent`          | Use random User-Agent              | `--random-agent`          |
+| `--tor --tor-type=SOCKS5` | Route traffic through Tor          | `--tor --tor-type=SOCKS5` |
+| `--threads=N`             | Number of concurrent HTTP requests | `--threads=10`            |
 
 ---
 
 ## 🧪 Enumeration
 
-|Option|Description|Example|
-|---|---|---|
-|`--dbs`|List available databases|`sqlmap -u ... --dbs`|
-|`--tables -D db`|List tables in a database|`--tables -D testdb`|
-|`--columns -T tb`|List columns in a table|`--columns -T users -D testdb`|
-|`--dump`|Dump table data|`--dump -T users -D testdb`|
-|`--dump-all`|Dump everything|`--dump-all`|
+| Option            | Description               | Example                        |
+| ----------------- | ------------------------- | ------------------------------ |
+| `--dbs`           | List available databases  | `sqlmap -u ... --dbs`          |
+| `--tables -D db`  | List tables in a database | `--tables -D testdb`           |
+| `--columns -T tb` | List columns in a table   | `--columns -T users -D testdb` |
+| `--dump`          | Dump table data           | `--dump -T users -D testdb`    |
+| `--dump-all`      | Dump everything           | `--dump-all`                   |
 
 ---
 
