@@ -36,41 +36,41 @@ ffuf -u https://target/FUZZ -w wordlist.txt
 
 ## 🧠 USAGE MODES
 
-|Mode|Description|
-|---|---|
-|Directory Bruteforce|Find hidden folders/files|
-|File Extension Guess|Append extensions (`.php`, `.bak`, etc.)|
-|Parameter Discovery|Find vulnerable or hidden GET/POST parameters|
-|VHost Fuzzing|Discover subdomains via `Host:` header|
-|Header Manipulation|Test auth or bypass headers|
-|Cookie Injection|Fuzz cookies|
-|JSON Fuzzing|POST JSON body fuzz|
-|Multiple Wordlists|Use more than one FUZZ in URL|
-|Non-Bruteforce Recon|Filter known vs unknown responses|
-|Recursive Fuzzing|Combine tools/scripts for deeper discovery|
+| Mode                 | Description                                   |
+| -------------------- | --------------------------------------------- |
+| Directory Bruteforce | Find hidden folders/files                     |
+| File Extension Guess | Append extensions (`.php`, `.bak`, etc.)      |
+| Parameter Discovery  | Find vulnerable or hidden GET/POST parameters |
+| VHost Fuzzing        | Discover subdomains via `Host:` header        |
+| Header Manipulation  | Test auth or bypass headers                   |
+| Cookie Injection     | Fuzz cookies                                  |
+| JSON Fuzzing         | POST JSON body fuzz                           |
+| Multiple Wordlists   | Use more than one FUZZ in URL                 |
+| Non-Bruteforce Recon | Filter known vs unknown responses             |
+| Recursive Fuzzing    | Combine tools/scripts for deeper discovery    |
 
 ---
 
 ## ⚙️ OPTIONS BREAKDOWN
 
-|Flag|Description|
-|---|---|
-|`-u`|URL with one or more `FUZZ` keywords|
-|`-w`|Wordlist|
-|`-H`|Custom headers|
-|`-X`|HTTP method (GET, POST, etc.)|
-|`-d`|POST data payload|
-|`-mc`|Match HTTP status codes|
-|`-fc`|Filter HTTP status codes|
-|`-mr`|Match regex in response body|
-|`-fs`|Filter by response size|
-|`-fl`|Filter by content length|
-|`-o`|Output file|
-|`-of`|Output format (`json`, `csv`, `html`, `md`)|
-|`-t`|Number of threads (default: 40)|
-|`-rate`|Max requests per second|
-|`-timeout`|Timeout per request|
-|`--replay-proxy`|Send matching requests to proxy (e.g. Burp)|
+| Flag             | Description                                 |
+| ---------------- | ------------------------------------------- |
+| `-u`             | URL with one or more `FUZZ` keywords        |
+| `-w`             | Wordlist                                    |
+| `-H`             | Custom headers                              |
+| `-X`             | HTTP method (GET, POST, etc.)               |
+| `-d`             | POST data payload                           |
+| `-mc`            | Match HTTP status codes                     |
+| `-fc`            | Filter HTTP status codes                    |
+| `-mr`            | Match regex in response body                |
+| `-fs`            | Filter by response size                     |
+| `-fl`            | Filter by content length                    |
+| `-o`             | Output file                                 |
+| `-of`            | Output format (`json`, `csv`, `html`, `md`) |
+| `-t`             | Number of threads (default: 40)             |
+| `-rate`          | Max requests per second                     |
+| `-timeout`       | Timeout per request                         |
+| `--replay-proxy` | Send matching requests to proxy (e.g. Burp) |
 
 ---
 

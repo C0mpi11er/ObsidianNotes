@@ -118,9 +118,37 @@
               "icon": "lucide-file",
               "title": "Port_Swigger_Blind_Sql"
             }
+          },
+          {
+            "id": "406f2a55ac5c0d41",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "THM hack notes/Hacking Notes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Hacking Notes"
+            }
+          },
+          {
+            "id": "9b787bf7ae3a71ba",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "THM hack notes/Hacking Notes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Hacking Notes"
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -268,34 +296,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4f563124f5b41cca",
+  "active": "9b787bf7ae3a71ba",
   "lastOpenFiles": [
-    "PortSwigger_WebSecurity/Port_SQLI_Part3 CHEAT.md",
-    "Port_Swigger_Blind_Sql.md",
-    "PortSwigger_WebSecurity/PortSwigger_Contents of database(SQLI).md",
-    "THM hack notes/SQL Injection.md",
-    "THM hack notes/SQL.md",
-    "PortSwigger_WebSecurity/PortSwigger_Examine_Database in SQLi.md",
-    "THM hack notes/SQLMAP Tool.md",
-    "PortSwigger_WebSecurity/Port_SQLi part2.md",
-    "PortSwigger_WebSecurity/PortSwigger_Access_Control.md",
-    "PortSwigger_WebSecurity/Port_SQL_Injection.md",
-    "THM hack notes/Login Windows.md",
+    "THM hack notes/Metasploit.md",
+    "THM hack notes/SearchSploit.md",
+    "THM hack notes/Snort.md",
+    "THM hack notes/Pthon3 server.md",
+    "THM hack notes/MsVenom.md",
+    "THM hack notes/MBC.md",
+    "THM hack notes/IDor(Web Hacking).md",
+    "THM hack notes/JWT.md",
+    "THM hack notes/Censys.md",
+    "THM hack notes/CAPA.md",
     "THM hack notes/Hydra.md",
-    "THM hack notes/Eye Witness.md",
-    "THM hack notes/Windows Priviledge escalation.md",
-    "THM hack notes/Windows Priv SEBackup,SERestore.md",
-    "THM hack notes/Shodan.md",
-    "THM hack notes/Protocols Uses and summary.md",
-    "THM hack notes/Telnet.md",
-    "THM hack notes/Protocols.md",
-    "PortSwigger_WebSecurity/PortSwigger_OS command injection?.md",
-    "PortSwigger_WebSecurity/PortSwigger_FileUpload.md",
-    "THM hack notes/Web Pentest.md",
+    "THM hack notes/GoBuster.md",
+    "THM hack notes/Hacking Notes.md",
+    "THM hack notes/Nmap.md",
+    "Web Pentest Tools.md",
+    "THM hack notes/SSRF (Web Hacking).md",
+    "THM hack notes/Web_Pentest.md",
     "THM hack notes/FeroxBuster.md",
-    "THM hack notes/Ncat && rlwrap.md",
-    "Penetration Testing Engagement Agreement.md",
+    "THM hack notes/SQLMAP Tool.md",
+    "THM hack notes/SQL Injection.md",
     "THM hack notes/XXS (web hacking).md",
+    "THM hack notes/FFuF.md",
+    "THM hack notes/Web Pentest.md",
+    "THM hack notes/Tar unziping.md",
+    "Port_Swigger_Blind_Sql.md",
+    "Port_Swigger_Error_Based_SQLI.md",
     "PortSwigger_WebSecurity",
     "THM hack notes",
     "images/linux_priv.png",

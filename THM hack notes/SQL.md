@@ -1,39 +1,39 @@
 
 ### 🗂️ Database-Level SQL Commands (with Examples)
 
-|**Command**|**Syntax**|**Example**|**Description**|
-|---|---|---|---|
-|**Show Databases**|`SHOW DATABASES;`|—|Lists all databases|
-|**Create Database**|`CREATE DATABASE db_name;`|`CREATE DATABASE mydb;`|Creates a new database|
-|**Create If Not Exists**|`CREATE DATABASE IF NOT EXISTS db_name;`|`CREATE DATABASE IF NOT EXISTS mydb;`|Avoids error if database exists|
-|**Drop Database**|`DROP DATABASE db_name;`|`DROP DATABASE mydb;`|Deletes the database|
-|**Use Database**|`USE db_name;`|`USE mydb;`|Switches to the selected database|
-|**Show Tables**|`SHOW TABLES;`|—|Lists tables in the current database|
-|**Show Table Structure**|`DESCRIBE table_name;` or `SHOW COLUMNS FROM table_name;`|`DESCRIBE users;`|Displays table schema|
-|**Show Indexes**|`SHOW INDEX FROM table_name;`|`SHOW INDEX FROM users;`|Lists indexes on the table|
-|**Show Create Table**|`SHOW CREATE TABLE table_name;`|`SHOW CREATE TABLE users;`|Displays full `CREATE` statement for the table|
+| **Command**              | **Syntax**                                                | **Example**                           | **Description**                                |
+| ------------------------ | --------------------------------------------------------- | ------------------------------------- | ---------------------------------------------- |
+| **Show Databases**       | `SHOW DATABASES;`                                         | —                                     | Lists all databases                            |
+| **Create Database**      | `CREATE DATABASE db_name;`                                | `CREATE DATABASE mydb;`               | Creates a new database                         |
+| **Create If Not Exists** | `CREATE DATABASE IF NOT EXISTS db_name;`                  | `CREATE DATABASE IF NOT EXISTS mydb;` | Avoids error if database exists                |
+| **Drop Database**        | `DROP DATABASE db_name;`                                  | `DROP DATABASE mydb;`                 | Deletes the database                           |
+| **Use Database**         | `USE db_name;`                                            | `USE mydb;`                           | Switches to the selected database              |
+| **Show Tables**          | `SHOW TABLES;`                                            | —                                     | Lists tables in the current database           |
+| **Show Table Structure** | `DESCRIBE table_name;` or `SHOW COLUMNS FROM table_name;` | `DESCRIBE users;`                     | Displays table schema                          |
+| **Show Indexes**         | `SHOW INDEX FROM table_name;`                             | `SHOW INDEX FROM users;`              | Lists indexes on the table                     |
+| **Show Create Table**    | `SHOW CREATE TABLE table_name;`                           | `SHOW CREATE TABLE users;`            | Displays full `CREATE` statement for the table |
 ### 📋 SQL Table Syntax Cheat Sheet with Examples
 
-|**Command**|**Syntax**|**Example**|**Description**|
-|---|---|---|---|
-|**Create Table**|`CREATE TABLE table_name (column_name datatype [constraints], ...);`|`CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(100));`|Creates a new table|
-|**Create If Not Exists**|`CREATE TABLE IF NOT EXISTS table_name (...);`|`CREATE TABLE IF NOT EXISTS products (id INT, price DECIMAL(10,2));`|Avoids error if table exists|
-|**Drop Table**|`DROP TABLE table_name;`|`DROP TABLE orders;`|Deletes the entire table|
-|**Truncate Table**|`TRUNCATE TABLE table_name;`|`TRUNCATE TABLE logs;`|Deletes all rows quickly|
-|**Rename Table**|`RENAME TABLE old_name TO new_name;`|`RENAME TABLE clients TO customers;`|Changes the table name|
-|**Add Column**|`ALTER TABLE table_name ADD column_name datatype;`|`ALTER TABLE users ADD email VARCHAR(255);`|Adds a new column|
-|**Drop Column**|`ALTER TABLE table_name DROP COLUMN column_name;`|`ALTER TABLE users DROP COLUMN email;`|Removes a column|
-|**Modify Column**|`ALTER TABLE table_name MODIFY column_name new_datatype;`|`ALTER TABLE users MODIFY name TEXT;`|Changes column type|
-|**Rename Column**|`ALTER TABLE table_name RENAME COLUMN old TO new;`|`ALTER TABLE users RENAME COLUMN name TO full_name;`|Renames a column|
-|**Add Constraint**|`ALTER TABLE table ADD CONSTRAINT name type (col);`|`ALTER TABLE orders ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id);`|Adds FK, PK, etc.|
-|**Drop Constraint**|`ALTER TABLE table DROP CONSTRAINT constraint_name;`|`ALTER TABLE orders DROP CONSTRAINT fk_user;`|Removes a constraint|
-|**Show Tables**|`SHOW TABLES;`|—|Lists all tables|
-|**Show Columns**|`SHOW COLUMNS FROM table_name;`|`SHOW COLUMNS FROM users;`|Lists columns info|
-|**Describe Table**|`DESCRIBE table_name;` or `DESC table_name;`|`DESC users;`|Describes table structure|
-|**Insert Into**|`INSERT INTO table (col1, col2) VALUES (val1, val2);`|`INSERT INTO users (id, name) VALUES (1, 'Alice');`|Adds a new row|
-|**Update Rows**|`UPDATE table SET col = val WHERE condition;`|`UPDATE users SET name = 'Bob' WHERE id = 1;`|Updates rows|
-|**Delete Rows**|`DELETE FROM table WHERE condition;`|`DELETE FROM users WHERE id = 1;`|Deletes specific rows|
-|**Select Query**|`SELECT column1, column2 FROM table WHERE condition;`|`SELECT name FROM users WHERE id = 1;`|Queries rows|
+| **Command**              | **Syntax**                                                           | **Example**                                                                             | **Description**              |
+| ------------------------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ---------------------------- |
+| **Create Table**         | `CREATE TABLE table_name (column_name datatype [constraints], ...);` | `CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(100));`                           | Creates a new table          |
+| **Create If Not Exists** | `CREATE TABLE IF NOT EXISTS table_name (...);`                       | `CREATE TABLE IF NOT EXISTS products (id INT, price DECIMAL(10,2));`                    | Avoids error if table exists |
+| **Drop Table**           | `DROP TABLE table_name;`                                             | `DROP TABLE orders;`                                                                    | Deletes the entire table     |
+| **Truncate Table**       | `TRUNCATE TABLE table_name;`                                         | `TRUNCATE TABLE logs;`                                                                  | Deletes all rows quickly     |
+| **Rename Table**         | `RENAME TABLE old_name TO new_name;`                                 | `RENAME TABLE clients TO customers;`                                                    | Changes the table name       |
+| **Add Column**           | `ALTER TABLE table_name ADD column_name datatype;`                   | `ALTER TABLE users ADD email VARCHAR(255);`                                             | Adds a new column            |
+| **Drop Column**          | `ALTER TABLE table_name DROP COLUMN column_name;`                    | `ALTER TABLE users DROP COLUMN email;`                                                  | Removes a column             |
+| **Modify Column**        | `ALTER TABLE table_name MODIFY column_name new_datatype;`            | `ALTER TABLE users MODIFY name TEXT;`                                                   | Changes column type          |
+| **Rename Column**        | `ALTER TABLE table_name RENAME COLUMN old TO new;`                   | `ALTER TABLE users RENAME COLUMN name TO full_name;`                                    | Renames a column             |
+| **Add Constraint**       | `ALTER TABLE table ADD CONSTRAINT name type (col);`                  | `ALTER TABLE orders ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id);` | Adds FK, PK, etc.            |
+| **Drop Constraint**      | `ALTER TABLE table DROP CONSTRAINT constraint_name;`                 | `ALTER TABLE orders DROP CONSTRAINT fk_user;`                                           | Removes a constraint         |
+| **Show Tables**          | `SHOW TABLES;`                                                       | —                                                                                       | Lists all tables             |
+| **Show Columns**         | `SHOW COLUMNS FROM table_name;`                                      | `SHOW COLUMNS FROM users;`                                                              | Lists columns info           |
+| **Describe Table**       | `DESCRIBE table_name;` or `DESC table_name;`                         | `DESC users;`                                                                           | Describes table structure    |
+| **Insert Into**          | `INSERT INTO table (col1, col2) VALUES (val1, val2);`                | `INSERT INTO users (id, name) VALUES (1, 'Alice');`                                     | Adds a new row               |
+| **Update Rows**          | `UPDATE table SET col = val WHERE condition;`                        | `UPDATE users SET name = 'Bob' WHERE id = 1;`                                           | Updates rows                 |
+| **Delete Rows**          | `DELETE FROM table WHERE condition;`                                 | `DELETE FROM users WHERE id = 1;`                                                       | Deletes specific rows        |
+| **Select Query**         | `SELECT column1, column2 FROM table WHERE condition;`                | `SELECT name FROM users WHERE id = 1;`                                                  | Queries rows                 |
 
 Sure! Let’s break down **CRUD in SQL** like you're completely new to it — no jargon, just simple language and real-life examples.
 
@@ -127,12 +127,12 @@ This removes Alice from the table.
 
 ## 🔁 Summary Table
 
-|Action|SQL Command Example|
-|---|---|
-|Create|`INSERT INTO contacts (name, phone) VALUES ('Bob', '1112223333');`|
-|Read|`SELECT * FROM contacts;`|
-|Update|`UPDATE contacts SET phone = '9999999999' WHERE name = 'Bob';`|
-|Delete|`DELETE FROM contacts WHERE name = 'Bob';`|
+| Action | SQL Command Example                                                |
+| ------ | ------------------------------------------------------------------ |
+| Create | `INSERT INTO contacts (name, phone) VALUES ('Bob', '1112223333');` |
+| Read   | `SELECT * FROM contacts;`                                          |
+| Update | `UPDATE contacts SET phone = '9999999999' WHERE name = 'Bob';`     |
+| Delete | `DELETE FROM contacts WHERE name = 'Bob';`                         |
 
 ---
 
@@ -145,12 +145,12 @@ Here's an **updated SQL cheat sheet** that includes `DISTINCT`, `GROUP BY`, `ORD
 
 ## 🧾 SQL Cheat Sheet: `DISTINCT`, `GROUP BY`, `ORDER BY ASC`, `HAVING`
 
-|**Clause**|**Purpose**|**Basic Syntax**|**Example**|**Result**|
-|---|---|---|---|---|
-|`DISTINCT`|Removes duplicate rows|`SELECT DISTINCT column FROM table;`|`SELECT DISTINCT city FROM customers;`|Unique city names|
-|`GROUP BY`|Groups rows for aggregation|`SELECT column, AGG_FUNC(col2) FROM table GROUP BY column;`|`SELECT city, COUNT(*) FROM customers GROUP BY city;`|Count per city|
-|`ORDER BY ASC`|Sorts results in ascending order (default)|`SELECT * FROM table ORDER BY column ASC;`|`SELECT name FROM customers ORDER BY name ASC;`|Alphabetical names|
-|`HAVING`|Filters **groups** created by `GROUP BY` based on aggregate values|`SELECT col, AGG_FUNC(col2) FROM table GROUP BY col HAVING condition;`|`SELECT city, COUNT(*) FROM customers GROUP BY city HAVING COUNT(*) > 2;`|Only cities with more than 2 customers|
+| **Clause**     | **Purpose**                                                        | **Basic Syntax**                                                       | **Example**                                                               | **Result**                             |
+| -------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------- |
+| `DISTINCT`     | Removes duplicate rows                                             | `SELECT DISTINCT column FROM table;`                                   | `SELECT DISTINCT city FROM customers;`                                    | Unique city names                      |
+| `GROUP BY`     | Groups rows for aggregation                                        | `SELECT column, AGG_FUNC(col2) FROM table GROUP BY column;`            | `SELECT city, COUNT(*) FROM customers GROUP BY city;`                     | Count per city                         |
+| `ORDER BY ASC` | Sorts results in ascending order (default)                         | `SELECT * FROM table ORDER BY column ASC;`                             | `SELECT name FROM customers ORDER BY name ASC;`                           | Alphabetical names                     |
+| `HAVING`       | Filters **groups** created by `GROUP BY` based on aggregate values | `SELECT col, AGG_FUNC(col2) FROM table GROUP BY col HAVING condition;` | `SELECT city, COUNT(*) FROM customers GROUP BY city HAVING COUNT(*) > 2;` | Only cities with more than 2 customers |
 
 ---
 
@@ -242,52 +242,52 @@ ORDER BY total_customers ASC;
 
 ### 🔹 Comparison Operators
 
-|Operator|Description|Example|
-|---|---|---|
-|`=`|Equal to|`WHERE age = 25`|
-|`!=` or `<>`|Not equal to|`WHERE name != 'John'`|
-|`>`|Greater than|`WHERE salary > 50000`|
-|`<`|Less than|`WHERE score < 80`|
-|`>=`|Greater than or equal to|`WHERE marks >= 40`|
-|`<=`|Less than or equal to|`WHERE age <= 60`|
-|`BETWEEN`|Within a range (inclusive)|`WHERE age BETWEEN 20 AND 30`|
-|`IN`|Matches any in a list|`WHERE dept IN ('HR', 'IT')`|
-|`LIKE`|Pattern matching (wildcards)|`WHERE name LIKE 'A%'`|
-|`IS NULL`|Checks for NULL values|`WHERE address IS NULL`|
-|`IS NOT NULL`|Checks for non-NULL|`WHERE email IS NOT NULL`|
+| Operator      | Description                  | Example                       |
+| ------------- | ---------------------------- | ----------------------------- |
+| `=`           | Equal to                     | `WHERE age = 25`              |
+| `!=` or `<>`  | Not equal to                 | `WHERE name != 'John'`        |
+| `>`           | Greater than                 | `WHERE salary > 50000`        |
+| `<`           | Less than                    | `WHERE score < 80`            |
+| `>=`          | Greater than or equal to     | `WHERE marks >= 40`           |
+| `<=`          | Less than or equal to        | `WHERE age <= 60`             |
+| `BETWEEN`     | Within a range (inclusive)   | `WHERE age BETWEEN 20 AND 30` |
+| `IN`          | Matches any in a list        | `WHERE dept IN ('HR', 'IT')`  |
+| `LIKE`        | Pattern matching (wildcards) | `WHERE name LIKE 'A%'`        |
+| `IS NULL`     | Checks for NULL values       | `WHERE address IS NULL`       |
+| `IS NOT NULL` | Checks for non-NULL          | `WHERE email IS NOT NULL`     |
 
 ---
 
 ### 🔹 Logical Operators
 
-|Operator|Description|Example|
-|---|---|---|
-|`AND`|All conditions must be true|`WHERE age > 18 AND gender = 'M'`|
-|`OR`|At least one condition is true|`WHERE city = 'NY' OR city = 'LA'`|
-|`NOT`|Reverses the condition|`WHERE NOT (age < 30)`|
+| Operator | Description                    | Example                            |
+| -------- | ------------------------------ | ---------------------------------- |
+| `AND`    | All conditions must be true    | `WHERE age > 18 AND gender = 'M'`  |
+| `OR`     | At least one condition is true | `WHERE city = 'NY' OR city = 'LA'` |
+| `NOT`    | Reverses the condition         | `WHERE NOT (age < 30)`             |
 
 ---
 
 ### 🔹 Arithmetic Operators
 
-|Operator|Description|Example|
-|---|---|---|
-|`+`|Addition|`SELECT salary + bonus`|
-|`-`|Subtraction|`SELECT price - discount`|
-|`*`|Multiplication|`SELECT quantity * price`|
-|`/`|Division|`SELECT total / items`|
-|`%`|Modulo (remainder)|`SELECT 10 % 3`|
+| Operator | Description        | Example                   |
+| -------- | ------------------ | ------------------------- |
+| `+`      | Addition           | `SELECT salary + bonus`   |
+| `-`      | Subtraction        | `SELECT price - discount` |
+| `*`      | Multiplication     | `SELECT quantity * price` |
+| `/`      | Division           | `SELECT total / items`    |
+| `%`      | Modulo (remainder) | `SELECT 10 % 3`           |
 
 ---
 
 ### 🔹 Other Useful Operators
 
-|Operator|Description|Example|
-|---|---|---|
-|`EXISTS`|Checks for subquery existence|`WHERE EXISTS (SELECT * FROM orders ...)`|
-|`ALL`|Compares with all values|`WHERE salary > ALL (SELECT salary FROM ...)`|
-|`ANY` or `SOME`|Compares with any one value|`WHERE score > ANY (SELECT score FROM ...)`|
-|`UNION`|Combines results of two queries|`SELECT name FROM A UNION SELECT name FROM B`|
+| Operator        | Description                     | Example                                       |
+| --------------- | ------------------------------- | --------------------------------------------- |
+| `EXISTS`        | Checks for subquery existence   | `WHERE EXISTS (SELECT * FROM orders ...)`     |
+| `ALL`           | Compares with all values        | `WHERE salary > ALL (SELECT salary FROM ...)` |
+| `ANY` or `SOME` | Compares with any one value     | `WHERE score > ANY (SELECT score FROM ...)`   |
+| `UNION`         | Combines results of two queries | `SELECT name FROM A UNION SELECT name FROM B` |
 
 ---
 
@@ -305,13 +305,13 @@ ORDER BY salary DESC;
 
 Absolutely! Let me break this down **even more simply**, like I’m explaining it to a total beginner using **real-world examples**. Think of a **table of books** like this:
 
-|name|category|published_date|price|
-|---|---|---|---|
-|Android Security Internals|Defensive Security|2014-10-14|49.99|
-|Bug Bounty Bootcamp|Offensive Security|2021-03-09|59.99|
-|Car Hacker's Handbook|Offensive Security|2016-01-01|39.99|
-|Designing Secure Software|Defensive Security|2021-12-21|54.99|
-|Ethical Hacking|Offensive Security|2021-06-01|44.99|
+| name                       | category           | published_date | price |
+| -------------------------- | ------------------ | -------------- | ----- |
+| Android Security Internals | Defensive Security | 2014-10-14     | 49.99 |
+| Bug Bounty Bootcamp        | Offensive Security | 2021-03-09     | 59.99 |
+| Car Hacker's Handbook      | Offensive Security | 2016-01-01     | 39.99 |
+| Designing Secure Software  | Defensive Security | 2021-12-21     | 54.99 |
+| Ethical Hacking            | Offensive Security | 2021-06-01     | 44.99 |
 
 ---
 

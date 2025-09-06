@@ -8,17 +8,17 @@ Here’s the improved version 👇:
 
 ## 🎯 Target Specification
 
-|Method|Syntax|Description|
-|:--|:--|:--|
-|**Single IP**|`nmap 192.168.1.1`|Scan one IP address.|
-|**IP Range**|`nmap 192.168.1.1-10`|Scan from 192.168.1.1 to 192.168.1.10.|
-|**Subnet (CIDR)**|`nmap 192.168.1.0/24`|Scan an entire subnet (256 addresses).|
-|**Multiple IPs**|`nmap 192.168.1.1 192.168.1.5`|Scan multiple specific IPs.|
-|**List from file**|`nmap -iL targets.txt`|Read list of targets from a file.|
-|**Exclude Targets**|`nmap 192.168.1.0/24 --exclude 192.168.1.5`|Skip specific IPs.|
-|**Exclude from file**|`nmap 192.168.1.0/24 --excludefile exclude.txt`|Exclude IPs listed in a file.|
-|**Hostname**|`nmap example.com`|Scan a domain name (resolves to IP).|
-|**IPv6**|`nmap -6 2606:4700:4700::1111`|Scan IPv6 addresses.|
+| Method                | Syntax                                          | Description                            |
+| :-------------------- | :---------------------------------------------- | :------------------------------------- |
+| **Single IP**         | `nmap 192.168.1.1`                              | Scan one IP address.                   |
+| **IP Range**          | `nmap 192.168.1.1-10`                           | Scan from 192.168.1.1 to 192.168.1.10. |
+| **Subnet (CIDR)**     | `nmap 192.168.1.0/24`                           | Scan an entire subnet (256 addresses). |
+| **Multiple IPs**      | `nmap 192.168.1.1 192.168.1.5`                  | Scan multiple specific IPs.            |
+| **List from file**    | `nmap -iL targets.txt`                          | Read list of targets from a file.      |
+| **Exclude Targets**   | `nmap 192.168.1.0/24 --exclude 192.168.1.5`     | Skip specific IPs.                     |
+| **Exclude from file** | `nmap 192.168.1.0/24 --excludefile exclude.txt` | Exclude IPs listed in a file.          |
+| **Hostname**          | `nmap example.com`                              | Scan a domain name (resolves to IP).   |
+| **IPv6**              | `nmap -6 2606:4700:4700::1111`                  | Scan IPv6 addresses.                   |
 
 ---
 
@@ -45,17 +45,17 @@ Here’s the improved version 👇:
 
 ## 🛡️ Advanced + Latest Tricks
 
-|Technique|Syntax|Use Case|
-|:--|:--|:--|
-|**Scan Specific Ports**|`nmap -p 22,80,443`|Only scan selected ports.|
-|**Aggressive with Safe Scripts**|`nmap -sC`|Run default scripts (safe scanning).|
-|**Aggressive with All Scripts**|`nmap --script vuln`|Scan with scripts targeting vulnerabilities.|
-|**Spoof MAC Address**|`nmap --spoof-mac 00:11:22:33:44:55`|Hide your real MAC address.|
-|**IP Spoofing (Experimental)**|`nmap -S <spoofed-IP>`|Spoof source IP address (needs special network setup).|
-|**Fragment Packets**|`nmap -f`|Break packets into smaller pieces to evade firewalls.|
-|**Randomize Target Order**|`nmap --randomize-hosts`|Harder to detect patterns during scanning.|
-|**Timing Control**|`nmap --min-rate 1000 --max-rate 5000`|Force faster scan rates.|
-|**IPv6 Fast Scan**|`nmap -6 -T4 -F`|Scan IPv6 networks quickly.|
+| Technique                        | Syntax                                 | Use Case                                               |
+| :------------------------------- | :------------------------------------- | :----------------------------------------------------- |
+| **Scan Specific Ports**          | `nmap -p 22,80,443`                    | Only scan selected ports.                              |
+| **Aggressive with Safe Scripts** | `nmap -sC`                             | Run default scripts (safe scanning).                   |
+| **Aggressive with All Scripts**  | `nmap --script vuln`                   | Scan with scripts targeting vulnerabilities.           |
+| **Spoof MAC Address**            | `nmap --spoof-mac 00:11:22:33:44:55`   | Hide your real MAC address.                            |
+| **IP Spoofing (Experimental)**   | `nmap -S <spoofed-IP>`                 | Spoof source IP address (needs special network setup). |
+| **Fragment Packets**             | `nmap -f`                              | Break packets into smaller pieces to evade firewalls.  |
+| **Randomize Target Order**       | `nmap --randomize-hosts`               | Harder to detect patterns during scanning.             |
+| **Timing Control**               | `nmap --min-rate 1000 --max-rate 5000` | Force faster scan rates.                               |
+| **IPv6 Fast Scan**               | `nmap -6 -T4 -F`                       | Scan IPv6 networks quickly.                            |
 
 ---
 
@@ -80,13 +80,13 @@ nmap -A -T4 -p 1-1000 --open example.com
 
 
 
-|**Timing Template**|**Total Duration**|
-|---|---|
-|**T0 (Paranoid)**|9.8 hours|
-|**T1 (Sneaky)**|27.53 minutes|
-|**T2 (Polite)**|40.56 seconds|
-|**T3 (Normal)**|0.15 seconds|
-|**T4 (Aggressive)**|0.13 seconds|
+| **Timing Template** | **Total Duration** |
+| ------------------- | ------------------ |
+| **T0 (Paranoid)**   | 9.8 hours          |
+| **T1 (Sneaky)**     | 27.53 minutes      |
+| **T2 (Polite)**     | 40.56 seconds      |
+| **T3 (Normal)**     | 0.15 seconds       |
+| **T4 (Aggressive)** | 0.13 seconds       |
 
 ---
 
