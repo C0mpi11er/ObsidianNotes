@@ -8,147 +8,77 @@
         "type": "tabs",
         "children": [
           {
-            "id": "818478410a3646c9",
+            "id": "d4f73fe87742a8e3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_FileUpload.md",
+                "file": "Port_Swigger_Sql_outOFBand_OAST.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Port_Swigger_Sql_outOFBand_OAST"
+            }
+          },
+          {
+            "id": "464f777f3a937870",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PortSwigger_WebSecurity/SQL/PORT_Swigger SQL injection in different contexts.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PORT_Swigger SQL injection in different contexts"
+            }
+          },
+          {
+            "id": "92c55dbb279c3db7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PortSwigger_WebSecurity/SQL/*****(PORT_SQLI SUMMARY).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "*****(PORT_SQLI SUMMARY)"
+            }
+          },
+          {
+            "id": "c13f7436ee958999",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PortSwigger_WebSecurity/PathTransversal/PortSwigger_path_Traversal.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PortSwigger_path_Traversal"
+            }
+          },
+          {
+            "id": "86ff19f89e434503",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PortSwigger_WebSecurity/FileUpload/PortSwigger_FileUpload.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "PortSwigger_FileUpload"
             }
-          },
-          {
-            "id": "9655c316a70561ee",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM hack notes/Shodan.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Shodan"
-            }
-          },
-          {
-            "id": "a0bf1967375ee2f7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Port_SQL_Injection.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Port_SQL_Injection"
-            }
-          },
-          {
-            "id": "a0d8cc33737d70b6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_WebSecurity/Port_SQLi part2.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Port_SQLi part2"
-            }
-          },
-          {
-            "id": "96ffb0497aa58421",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_WebSecurity/Port_SQLI_Part3.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Port_SQLI_Part3"
-            }
-          },
-          {
-            "id": "3519fdda9e1a4ef4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_Examine_Database in SQLi.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PortSwigger_Examine_Database in SQLi"
-            }
-          },
-          {
-            "id": "9e5e874c180617f3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_WebSecurity/PortSwigger_Contents of database(SQLI).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PortSwigger_Contents of database(SQLI)"
-            }
-          },
-          {
-            "id": "4f563124f5b41cca",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Port_Swigger_Blind_Sql.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Port_Swigger_Blind_Sql"
-            }
-          },
-          {
-            "id": "406f2a55ac5c0d41",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM hack notes/Hacking Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Hacking Notes"
-            }
-          },
-          {
-            "id": "9b787bf7ae3a71ba",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM hack notes/Hacking Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Hacking Notes"
-            }
           }
         ],
-        "currentTab": 9
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -296,53 +226,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9b787bf7ae3a71ba",
+  "active": "86ff19f89e434503",
   "lastOpenFiles": [
-    "THM hack notes/Metasploit.md",
-    "THM hack notes/SearchSploit.md",
-    "THM hack notes/Snort.md",
-    "THM hack notes/Pthon3 server.md",
-    "THM hack notes/MsVenom.md",
+    "Linux Utils/CURL.md",
+    "PortSwigger_WebSecurity/FileUpload/PortSwigger_FileUpload.md",
+    "PortSwigger_WebSecurity/CommandInjection/PortSwigger_OS command injection?.md",
+    "PortSwigger_WebSecurity/CommandInjection",
+    "PortSwigger_WebSecurity/SSRF/PortSwigger_SSRF.md",
+    "PortSwigger_WebSecurity/Authentication",
+    "PortSwigger_WebSecurity/FileUpload",
+    "PortSwigger_WebSecurity/SSRF",
+    "PortSwigger_WebSecurity/AccessControl/PortSwigger_Access_Control.md",
+    "PortSwigger_WebSecurity/AccessControl",
+    "PortSwigger_WebSecurity/PathTransversal/PORT_Swigger_Path_Transeversal.md",
+    "PortSwigger_WebSecurity/PathTransversal/PortSwigger_path_Traversal.md",
+    "PortSwigger_WebSecurity/PathTransversal",
+    "PortSwigger_WebSecurity/SQL",
+    "PortSwigger_WebSecurity/SQL/*****(PORT_SQLI SUMMARY).md",
+    "PortSwigger_WebSecurity/SQL/PORT_Swigger SQL injection in different contexts.md",
+    "PortSwigger_WebSecurity/SQL/Port_Second_Order_Sql.md",
+    "PortSwigger_WebSecurity/SQL/Port_SQLI_Part3 CHEAT.md",
+    "PortSwigger_WebSecurity/SQL/Port_Swig (SQLI pos payloads ).md",
+    "Linux Utils/Find.md",
+    "Untitled",
+    "Linux Utils",
+    "PortSwigger_WebSecurity/SQL/Port_Swigger(SQL)Extracting sensitive data via verbose SQL error messages.md",
+    "PortSwigger_WebSecurity/SQL/Port_Swigger_Sql_outOFBand_OAST.md",
+    "Bash For cyber Sec.md",
+    "PortSwigger_WebSecurity/SQL/Port_Swigger_Error_Based_SQLI.md",
+    "PortSwigger_WebSecurity/SQL/PortSwigger_Contents of database(SQLI).md",
+    "PortSwigger_WebSecurity/SQL/Port_Swigger_Time_Delays.md",
+    "THM hack notes/PowerShell.md",
     "THM hack notes/MBC.md",
-    "THM hack notes/IDor(Web Hacking).md",
-    "THM hack notes/JWT.md",
-    "THM hack notes/Censys.md",
-    "THM hack notes/CAPA.md",
-    "THM hack notes/Hydra.md",
-    "THM hack notes/GoBuster.md",
-    "THM hack notes/Hacking Notes.md",
-    "THM hack notes/Nmap.md",
-    "Web Pentest Tools.md",
-    "THM hack notes/SSRF (Web Hacking).md",
-    "THM hack notes/Web_Pentest.md",
-    "THM hack notes/FeroxBuster.md",
-    "THM hack notes/SQLMAP Tool.md",
-    "THM hack notes/SQL Injection.md",
-    "THM hack notes/XXS (web hacking).md",
+    "THM hack notes/Login Windows.md",
+    "PortSwigger_WebSecurity/SQL/Port_Swigger_Blind_Sql.md",
+    "THM hack notes/SQL.md",
     "THM hack notes/FFuF.md",
-    "THM hack notes/Web Pentest.md",
-    "THM hack notes/Tar unziping.md",
-    "Port_Swigger_Blind_Sql.md",
-    "Port_Swigger_Error_Based_SQLI.md",
+    "🛡️ Penetration Test Report – ICBM Educational Platform.md",
     "PortSwigger_WebSecurity",
-    "THM hack notes",
     "images/linux_priv.png",
     "images/XXS.png",
     "images/ssrf_3.png",
     "images/ssrf_2.png",
     "images/ssrf_1.png",
     "images/RFI.png",
-    "cookies.txt",
     "images/Curl_image.png",
-    "images",
     "Curl_image.png",
-    "Downloads/php-reverse-shell-1.0/grey.php",
-    "Downloads/php-reverse-shell-1.0/COPYING.PHP-REVERSE-SHELL",
-    "Downloads/php-reverse-shell-1.0/COPYING.GPL",
-    "Downloads/php-reverse-shell-1.0/CHANGELOG",
-    "Downloads/icons/oxtheta.face.icon",
     "Downloads/WallPapers/cool.jpg",
-    "Downloads/php-reverse-shell-1.0.tar",
     "Downloads/desktop.png"
   ]
 }
