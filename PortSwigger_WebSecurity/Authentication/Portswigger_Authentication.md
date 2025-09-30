@@ -36,4 +36,3 @@ Username enumeration typically occurs either on the login page, for example, whe
 
 bruteforce can be done with burpesuits using sniper attacks for iterating through one list at a time usersname of pass...same can be donw tih hydra
 
-https-post-form//"path:details:false string" (hydra)

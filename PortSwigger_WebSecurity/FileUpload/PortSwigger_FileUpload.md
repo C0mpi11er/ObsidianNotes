@@ -45,6 +45,60 @@ As a precaution, servers generally only run scripts whose MIME type they have be
 
 ->>check
 2. this type of block sometimes provide way of leaking source code ...
+
+
+
+===================================================
+# insuficient black listing of dnagerouse files
+
+One of the more obvious ways of preventing users from uploading malicious scripts is to blacklist potentially dangerous file extensions like `.php`. The practice of blacklisting is inherently flawed as it's difficult to explicitly block every possible file extension that could be used to execute code. Such blacklists can sometimes be bypassed by using lesser known, alternative file extensions that may still be executable, such as `.php5`, `.shtml`, and so on.
+
+
+->> TRY overiding server config 
+## Overriding the server configuration
+
+As we discussed in the previous section, servers typically won't execute files unless they have been configured to do so. For example, before an Apache server will execute PHP files requested by a client, developers might have to add the following directives to their `/etc/apache2/apache2.conf` file:
+
+`LoadModule php_module /usr/lib/apache2/modules/libphp.so AddType application/x-httpd-php .php`   
+
+
+-->> check for web.config files , .htaccess files etc
+
+
+# obfuscating file extension
+
+->> .phar it executes php files and most webs haven't blacklisted it yet 
+
+->> also sometimes obfuscate the . in the extension to bypass exploit%2Ephp or just .pHp case sensitive
+
+->>> if validation is written in a high-level language like PHP or Java, but the server processes the file using lower-level functions in C/C++, for example, this can cause discrepancies in what is treated as the end of the
+
+->> this works most of the time filename: exploit.asp;.jpg or exploit.asp%00.jpg
+
+Try using multi byte Unicode characters, which may be converted to null bytes and dots after Unicode conversion or normalization. Sequences like xC0 x2E, xC4 xAE or xC0 xAE may be translated to x2E if the filename parsed as a UTF-8 string, but then converted to ASCII characters before being used in a path.    
+
+
+
+Many servers also allow developers to create special configuration files within individual directories in order to override or add to one or more of the global settings. Apache servers, for example, will load a directory-specific configuration from a file called `.htaccess` if one is present.
+
+
+if server does not remove extension recursively
+try exploit.p.phphp
+
+
+ ============================================
+ ## Flawed validation of the file's contents
+
+Instead of implicitly trusting the `Content-Type` specified in a request, more secure servers try to verify that the contents of the file actually match what is expected.
+
+server use ->> for fingerprinting JPEG files, always begin with the bytes FF D8 FF. 
+
+
+use 'exiftool' to manipulate digits or rather create a polygot jpeg add maliscious code to the data
+
+->> check curl out put  with "-o -" for curl option the cmd answer usually shows at top you can use web browser for clearer view
+
+tip ->> github the best place too get payloads ans shells 
 # NOTE!!
 for your sanity use simple-backdoor-php webshell
 

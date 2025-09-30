@@ -1,0 +1,1 @@
+the read teamers way of accessing the blue teams ability for CTI cyber security intelligence ...(a way to detect threats)

@@ -22,33 +22,33 @@ hydra [OPTIONS] -l USER -p PASS [PROTOCOL]://TARGET
 
 ### 📋 **Common Options**
 
-|Option|Description|
-|---|---|
-|`-l`|Single username|
-|`-L`|Username list file|
-|`-p`|Single password|
-|`-P`|Password list file|
-|`-s PORT`|Custom port|
-|`-t TASKS`|Number of parallel tasks (default: 16)|
-|`-V`|Verbose output (shows each login attempt)|
-|`-vV`|Super verbose (all output + attempt detail)|
-|`-f`|Exit when a valid login is found|
-|`-o FILE`|Output file|
-|`-I`|Ignore "invalid" responses for some protocols|
-|`-w TIME`|Wait timeout for response in seconds|
-|`-e nsr`|Try `n` (null), `s` (same as username), `r` (reverse username)|
-|`-R`|Restore from a saved session (`hydra.restore`)|
+| Option     | Description                                                    |
+| ---------- | -------------------------------------------------------------- |
+| `-l`       | Single username                                                |
+| `-L`       | Username list file                                             |
+| `-p`       | Single password                                                |
+| `-P`       | Password list file                                             |
+| `-s PORT`  | Custom port                                                    |
+| `-t TASKS` | Number of parallel tasks (default: 16)                         |
+| `-V`       | Verbose output (shows each login attempt)                      |
+| `-vV`      | Super verbose (all output + attempt detail)                    |
+| `-f`       | Exit when a valid login is found                               |
+| `-o FILE`  | Output file                                                    |
+| `-I`       | Ignore "invalid" responses for some protocols                  |
+| `-w TIME`  | Wait timeout for response in seconds                           |
+| `-e nsr`   | Try `n` (null), `s` (same as username), `r` (reverse username) |
+| `-R`       | Restore from a saved session (`hydra.restore`)                 |
 
 ---
 
 ### 🔁 **Brute-Force Modes**
 
-|Mode|Usage|
-|---|---|
-|Single user, wordlist|`-l user -P passlist.txt`|
-|Wordlist of users and passwords|`-L users.txt -P passlist.txt`|
-|All combinations|`-L users.txt -P passlist.txt`|
-|Username = Password|`-L users.txt -e s`|
+| Mode                            | Usage                          |
+| ------------------------------- | ------------------------------ |
+| Single user, wordlist           | `-l user -P passlist.txt`      |
+| Wordlist of users and passwords | `-L users.txt -P passlist.txt` |
+| All combinations                | `-L users.txt -P passlist.txt` |
+| Username = Password             | `-L users.txt -e s`            |
 
 ---
 
@@ -108,38 +108,38 @@ hydra -L users.txt -P pass.txt rdp://192.168.1.10
 
 ### 🧠 **Tips & Best Practices**
 
-|Tip|Description|
-|---|---|
-|Use `-t 4` to avoid service lockout|Especially for SSH and SMB|
-|Use `-f` to stop on first success|Saves time|
-|Use `-V` or `-vV` to debug issues|Helps track what's failing|
-|Try `-e nsr` to extend attack vectors|Null, Same-as-username, Reverse-username|
-|Pair with **proxychains** or VPN|For stealth in engagements|
-|Use **custom http-post-form** logic|Tailor to app-specific login formats|
-|Use **`hydra -U`** to show supported modules|Useful to discover new targets|
+| Tip                                          | Description                              |
+| -------------------------------------------- | ---------------------------------------- |
+| Use `-t 4` to avoid service lockout          | Especially for SSH and SMB               |
+| Use `-f` to stop on first success            | Saves time                               |
+| Use `-V` or `-vV` to debug issues            | Helps track what's failing               |
+| Try `-e nsr` to extend attack vectors        | Null, Same-as-username, Reverse-username |
+| Pair with **proxychains** or VPN             | For stealth in engagements               |
+| Use **custom http-post-form** logic          | Tailor to app-specific login formats     |
+| Use **`hydra -U`** to show supported modules | Useful to discover new targets           |
 
 ---
 
 ### 💡 **Special Modules (as of 2025)**
 
-|Module|Use Case|
-|---|---|
-|`http-head`|For checking headers-based auth|
-|`imap`|Mail brute-force|
-|`snmp`|Community string brute-force|
-|`ldap2`|Lightweight Directory Access|
-|`teamspeak`|Teamspeak 3 server login|
-|`asterisk`|VoIP-based password brute-force|
+| Module      | Use Case                        |
+| ----------- | ------------------------------- |
+| `http-head` | For checking headers-based auth |
+| `imap`      | Mail brute-force                |
+| `snmp`      | Community string brute-force    |
+| `ldap2`     | Lightweight Directory Access    |
+| `teamspeak` | Teamspeak 3 server login        |
+| `asterisk`  | VoIP-based password brute-force |
 
 ---
 
 ### 🔐 **Output Handling**
 
-|Option|Action|
-|---|---|
-|`-o FILE`|Save results to a file|
-|`-R`|Resume session from `hydra.restore`|
-|`-I`|Ignore errors that stop some modules|
+| Option    | Action                               |
+| --------- | ------------------------------------ |
+| `-o FILE` | Save results to a file               |
+| `-R`      | Resume session from `hydra.restore`  |
+| `-I`      | Ignore errors that stop some modules |
 
 ---
 
@@ -164,14 +164,14 @@ To **combine `hydra` with the tools listed**, you can create a **powerful workfl
 
 ## 🔧 Combined Workflow Using Hydra & Others
 
-|Tool|How to Combine with `hydra`|
-|---|---|
-|**`nmap`**|🔍 First, scan the target to identify open ports and services. **Example:**`nmap -sV -Pn -T4 <target-ip>`→ Find login services like SSH, FTP, HTTP, RDP etc. Use the results to pick the correct `hydra` module.|
-|**`cewl`**|📄 Generate a custom wordlist from target’s website. **Example:**`cewl http://target.com -w custom.txt`→ Use the wordlist as password input in Hydra:`hydra -L usernames.txt -P custom.txt target.com http-post-form "/login.php:user=^USER^&pass=^PASS^:F=Login Failed"`|
-|**`burpsuite`**|🔎 Intercept login requests, analyze POST/GET structure, and extract proper form details for `hydra`. **Steps:**1. Capture login form2. Identify parameters (e.g., `username`, `password`)3. Note failure string4. Format for Hydra's `http-post-form`|
-|**`crunch`**|🛠️ Generate large or pattern-specific wordlists. **Example:**`crunch 6 8 abc123 -o passlist.txt`→ Use with Hydra:`hydra -L users.txt -P passlist.txt ssh://<target-ip>`|
-|**`medusa`**|🔁 Can replace `hydra` if needed — try both for performance or compatibility. Some services may behave better with one.|
-|**`proxychains`**|🕵️‍♂️ Run `hydra` anonymously through TOR or proxies. **Example:**`proxychains hydra -L users.txt -P passwords.txt target.com ssh` → Ensure `/etc/proxychains.conf` is set to use TOR or SOCKS5 proxy.|
+| Tool              | How to Combine with `hydra`                                                                                                                                                                                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`nmap`**        | 🔍 First, scan the target to identify open ports and services. **Example:**`nmap -sV -Pn -T4 <target-ip>`→ Find login services like SSH, FTP, HTTP, RDP etc. Use the results to pick the correct `hydra` module.                                                          |
+| **`cewl`**        | 📄 Generate a custom wordlist from target’s website. **Example:**`cewl http://target.com -w custom.txt`→ Use the wordlist as password input in Hydra:`hydra -L usernames.txt -P custom.txt target.com http-post-form "/login.php:user=^USER^&pass=^PASS^:F=Login Failed"` |
+| **`burpsuite`**   | 🔎 Intercept login requests, analyze POST/GET structure, and extract proper form details for `hydra`. **Steps:**1. Capture login form2. Identify parameters (e.g., `username`, `password`)3. Note failure string4. Format for Hydra's `http-post-form`                    |
+| **`crunch`**      | 🛠️ Generate large or pattern-specific wordlists. **Example:**`crunch 6 8 abc123 -o passlist.txt`→ Use with Hydra:`hydra -L users.txt -P passlist.txt ssh://<target-ip>`                                                                                                  |
+| **`medusa`**      | 🔁 Can replace `hydra` if needed — try both for performance or compatibility. Some services may behave better with one.                                                                                                                                                   |
+| **`proxychains`** | 🕵️‍♂️ Run `hydra` anonymously through TOR or proxies. **Example:**`proxychains hydra -L users.txt -P passwords.txt target.com ssh` → Ensure `/etc/proxychains.conf` is set to use TOR or SOCKS5 proxy.                                                                   |
 
 ---
 

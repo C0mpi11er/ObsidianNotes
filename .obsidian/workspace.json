@@ -22,63 +22,35 @@
             }
           },
           {
-            "id": "464f777f3a937870",
+            "id": "30cee1bb067238b8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_WebSecurity/SQL/PORT_Swigger SQL injection in different contexts.md",
+                "file": "Library of Lessons/Hydra_lessons.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PORT_Swigger SQL injection in different contexts"
+              "title": "Hydra_lessons"
             }
           },
           {
-            "id": "92c55dbb279c3db7",
+            "id": "f05c57987113fd76",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_WebSecurity/SQL/*****(PORT_SQLI SUMMARY).md",
+                "file": "Library of Lessons/Hydra_lessons.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "*****(PORT_SQLI SUMMARY)"
-            }
-          },
-          {
-            "id": "c13f7436ee958999",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_WebSecurity/PathTransversal/PortSwigger_path_Traversal.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PortSwigger_path_Traversal"
-            }
-          },
-          {
-            "id": "86ff19f89e434503",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PortSwigger_WebSecurity/FileUpload/PortSwigger_FileUpload.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PortSwigger_FileUpload"
+              "title": "Hydra_lessons"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -135,7 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 367.5
+    "width": 351.5
   },
   "right": {
     "id": "c12504f04b728176",
@@ -226,44 +198,45 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "86ff19f89e434503",
+  "active": "f05c57987113fd76",
   "lastOpenFiles": [
+    "THM hack notes/Hydra.md",
+    "THM hack notes/Medusa.md",
+    "Library of Lessons/Hydra_lessons.md",
+    "PortSwigger_WebSecurity/SQL/PORT_Swigger SQL injection in different contexts.md",
+    "PortSwigger_WebSecurity/Authentication/Portswigger_Authentication.md",
+    "THM hack notes/IDor(Web Hacking).md",
+    "Library of Lessons",
+    "PortSwigger_WebSecurity/Authentication/Port_Auth.md",
     "Linux Utils/CURL.md",
+    "THM hack notes/Web Pentest.md",
+    "THM hack notes/Hacking Notes.md",
+    "PortSwigger_WebSecurity/FileUpload/Port_FileUPload_Preventions.md",
+    "PortSwigger_WebSecurity/Untitled",
+    "PortSwigger_WebSecurity/FileUpload/Port_File_upload_without RCE.md",
+    "PortSwigger_WebSecurity/FileUpload/Port_FileUP_RaceCondition.md",
     "PortSwigger_WebSecurity/FileUpload/PortSwigger_FileUpload.md",
+    "THM_RedTeam_Notes/Red_Team_Intel.md",
+    "THM_RedTeam_Notes/RED_Team_Fundamentals.md",
+    "THM_RedTeam_Notes/Red_Team_Engagements.md",
+    "Subneting.md",
+    "THM hack notes/Nmap.md",
+    "THM hack notes/Windows Networking commands (cmd.exe).md",
+    "images/THE-CYBER-KILL-CHAIN-body.png.pc-adaptive.1280.medium.png",
+    "THM_RedTeam_Notes",
+    "Port_WebPentestTools/EXIFTOOL.md",
+    "THM hack notes/Web Pentest Tools.md",
+    "Port_WebPentestTools",
+    "PortSwigger_WebSecurity/PathTransversal/PortSwigger_path_Traversal.md",
+    "OSCP Cur/AOC.md",
+    "OSCP Cur",
     "PortSwigger_WebSecurity/CommandInjection/PortSwigger_OS command injection?.md",
     "PortSwigger_WebSecurity/CommandInjection",
     "PortSwigger_WebSecurity/SSRF/PortSwigger_SSRF.md",
     "PortSwigger_WebSecurity/Authentication",
     "PortSwigger_WebSecurity/FileUpload",
     "PortSwigger_WebSecurity/SSRF",
-    "PortSwigger_WebSecurity/AccessControl/PortSwigger_Access_Control.md",
     "PortSwigger_WebSecurity/AccessControl",
-    "PortSwigger_WebSecurity/PathTransversal/PORT_Swigger_Path_Transeversal.md",
-    "PortSwigger_WebSecurity/PathTransversal/PortSwigger_path_Traversal.md",
-    "PortSwigger_WebSecurity/PathTransversal",
-    "PortSwigger_WebSecurity/SQL",
-    "PortSwigger_WebSecurity/SQL/*****(PORT_SQLI SUMMARY).md",
-    "PortSwigger_WebSecurity/SQL/PORT_Swigger SQL injection in different contexts.md",
-    "PortSwigger_WebSecurity/SQL/Port_Second_Order_Sql.md",
-    "PortSwigger_WebSecurity/SQL/Port_SQLI_Part3 CHEAT.md",
-    "PortSwigger_WebSecurity/SQL/Port_Swig (SQLI pos payloads ).md",
-    "Linux Utils/Find.md",
-    "Untitled",
-    "Linux Utils",
-    "PortSwigger_WebSecurity/SQL/Port_Swigger(SQL)Extracting sensitive data via verbose SQL error messages.md",
-    "PortSwigger_WebSecurity/SQL/Port_Swigger_Sql_outOFBand_OAST.md",
-    "Bash For cyber Sec.md",
-    "PortSwigger_WebSecurity/SQL/Port_Swigger_Error_Based_SQLI.md",
-    "PortSwigger_WebSecurity/SQL/PortSwigger_Contents of database(SQLI).md",
-    "PortSwigger_WebSecurity/SQL/Port_Swigger_Time_Delays.md",
-    "THM hack notes/PowerShell.md",
-    "THM hack notes/MBC.md",
-    "THM hack notes/Login Windows.md",
-    "PortSwigger_WebSecurity/SQL/Port_Swigger_Blind_Sql.md",
-    "THM hack notes/SQL.md",
-    "THM hack notes/FFuF.md",
-    "🛡️ Penetration Test Report – ICBM Educational Platform.md",
-    "PortSwigger_WebSecurity",
     "images/linux_priv.png",
     "images/XXS.png",
     "images/ssrf_3.png",
@@ -272,7 +245,6 @@
     "images/RFI.png",
     "images/Curl_image.png",
     "Curl_image.png",
-    "Downloads/WallPapers/cool.jpg",
-    "Downloads/desktop.png"
+    "Downloads/WallPapers/cool.jpg"
   ]
 }
