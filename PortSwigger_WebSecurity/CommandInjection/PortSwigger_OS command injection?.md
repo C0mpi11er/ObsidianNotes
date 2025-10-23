@@ -51,3 +51,7 @@ Placing the additional command separator `&` after the injected command is usefu
 # self note
 variables pf the product id or store id should be added to from the burp repeatear and url encoded with the & at the end to bypass guard made for os command injection
 e.g product=9&storeid=3&"(url encoded)"&&echo &
+
+
+
+

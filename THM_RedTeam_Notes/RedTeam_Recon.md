@@ -41,19 +41,19 @@ DuckDuckGo supports search syntax you can use to fine-tune your queries.
 
 ## Search Operators
 
-|   |   |
-|---|---|
-|Example|Result|
-|`cats dogs`|Results about cats or dogs|
-|`"cats and dogs"`|Results for exact term "cats and dogs". If no or few results are found, we'll try to show related results.|
-|`~"cats and dogs"`|Experimental syntax: more results that are semantically similar to "cats and dogs", like "cats & dogs" and "dogs and cats" in addition to "cats and dogs".|
-|`cats -dogs`|Fewer dogs in results|
-|`cats +dogs`|More dogs in results|
-|`cats filetype:pdf`|PDFs about cats. Supported file types: pdf, doc(x), xls(x), ppt(x), html|
-|`dogs site:example.com`|Pages about dogs from example.com|
-|`cats -site:example.com`|Pages about cats, excluding example.com|
-|`intitle:dogs`|Page title includes the word "dogs"|
-|`inurl:cats`|Page URL includes the word "cats"|
+|                          |                                                                                                                                                            |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Example                  | Result                                                                                                                                                     |
+| `cats dogs`              | Results about cats or dogs                                                                                                                                 |
+| `"cats and dogs"`        | Results for exact term "cats and dogs". If no or few results are found, we'll try to show related results.                                                 |
+| `~"cats and dogs"`       | Experimental syntax: more results that are semantically similar to "cats and dogs", like "cats & dogs" and "dogs and cats" in addition to "cats and dogs". |
+| `cats -dogs`             | Fewer dogs in results                                                                                                                                      |
+| `cats +dogs`             | More dogs in results                                                                                                                                       |
+| `cats filetype:pdf`      | PDFs about cats. Supported file types: pdf, doc(x), xls(x), ppt(x), html                                                                                   |
+| `dogs site:example.com`  | Pages about dogs from example.com                                                                                                                          |
+| `cats -site:example.com` | Pages about cats, excluding example.com                                                                                                                    |
+| `intitle:dogs`           | Page title includes the word "dogs"                                                                                                                        |
+| `inurl:cats`             | Page URL includes the word "cats"                                                                                                                          |
 
 
 
@@ -66,22 +66,47 @@ also give information about a company
 
 
 
+# viewdns.info 
+view dns info is for revers ip look up to actually know the other sites that maybe sharing server with target ...as ip may not lead direclty to target
+
+
+
+# threat intelligence plateform
+does same thing as viewdns just better and searches for malware and presents all details in a more apealing way 
+
+
+
+# #### Censys
+used to get info on ip adresses and ports that are open 
 
 
 
 
 
 
+# recon-ng
+[Recon-ng](https://github.com/lanmaster53/recon-ng) is a framework that helps automate the OSINT work. It uses modules from various authors and provides a multitude of functionality. Some modules require keys to work; the key allows the module to query the related online API. In this task, we will demonstrate using Recon-ng in the terminal.
+
+From a penetration testing and red team point of view, Recon-ng can be used to find various bits and pieces of information that can aid in an operation or OSINT task. All the data collected is automatically saved in the database related to your workspace. For instance, you might discover host addresses to later port-scan or collect contact email addresses for phishing attacks.
+
+Before you install modules using the marketplace, these are some useful commands related to marketplace usage:
+
+- `marketplace search KEYWORD` to search for available modules with _keyword_.
+- `marketplace info MODULE` to provide information about the module in question.
+- `marketplace install MODULE` to install the specified module into Recon-ng.
+- `marketplace remove MODULE` to uninstall the specified module.
 
 
 
 
 
 
+# Maltego 
 
+Maltego is an application that blends mind-mapping with OSINT. In general, you would start with a domain name, company name, person’s name, email address, etc. Then you can let this piece of information go through various transforms.
 
+The information collected in Maltego can be used for later stages. For instance, company information, contact names, and email addresses collected can be used to create very legitimate-looking phishing emails.
 
+Think of each block on a Maltego graph as an entity. An entity can have values to describe it. In Maltego’s terminology, a transform is a piece of code that would query an API to retrieve information related to a specific entity. The logic is shown in the figure below. Information related to an entity goes via a transform to return zero or more entities.
 
-
-
-
+It is crucial to mention that some of the transforms available in Maltego might actively connect to the target system. Therefore, it is better to know how the transform works before using it if you want to limit yourself to passive reconnaissance.

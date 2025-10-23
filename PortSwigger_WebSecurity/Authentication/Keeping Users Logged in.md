@@ -1,4 +1,7 @@
 
+# Note no port siwgger lab is above you..you have to just think like a hacker and map every possibilty to find a flaw
+
+
 ->> sometimes the logged in cookie can be the username and password ensure to check it thoroughly
 
 

@@ -4,4 +4,4 @@ There are a few different ways that this feature is commonly implemented, with v
 
 ->>sometimes the url shows a name of the user password being reset changin that can change the user...and reset another user password
 
-->>failure to validate reset form token(cookies) can be exploitable ....check cookies or map how the process work ti find vulnerablility sometimes names change or no cookie validation
+->>failure to validate reset form token(cookies) can be exploitable ....check cookies or map how the process work to find vulnerablility sometimes names change or no cookie validation
