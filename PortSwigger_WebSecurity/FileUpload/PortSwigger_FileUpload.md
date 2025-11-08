@@ -102,4 +102,7 @@ tip ->> github the best place too get payloads ans shells
 # NOTE!!
 for your sanity use simple-backdoor-php webshell
 
+to find more data https://sallam.gitbook.io/sec-88/web-appsec/features-abuse/file-upload
+
+https://swisskyrepo.github.io/PayloadsAllTheThings/Upload%20Insecure%20Files/#picture-compression
 
