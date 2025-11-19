@@ -7,7 +7,7 @@ Some systems contain internal APIs that aren't directly accessible from the inte
 - Modify the application behavior.
 - Access unauthorized data.
 - 
-ou can use a URL-encoded `#` character to attempt to truncate the server-side request. To help you interpret the response, you could also add a string after the `#` character.
+u can use a URL-encoded `#` character to attempt to truncate the server-side request. To help you interpret the response, you could also add a string after the `#` character.
 
 For example, you could modify the query string to the following:
 
@@ -36,4 +36,14 @@ This results in the following server-side request to the internal API:
 - Node.js / express parses the first parameter only. This would result in a user search for `peter`, giving an unchanged result.
 - 
 ->> if second param is overidden one can perform an exploit e.g administrator 
+
+
+
+
+
+## Preventing server-side parameter pollution
+
+To prevent server-side parameter pollution, use an allowlist to define characters that don't need encoding, and make sure all other user input is encoded before it's included in a server-side request. You should also make sure that all input adheres to the expected format and structure.
+
+
 
