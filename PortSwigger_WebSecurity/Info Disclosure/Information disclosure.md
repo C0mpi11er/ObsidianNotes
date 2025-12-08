@@ -29,3 +29,6 @@ how to find
 
 
 sitemap.xml,robots.txt
+.git
+incase of finding .git use gitcola to reverse commit after downloading it with 
+wget -r ...

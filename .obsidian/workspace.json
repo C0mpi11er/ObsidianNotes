@@ -4,67 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "901bf53c16964a93",
+        "id": "90d497ea9c7ccbe2",
         "type": "tabs",
         "children": [
           {
-            "id": "d4f73fe87742a8e3",
+            "id": "424628aa60c05c0f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Port_Swigger_Sql_outOFBand_OAST.md",
+                "file": "THM_RedTeam_Notes/Lateral Movement/Port forwarding.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Port_Swigger_Sql_outOFBand_OAST"
+              "title": "Port forwarding"
             }
           },
           {
-            "id": "30cee1bb067238b8",
+            "id": "5df03f1f0e8f5f7e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Library of Lessons/Hydra_lessons.md",
+                "file": "THM_RedTeam_Notes/Data Exfiltration/intro.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Hydra_lessons"
-            }
-          },
-          {
-            "id": "f05c57987113fd76",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM_RedTeam_Notes/RedTeam_Recon.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "RedTeam_Recon"
-            }
-          },
-          {
-            "id": "6f7b3b40ae78230a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM_RedTeam_Notes/Breaching AD/NTLM AND NETNTLM.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "NTLM AND NETNTLM"
+              "title": "intro"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -185,13 +157,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Curl.md",
+                "file": "THM_RedTeam_Notes/Data Exfiltration/intro.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Curl"
+              "title": "Outline of intro"
             }
           }
         ],
@@ -199,8 +171,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -209,56 +180,58 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "zk-prefixer:Create new unique note": false,
+      "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "6f7b3b40ae78230a",
+  "active": "5df03f1f0e8f5f7e",
   "lastOpenFiles": [
+    "THM_RedTeam_Notes/Lateral Movement/Port forwarding.md",
+    "THM_RedTeam_Notes/Data Exfiltration/intro.md",
+    "THM_RedTeam_Notes/Data Exfiltration",
+    "THM_RedTeam_Notes/Lateral Movement/Spawn Remote Process.md",
+    "THM hack notes/Nmap.md",
+    "THM hack notes/Tar unziping.md",
     "THM_RedTeam_Notes/Breaching AD/(AD breach)Osint and phising.md",
-    "THM_RedTeam_Notes/Breaching AD/NTLM AND NETNTLM.md",
+    "Personal Statement for MSc in                 Cyber Security.md",
+    "THM_RedTeam_Notes/Lateral Movement/Abusing user behavior.md",
+    "PortSwigger_WebSecurity/No SQL injection/no SQL injection.md",
+    "PortSwigger_WebSecurity/Race conditions/Race Conditions.md",
+    "PortSwigger_WebSecurity/No SQL injection",
+    "THM_RedTeam_Notes/Lateral Movement/Alternate Auth Material.md",
+    "THM_RedTeam_Notes/Lateral Movement/Lateral Movmeent with WMI.md",
+    "THM hack notes/NetCat.md",
+    "THM_RedTeam_Notes/Lateral Movement/intro.md",
+    "THM_RedTeam_Notes/Breaching AD/Microsoft Deployement Kit.md",
+    "THM_RedTeam_Notes/Breaching AD/LDAP Bind Credentials.md",
     "THM_RedTeam_Notes/Breaching AD/intro breachingAD.md",
-    "THM_RedTeam_Notes/Lateral Movement/Untitled.md",
+    "THM_RedTeam_Notes/Breaching AD/Auth Delays.md",
+    "THM_RedTeam_Notes/Breaching AD/Configuration.md",
+    "THM_RedTeam_Notes/AD_Enum/cred injection.md",
+    "THM_RedTeam_Notes/AD_Enum/AD Enum BloodHound.md",
+    "THM_RedTeam_Notes/AD_Enum/Enumerate AD.md",
+    "THM_RedTeam_Notes/AD_Enum/AD Enum PowerShell.md",
+    "THM_RedTeam_Notes/AD_Enum/Untitled",
+    "CyBlack Internship Jan 2026 Practical Task.md",
+    "Bash For cyber Sec.md",
+    "images/waffw00f.png",
+    "images/sql.png",
+    "images/githubpoc.png",
+    "images/favico.png",
+    "images/dnsrecord.png",
+    "images/dnsmap.png",
+    "images/cvevuln.png",
+    "images/burp.png",
+    "waffw00f.png",
+    "githubpoc.png",
+    "202511262330.md",
+    "PortSwigger_WebSecurity/Race conditions",
+    "THM_RedTeam_Notes/AD_Enum",
     "THM_RedTeam_Notes/Breaching AD",
-    "THM_RedTeam_Notes/Untitled.md",
-    "THM_RedTeam_Notes/Windows Local Persistence/back door existing service.md",
     "THM_RedTeam_Notes/Lateral Movement",
-    "THM_RedTeam_Notes/Windows Local Persistence/backdoor Login Screen.md",
-    "THM_RedTeam_Notes/Windows Local Persistence/Abusing Services.md",
-    "THM_RedTeam_Notes/Windows Local Persistence/Back dooring Files.md",
-    "THM_RedTeam_Notes/Windows Local Persistence/Abusing Schdeuled Tasks.md",
-    "PortSwigger_WebSecurity/Info Disclosure/Information disclosure.md",
-    "THM_RedTeam_Notes/Windows Local Persistence/Logon Persistence.md",
-    "PortSwigger_WebSecurity/XSS/XSS.md",
     "PortSwigger_WebSecurity/Info Disclosure",
-    "PortSwigger_WebSecurity/XSS/Stored Xss.md",
-    "Subneting.md",
-    "THM hack notes/🔒 Privilege Escalation via `SeTakeOwnershipPrivilege` & `utilman.exe` Abuse.md",
-    "PortSwigger_WebSecurity/FileUpload/Port_FileUP_RaceCondition.md",
-    "THM hack notes/XXS (web hacking).md",
-    "THM hack notes/Web Pentest.md",
-    "THM hack notes/WAF Bypass Skills.md",
-    "THM hack notes/Hacking Notes.md",
-    "PortSwigger_WebSecurity/XSS/Dom Xss.md",
-    "PortSwigger_WebSecurity/XSS/Reflected XSS.md",
     "PortSwigger_WebSecurity/XSS",
-    "THM_RedTeam_Notes/Windows Local Persistence/Tampering with Accounts.md",
-    "THM hack notes/GoBuster.md",
-    "🛡️ Penetration Test Report – ICBM Educational Platform.md",
-    "images/cheat-sheet.pdf",
-    "THM_RedTeam_Notes/Windows Local Persistence",
-    "THM_RedTeam_Notes/The Lay Of The Land",
-    "images/homograph.png",
-    "THM_RedTeam_Notes/Phishing",
-    "Network Security Assesment",
-    "PortSwigger_WebSecurity/CSRF",
-    "images/c2.png",
-    "images/opsecvuln.png",
-    "images/adversary.png",
-    "images/opsec.png",
-    "images/THE-CYBER-KILL-CHAIN-body.png.pc-adaptive.1280.medium.png",
-    "images/linux_priv.png",
-    "images/XXS.png",
-    "images/ssrf_3.png",
-    "images/ssrf_2.png"
+    "images/cheat-sheet.pdf"
   ]
 }

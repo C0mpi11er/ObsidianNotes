@@ -25,3 +25,35 @@ in some applications, the exploitable parameter does not have a predictable valu
 
 could also be names or namubers e.g
 https://vulnerbalewbesite/user?id=123 or "Dante" 
+
+
+some headers used to overwrite allowed methods
+`X-Original-URL` and `X-Rewrite-URL`
+
+
+:>most times check the http methodes
+:>some access control vuln lay init 
+:>ADMIN/DELETEUSER and admin/deletuser can be treated as diff end points
+:>for prior to spring frame work 5.3 "usesuffixpatternmatch" is enabled by defaults suffixed e.g deleteuser.anything might still lead to delete user 
+
+:>horizontal and vertical priv escaltion by changing url params 
+
+:>if its multi step process check if you can bypass any of the stages 
+
+:>access control sometimes might be based on referer header 
+
+:>geo location based access control where some web app restrict certain users from locations to access some resources can be mitigated web proxies vpns etc
+
+
+
+
+How to prevent access control vulnerabilities
+=
+
+Access control vulnerabilities can be prevented by taking a defense-in-depth approach and applying the following principles:
+
+    Never rely on obfuscation alone for access control.
+    Unless a resource is intended to be publicly accessible, deny access by default.
+    Wherever possible, use a single application-wide mechanism for enforcing access controls.
+    At the code level, make it mandatory for developers to declare the access that is allowed for each resource, and deny access by default.
+    Thoroughly audit and test access controls to ensure they work as designed.

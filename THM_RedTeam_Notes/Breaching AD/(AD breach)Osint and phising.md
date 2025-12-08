@@ -6,3 +6,12 @@ osint:v
 
 phising:v
 :>send phising to emails to find out credentials (gophish etc)
+
+
+methods of AD breaching
+
+    NTLM Authenticated Services
+    LDAP Bind Credentials
+    Authentication Relays
+    Microsoft Deployment Toolkit
+    Configuration Files
