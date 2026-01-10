@@ -11,14 +11,14 @@
 ---
 Part 1: Investigation
 ---
-
 **Question:** Investigate the hash. Which type of hash is it?
 ==============
-**Procedure:**
 
+**Procedure:**
 1. I began by downloading the practical file inside a **sandboxed environment** within a **QEMU virtual machine** running Linux. This reflects good cybersecurity practice, as one should never download unknown files without proper isolation.
-    
+
 2. I then investigated the hash type using the tool **`hash-identifier`** on my sandboxed Kali instance. It returned two potential results:![[cyblackhash.png]]
+    
     
     - **SHA256**
         
