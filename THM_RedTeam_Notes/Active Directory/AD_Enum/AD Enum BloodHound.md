@@ -72,3 +72,8 @@ Clicking on a Node (object) in Bloodhound provides detailed information across v
 | Provides a **GUI** for complex AD enumer                            | Requires execution of **SharpHound**, which is **noisy** and often flagged by AV/EDR.   |
 | Finds **exploit-ready attack paths** with minimal manua   e  fo  t. | Requires matching versions of Bloodhound and SharpHound for successful data ingestion.  |
 | Offers **in-depth insights** into AD object re                      |                                                                                         |
+
+name; neo4j
+pass:12345678
+
+note! launch neo first with "sudo neo4j console"
