@@ -273,3 +273,315 @@ nmap -sI ZOMBIE_IP TARGET_IP
     Zombie must use predictable IP ID
 
     You must be able to see replies that come back to the zombie
+
+
+
+
+
+
+---
+
+# 🔍 Nmap NSE Script Scan Cheat Sheet — Most Used Scripts
+
+---
+
+script dir
+=
+/usr/share/nmap/scripts/
+
+
+## 🧠 NSE Script Categories (Core Ones You’ll Use)
+
+|Category|Purpose|
+|---|---|
+|`default`|Safe, quick recon scripts|
+|`safe`|Non-intrusive info gathering|
+|`discovery`|Host/service enumeration|
+|`version`|Enhance service detection|
+|`auth`|Authentication checks|
+|`brute`|Credential brute forcing|
+|`vuln`|Vulnerability detection|
+|`exploit`|Active exploitation|
+|`malware`|Backdoor detection|
+|`dos`|Denial of Service tests|
+
+---
+
+# 🚀 Baseline Script Scan
+
+### 👉 Standard Enumeration
+
+```
+nmap -sC -sV TARGET
+```
+
+(`-sC` = default scripts)
+
+---
+
+### 👉 Aggressive Scan
+
+```
+nmap -A TARGET
+```
+
+Runs scripts + OS detect + traceroute + versions.
+
+---
+
+---
+
+# 🔐 Authentication & Bruteforce
+
+### SMB
+
+```
+nmap --script smb-brute -p445 TARGET
+nmap --script smb-enum-users -p445 TARGET
+nmap --script smb-enum-shares -p445 TARGET
+nmap --script smb-enum-domains -p445 TARGET
+```
+
+### FTP
+
+```
+nmap --script ftp-brute -p21 TARGET
+nmap --script ftp-anon -p21 TARGET
+```
+
+### SSH
+
+```
+nmap --script ssh-brute -p22 TARGET
+nmap --script ssh-auth-methods -p22 TARGET
+```
+
+### HTTP Auth
+
+```
+nmap --script http-brute -p80,443 TARGET
+```
+
+---
+
+---
+
+# 🌐 Web Enumeration (Extremely Common)
+
+### Titles / Headers
+
+```
+nmap --script http-title,http-headers -p80,443 TARGET
+```
+
+### Robots.txt
+
+```
+nmap --script http-robots.txt -p80 TARGET
+```
+
+### HTTP Methods
+
+```
+nmap --script http-methods -p80 TARGET
+```
+
+### Directories
+
+```
+nmap --script http-enum -p80 TARGET
+```
+
+### CMS Detection
+
+```
+nmap --script http-wordpress-enum -p80 TARGET
+nmap --script http-drupal-enum -p80 TARGET
+```
+
+---
+
+---
+
+# 🧬 Vulnerability Detection
+
+### Run All Vuln Scripts
+
+```
+nmap --script vuln TARGET
+```
+
+---
+
+### Specific High-Value Vuln Scripts
+
+|Script|Detects|
+|---|---|
+|smb-vuln-ms17-010|EternalBlue|
+|smb-vuln-ms08-067|NetAPI|
+|http-vuln-cve2017-5638|Apache Struts|
+|http-vuln-cve2015-1635|IIS RCE|
+|ssl-heartbleed|OpenSSL Heartbleed|
+|http-shellshock|Bash CGI|
+|ftp-vsftpd-backdoor|VSFTPD 2.3.4|
+
+```
+nmap --script smb-vuln-ms17-010 -p445 TARGET
+```
+
+---
+
+---
+
+# 🧾 SSL / TLS Enumeration
+
+```
+nmap --script ssl-cert,ssl-enum-ciphers -p443 TARGET
+```
+
+---
+
+---
+
+# 🗂 SMB / Windows Enumeration (OSCP Gold)
+
+```
+nmap --script smb-os-discovery -p445 TARGET
+nmap --script smb-security-mode -p445 TARGET
+nmap --script smb-protocols -p445 TARGET
+nmap --script smb-system-info -p445 TARGET
+```
+
+---
+
+---
+
+# 🧪 Database Enumeration
+
+### MySQL
+
+```
+nmap --script mysql-info,mysql-enum,mysql-brute -p3306 TARGET
+```
+
+### MSSQL
+
+```
+nmap --script ms-sql-info,ms-sql-brute -p1433 TARGET
+```
+
+### PostgreSQL
+
+```
+nmap --script pgsql-brute -p5432 TARGET
+```
+
+---
+
+---
+
+# 📡 Network Services
+
+### SNMP
+
+```
+nmap --script snmp-info,snmp-brute -p161 TARGET
+```
+
+### DNS
+
+```
+nmap --script dns-zone-transfer -p53 TARGET
+```
+
+### SMTP
+
+```
+nmap --script smtp-enum-users -p25 TARGET
+```
+
+---
+
+---
+
+# 🕵️ Malware / Backdoor Detection
+
+```
+nmap --script malware TARGET
+```
+
+---
+
+---
+
+# 🎯 Script Selection Tricks
+
+### Multiple Scripts
+
+```
+nmap --script "smb-enum-*,smb-vuln-*" -p445 TARGET
+```
+
+### By Category
+
+```
+nmap --script discovery TARGET
+```
+
+### Exclude Dangerous
+
+```
+nmap --script vuln --script-args unsafe=1 TARGET
+```
+
+---
+
+---
+
+# ⚡ Performance Tweaks
+
+```
+-T4
+--min-rate 1000
+--max-retries 2
+```
+
+---
+
+---
+
+# 🧠 Practical Workflow
+
+```
+nmap -p- -T4 TARGET
+nmap -sC -sV -pPORTS TARGET
+nmap --script vuln -pPORTS TARGET
+nmap --script smb-enum-* -p445 TARGET
+```
+
+---
+
+---
+
+# 📌 OSCP-Style “Always Run These”
+
+```
+-sC -sV
+--script vuln
+smb-enum-*
+ssl-enum-ciphers
+http-enum
+snmp-info
+dns-zone-transfer
+```
+
+---
+
+If you want, I can:
+
+✅ Turn this into a **Markdown-ready Obsidian note**  
+✅ Expand with **less-used but deadly scripts**  
+✅ Add **real attack chains**  
+✅ Include **AD-specific NSE workflows**
+
+Just say the word.

@@ -47,3 +47,55 @@ In the previous example, imagine there is an administrative interface at the bac
 
 # self note
 use burpe intruder to iterate the subnets to find the admin interface and exploit with SSRF
+
+black listed inputs
+==
+
+ Some applications block input containing hostnames like 127.0.0.1 and localhost, or sensitive URLs like /admin. In this situation, you can often circumvent the filter using the following techniques:
+
+    Use an alternative IP representation of 127.0.0.1, such as 2130706433, 017700000001, or 127.1.
+    Register your own domain name that resolves to 127.0.0.1. You can use spoofed.burpcollaborator.net for this purpose.
+    Obfuscate blocked strings using URL encoding or case variation.
+    Provide a URL that you control, which redirects to the target URL. Try using different redirect codes, as well as different protocols for the target URL. For example, switching from an http: to https: URL during the redirect has been shown to bypass some anti-SSRF filters.
+
+
+
+
+Bypassing SSRF filters via open redirection
+==
+It is sometimes possible to bypass filter-based defenses by exploiting an open redirection vulnerability.
+
+In the previous example, imagine the user-submitted URL is strictly validated to prevent malicious exploitation of the SSRF behavior. However, the application whose URLs are allowed contains an open redirection vulnerability. Provided the API used to make the back-end HTTP request supports redirections, you can construct a URL that satisfies the filter and results in a redirected request to the desired back-end target.
+
+For example, the application contains an open redirection vulnerability in which the following URL:
+/product/nextProduct?currentProductId=6&path=http://evil-user.net
+
+returns a redirection to:
+http://evil-user.net
+
+You can leverage the open redirection vulnerability to bypass the URL filter, and exploit the SSRF vulnerability as follows:
+POST /product/stock HTTP/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 118
+
+stockApi=http://weliketoshop.net/product/nextProduct?currentProductId=6&path=http://192.168.0.68/admin
+
+This SSRF exploit works because the application first validates that the supplied stockAPI URL is on an allowed domain, which it is. The application then requests the supplied URL, which triggers the open redirection. It follows the redirection, and makes a request to the internal URL of the attacker's choosing.
+
+Blind SSRF 
+== 
+ Blind SSRF vulnerabilities occur if you can cause an application to issue a back-end HTTP request to a supplied URL, but the response from the back-end request is not returned in the application's front-end response.
+
+Blind SSRF is harder to exploit but sometimes leads to full remote code execution on the server or other back-end components. 
+
+
+!!!Note
+
+It is common when testing for SSRF vulnerabilities to observe a DNS look-up for the supplied Collaborator domain, but no subsequent HTTP request. This typically happens because the application attempted to make an HTTP request to the domain, which caused the initial DNS lookup, but the actual HTTP request was blocked by network-level filtering. It is relatively common for infrastructure to allow outbound DNS traffic, since this is needed for so many purposes, but block HTTP connections to unexpected destinations.
+
+
+
+SSRF via the Referer header
+
+Some applications use server-side analytics software to tracks visitors. This software often logs the Referer header in requests, so it can track incoming links. Often the analytics software visits any third-party URLs that appear in the Referer header. This is typically done to analyze the contents of referring sites, including the anchor text that is used in the incoming links. As a result, the Referer header is often a useful attack surface for SSRF vulnerabilities.
+

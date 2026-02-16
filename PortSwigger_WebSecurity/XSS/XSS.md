@@ -5,6 +5,7 @@ Cross-site scripting (also known as XSS) is a web security vulnerability that al
 ->>use the print function instead of the alert() as it give more response and is not blocked by chrome 
 
 type of xss
+==
 reflected xss: from reflected web page
 dom xss : in client side code 
 stored xss :from stroed data base 
@@ -34,3 +35,12 @@ Some useful ways of executing JavaScript are:
 waf bypass
 ==
 :>find tags and events that work with intruder
+
+
+XSS proof of concept
+==
+You can confirm most kinds of XSS vulnerability by injecting a payload that causes your own browser to execute some arbitrary JavaScript. It's long been common practice to use the alert() function for this purpose because it's short, harmless, and pretty hard to miss when it's successfully called. In fact, you solve the majority of our XSS labs by invoking alert() in a simulated victim's browser.
+
+Unfortunately, there's a slight hitch if you use Chrome. From version 92 onward (July 20th, 2021), cross-origin iframes are prevented from calling alert(). As these are used to construct some of the more advanced XSS attacks, you'll sometimes need to use an alternative PoC payload. In this scenario, we recommend the print() function. If you're interested in learning more about this change and why we like print(), check out our blog post on the subject.
+
+As the simulated victim in our labs uses Chrome, we've amended the affected labs so that they can also be solved using print(). We've indicated this in the instructions wherever relevant. 
