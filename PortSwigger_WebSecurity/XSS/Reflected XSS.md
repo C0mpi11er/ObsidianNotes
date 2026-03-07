@@ -48,8 +48,9 @@ When the XSS context is into an HTML tag attribute value, you might sometimes be
 "><script>alert(document.domain)</script>
 
 More commonly in this situation, angle brackets are blocked or encoded, so your input cannot break out of the tag in which it appears. Provided you can terminate the attribute value, you can normally introduce a new attribute that creates a scriptable context, such as an event handler. For example:
-" autofocus onfocus=alert(document.domain) x="
-
+<script>
+"autofocus onfocus=alert(document.domain) x="
+</script>
 
 note#
 ===

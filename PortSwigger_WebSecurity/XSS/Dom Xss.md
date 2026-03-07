@@ -80,6 +80,16 @@ in this case find the xhr req , the this.responsetext and find how to escape the
 
 the payload was : <script>\"};aler(docuemnt.domain)</script>
 
+
+Stored Dom
+==
+Websites may also store data on the server and reflect it elsewhere. In a stored DOM XSS vulnerability, the server receives data from one request, stores it, and then includes the data in a later response. A script within the later response contains a sink which then processes the data in an unsafe way.
+<script>
+element.innerHTML = comment.author
+</script>
+
+
+
 <script>
  The following are some of the main sinks that can lead to DOM-XSS vulnerabilities:
 document.write()
