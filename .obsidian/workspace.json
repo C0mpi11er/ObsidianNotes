@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_WebSecurity/WebSockets/Web Socket.md",
+                "file": "THM hack notes/Nmap.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Web Socket"
+              "title": "Nmap"
             }
           },
           {
@@ -27,16 +27,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_WebSecurity/CSRF/Whats CSRF.md",
+                "file": "PortSwigger_WebSecurity/WebCachePoisoning/Web Cache Poison intro.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Whats CSRF"
+              "title": "Web Cache Poison intro"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -68,7 +67,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "socket",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -157,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "PortSwigger_WebSecurity/CSRF/Whats CSRF.md",
+                "file": "THM hack notes/Nmap.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Whats CSRF"
+              "title": "Outline of Nmap"
             }
           }
         ],
@@ -171,7 +170,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 205.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -185,44 +184,44 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "cdd992f0a9cfbc85",
+  "active": "05799dd83007a51c",
   "lastOpenFiles": [
-    "PortSwigger_WebSecurity/WebSockets/Web Socket.md",
-    "PortSwigger_WebSecurity/CSRF/Whats CSRF.md",
+    "THM_RedTeam_Notes/Network sec solutions/Firewall/Evasion via Controlling the Source MAC IP Port.md",
+    "THM hack notes/Hacking Notes.md",
+    "Kali/Kali package manager.md",
+    "🛡️ Penetration Test Report – ICBM Educational Platform.md",
+    "Kali",
+    "THM hack notes/Tar unziping.md",
     "PortSwigger_WebSecurity/XSS/Reflected XSS.md",
-    "PortSwigger_WebSecurity/CSRF/CSRF Summary.md",
     "PortSwigger_WebSecurity/XSS/XSS.md",
+    "PortSwigger_WebSecurity/WebCachePoisoning/Web Cache Poison intro.md",
+    "PortSwigger_WebSecurity/WebCacheDeception/Web Cache Deception continuation.md",
+    "PortSwigger_WebSecurity/WebCachePoisoning",
+    "PortSwigger_WebSecurity/WebCacheDeception/WebCache Intro.md",
+    "PortSwigger_WebSecurity/XSS/Stored Xss.md",
+    "PortSwigger_WebSecurity/WebSockets/Web Socket.md",
+    "PortSwigger_WebSecurity/XXE Injection/XML external entity.md",
+    "PortSwigger_WebSecurity/WebCacheDeception",
+    "PortSwigger_WebSecurity/CSRF/Whats CSRF.md",
+    "PortSwigger_WebSecurity/XXE Injection",
+    "PortSwigger_WebSecurity/CSRF/CSRF Summary.md",
     "PortSwigger_WebSecurity/CORS/cross-origin resource sharing.md",
     "THM hack notes/BurpeSuite.md",
     "PortSwigger_WebSecurity/SQL/*****(PORT_SQLI SUMMARY).md",
-    "THM hack notes/Hacking Notes.md",
     "Linux Utils/CURL.md",
     "THM hack notes/Curl.md",
     "THM hack notes/XXS (web hacking).md",
     "THM hack notes/Nikto.md",
     "PortSwigger_WebSecurity/XSS/Dom Xss.md",
-    "PortSwigger_WebSecurity/XSS/Stored Xss.md",
     "THM hack notes/FFuF.md",
     "THM hack notes/WAF Bypass Skills.md",
     "PortSwigger_WebSecurity/CORS",
     "Penetration Test Report – SBTS Group.md",
     "PortSwigger_WebSecurity/WebSockets",
-    "🛡️ Penetration Test Report – ICBM Educational Platform.md",
-    "PortSwigger_WebSecurity/SSRF/PortSwigger_SSRF.md",
-    "PortSwigger_WebSecurity/Authentication/Bruteforcing password in change password page.md",
-    "PortSwigger_WebSecurity/Authentication/Keeping Users Logged in.md",
-    "PortSwigger_WebSecurity/Authentication/Multi Factor Auth.md",
-    "PortSwigger_WebSecurity/Authentication/Port_Auth.md",
-    "PortSwigger_WebSecurity/Authentication/Resetting user password.md",
-    "PortSwigger_WebSecurity/Authentication/Preventing auth attacks.md",
     "THM WEB hacking/Injection Attacks Module/Advanced SQL injection",
     "THM WEB hacking/Injection Attacks Module",
     "THM WEB hacking/Authentication module",
     "THM WEB hacking/Authentication module/MFA",
-    "HTB AD",
-    "THM WEB hacking/Authentication module/OAuth",
-    "THM WEB hacking/Authentication module/JWT",
-    "THM WEB hacking",
     "images/waffw00f.png",
     "images/sql.png",
     "images/githubpoc.png",
