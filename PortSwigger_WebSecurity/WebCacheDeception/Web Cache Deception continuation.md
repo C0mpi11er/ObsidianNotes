@@ -408,3 +408,8 @@ You should also take the following precautions when implementing caching:
     Don't accept fat GET requests. Be aware that some third-party technologies may permit this by default.
     Patch client-side vulnerabilities even if they seem unexploitable. 
     Some of these vulnerabilities might actually be exploitable due to unpredictable quirks in your cache's behavior. It could be a matter of time before someone finds a quirk, whether it be cache-based or otherwise, that makes this vulnerability exploitable.
+
+
+
+#note !!!
+avoid finding cached vuln with browsers as some web apps redirects users without session

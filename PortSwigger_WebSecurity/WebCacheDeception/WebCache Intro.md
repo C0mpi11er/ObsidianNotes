@@ -6,6 +6,8 @@ Cache files ending in:
 .js  
 .jpg  
 .png
+.exe
+.ico
 
  Web cache deception is a vulnerability that enables an attacker to trick a web cache into storing sensitive, dynamic content. It's caused by discrepancies between how the cache server and origin server handle requests.
 
