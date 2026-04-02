@@ -272,3 +272,75 @@ hashcat -m 0 -a 1 hashes.txt wordlist1.txt wordlist2.txt
 ---
 
 This comprehensive guide provides detailed coverage of Hashcat—from installation and basic attacks to advanced techniques and workflow integration. Let me know if you need further details or additional sections!
+
+
+#note find hashes with command 
+
+```
+hashcat --example-hashes | grep md5
+```
+
+
+## 🧠 Common Hash Types Cheat Sheet (Quick IDs)
+
+### 🔐 Basic Hashes
+
+|ID|Name|
+|---|---|
+|0|MD5|
+|100|SHA1|
+|1400|SHA2-256|
+|1700|SHA2-512|
+
+---
+
+### 🔑 Windows / Auth
+
+|ID|Name|
+|---|---|
+|1000|NTLM|
+|3000|LM|
+|5500|NetNTLMv1|
+|5600|NetNTLMv2|
+
+---
+
+### 🌐 Web / CMS
+
+|ID|Name|
+|---|---|
+|400|phpBB3|
+|500|md5crypt|
+|3200|bcrypt|
+|7900|Drupal7|
+
+---
+
+### 🗄️ Databases
+
+|ID|Name|
+|---|---|
+|200|MySQL323|
+|300|MySQL4.1|
+|3100|Oracle|
+|112|PostgreSQL|
+
+---
+
+### 📡 Network / Wireless
+
+|ID|Name|
+|---|---|
+|2500|WPA/WPA2|
+|22000|WPA-PBKDF2-PMKID+EAPOL|
+
+---
+
+### 🔒 Encrypted Files
+
+| ID    | Name   |
+| ----- | ------ |
+| 12500 | RAR3   |
+| 13000 | RAR5   |
+| 13600 | WinZip |
+| 17200 | PKZIP  |

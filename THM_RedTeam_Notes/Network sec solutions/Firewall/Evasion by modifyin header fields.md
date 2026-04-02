@@ -72,13 +72,13 @@ You can evade detection by:
 
 ### Shortcut Flags
 
-|Flag|Meaning|
-|---|---|
-|`R`|Record Route|
-|`T`|Record Timestamp|
-|`U`|Record Route + Timestamp|
-|`L`|Loose Source Routing (followed by IP list)|
-|`S`|Strict Source Routing (followed by IP list)|
+| Flag | Meaning                                     |
+| ---- | ------------------------------------------- |
+| `R`  | Record Route                                |
+| `T`  | Record Timestamp                            |
+| `U`  | Record Route + Timestamp                    |
+| `L`  | Loose Source Routing (followed by IP list)  |
+| `S`  | Strict Source Routing (followed by IP list) |
 
 ### Red Team Use Case
 
@@ -130,8 +130,8 @@ You can evade detection by:
 
 ## Summary Table
 
-|Evasion Technique|Nmap Option|
-|---|---|
-|Set IP TTL|`--ttl VALUE`|
-|Specify IP Options|`--ip-options OPTIONS`|
-|Send invalid checksums|`--badsum`|
+| Evasion Technique      | Nmap Option            |
+| ---------------------- | ---------------------- |
+| Set IP TTL             | `--ttl VALUE`          |
+| Specify IP Options     | `--ip-options OPTIONS` |
+| Send invalid checksums | `--badsum`             |
