@@ -1,0 +1,26 @@
+
+- **Shell**
+    - Interface to interact with an OS (e.g., Bash, PowerShell).
+    - “Getting a shell” = gaining command execution on a target.
+    - Types:
+        - **Reverse shell** → target connects back to attacker
+        - **Bind shell** → attacker connects to target port
+        - **Web shell** → command execution via web app
+- **Ports**
+    - Virtual endpoints for network services (0–65535).
+    - Common ports:
+        - 21 (FTP), 22 (SSH), 80 (HTTP), 443 (HTTPS), 445 (SMB), 3389 (RDP)
+    - **TCP** → reliable, connection-based
+    - **UDP** → faster, connectionless, less reliable
+- **Web Server**
+    - Handles HTTP/HTTPS requests (usually ports 80/443).
+    - Major attack surface in pentesting.
+- **OWASP Top 10 (Core Web Risks)**
+    - Key categories:
+        - Access Control issues
+        - Injection (SQL, command, etc.)
+        - Security Misconfigurations
+        - Outdated Components
+        - Auth/Identity Failures
+        - SSRF & others
+    - Used as baseline for web security testing.

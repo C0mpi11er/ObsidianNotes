@@ -8,21 +8,21 @@
         "type": "tabs",
         "children": [
           {
-            "id": "c0b76520fa44b896",
+            "id": "614c853e476343c6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tools/Recon/MasScan.md",
+                "file": "HTB/Penetration Testing Process/Public Exploits.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MasScan"
+              "title": "Public Exploits"
             }
           },
           {
-            "id": "afc32072ce873853",
+            "id": "0014ada47e37827e",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -34,37 +34,8 @@
               "icon": "lucide-file",
               "title": "Hacking Notes"
             }
-          },
-          {
-            "id": "1f50022ad78e5231",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "HTB/Penetration Testing Process/PT Pocess.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PT Pocess"
-            }
-          },
-          {
-            "id": "614c853e476343c6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "How To Master Modules.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "How To Master Modules"
-            }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -96,7 +67,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "sql ink",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -185,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "How To Master Modules.md",
+                "file": "HTB/Penetration Testing Process/Public Exploits.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of How To Master Modules"
+              "title": "Outline of Public Exploits"
             }
           }
         ],
@@ -216,9 +187,17 @@
   },
   "active": "614c853e476343c6",
   "lastOpenFiles": [
+    "HTB/Penetration Testing Process/TCP and UDP Ports list.md",
+    "THM hack notes/Hacking Notes.md",
+    "HTB/Penetration Testing Process/Web Enumeration.md",
+    "HTB/Penetration Testing Process/Service Scanning.md",
+    "HTB/Penetration Testing Process/Public Exploits.md",
+    "HTB/Penetration Testing Process/Basic Tools.md",
+    "HTB/Penetration Testing Process/Structure of Projexts.md",
+    "Tools/tmux.md",
+    "HTB/Penetration Testing Process/PT Common Terms.md",
     "HTB/Penetration Testing Process/PT Pocess.md",
     "How To Master Modules.md",
-    "THM hack notes/Hacking Notes.md",
     "Tools/Recon/MasScan.md",
     "THM_RedTeam_Notes/Network sec solutions/Firewall/Evasion via Controlling the Source MAC IP Port.md",
     "AD-Mental-Model/AD Mental Model.md",
@@ -239,15 +218,7 @@
     "AD-Mental-Model/Mind Graph.md",
     "PortSwigger_WebSecurity/PrototypePollution/Proto intro.md",
     "AD-Mental-Model",
-    "PortSwigger_WebSecurity/Race conditions/Race Condition cont.md",
     "PortSwigger_WebSecurity/PrototypePollution",
-    "Kali/Kali package manager.md",
-    "PortSwigger_WebSecurity/Race conditions/Race Conditions.md",
-    "Linux Utils/CURL.md",
-    "THM hack notes/Responder.md",
-    "THM hack notes/File inclusion (Web Hacking).md",
-    "THM hack notes/Web Pentest.md",
-    "THM hack notes/Nmap.md",
     "Tools/Recon/MasScan",
     "Tools/Recon",
     "PortSwigger_WebSecurity/Race Conditions",
