@@ -193,6 +193,4 @@ http://<target>/robots.txt
 
 |`curl 10.10.10.121/robots.txt`|List potential directories in `robots.txt`|
 |`ctrl+U`|View page source (in Firefox)|
-
-
 </commands>

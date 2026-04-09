@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Penetration Testing Process/Public Exploits.md",
+                "file": "PortSwigger_WebSecurity/XSS/XSS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Public Exploits"
+              "title": "XSS"
             }
           },
           {
@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "THM hack notes/Hacking Notes.md",
+                "file": "THM hack notes/Types_PrivEsc(Linux).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Hacking Notes"
+              "title": "Types_PrivEsc(Linux)"
             }
           }
         ]
@@ -67,7 +67,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "sql ink",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -92,7 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 377.5
+    "width": 364.5
   },
   "right": {
     "id": "c12504f04b728176",
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "HTB/Penetration Testing Process/Public Exploits.md",
+                "file": "PortSwigger_WebSecurity/XSS/XSS.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Public Exploits"
+              "title": "Outline of XSS"
             }
           }
         ],
@@ -187,36 +187,36 @@
   },
   "active": "614c853e476343c6",
   "lastOpenFiles": [
-    "HTB/Penetration Testing Process/TCP and UDP Ports list.md",
-    "THM hack notes/Hacking Notes.md",
-    "HTB/Penetration Testing Process/Web Enumeration.md",
+    "THM hack notes/XXS (web hacking).md",
+    "PortSwigger_WebSecurity/CSRF/CSRF Summary.md",
+    "HTB/Penetration Testing Process/Privilege Escalation.md",
+    "PortSwigger_WebSecurity/CORS/cross-origin resource sharing.md",
+    "THM hack notes/Types_PrivEsc(Linux).md",
+    "THM hack notes/Linux Priv Esc.md",
+    "THM hack notes/GTFOBins.md",
+    "HTB/Penetration Testing Process/Types of shells.md",
     "HTB/Penetration Testing Process/Service Scanning.md",
-    "HTB/Penetration Testing Process/Public Exploits.md",
-    "HTB/Penetration Testing Process/Basic Tools.md",
-    "HTB/Penetration Testing Process/Structure of Projexts.md",
-    "Tools/tmux.md",
-    "HTB/Penetration Testing Process/PT Common Terms.md",
-    "HTB/Penetration Testing Process/PT Pocess.md",
-    "How To Master Modules.md",
-    "Tools/Recon/MasScan.md",
-    "THM_RedTeam_Notes/Network sec solutions/Firewall/Evasion via Controlling the Source MAC IP Port.md",
-    "AD-Mental-Model/AD Mental Model.md",
+    "HTB/Penetration Testing Process/Web Enumeration.md",
+    "PortSwigger_WebSecurity/XSS/XSS.md",
+    "PortSwigger_WebSecurity/WebCacheDeception/Web Cache Deception continuation.md",
+    "PortSwigger_WebSecurity/Authentication/Multi Factor Auth.md",
+    "PortSwigger_WebSecurity/Authentication/Port_Auth.md",
+    "PortSwigger_WebSecurity/Authentication/Resetting user password.md",
+    "PortSwigger_WebSecurity/Authentication/Preventing auth attacks.md",
+    "PortSwigger_WebSecurity/Authentication/Bruteforcing password in change password page.md",
+    "PortSwigger_WebSecurity/Authentication/Keeping Users Logged in.md",
+    "PortSwigger_WebSecurity/Authentication/Changing Password.md",
+    "PortSwigger_WebSecurity/APi/Server side paramter pollution.md",
+    "PortSwigger_WebSecurity/APi/Id supported content.md",
+    "PortSwigger_WebSecurity/APi/APi_Recon.md",
+    "PortSwigger_WebSecurity/AccessControl/PortSwigger_Access_Control.md",
+    "THM hack notes/GoBuster.md",
+    "THM hack notes/Hacking Notes.md",
+    "🛡️ Penetration Test Report – ICBM Educational Platform.md",
     "0-PT-Process.png",
-    "Bash/Bash Scripting cheat sheet.md",
     "HTB/Penetration Testing Process",
-    "HTB/Untitled.md",
     "HTB",
     "Bash",
-    "OSCP Cur/AOC.md",
-    "THM hack notes/Hydra.md",
-    "THM_RedTeam_Notes/Password Attacks/Intro.md",
-    "THM hack notes/HashCat.md",
-    "AD-Mental-Model/AD Tools And Commands.md",
-    "AD-Mental-Model/Blood Hound Sharp Edges.md",
-    "THM_RedTeam_Notes/Network sec solutions/Firewall/Evasion by modifyin header fields.md",
-    "AD-Mental-Model/AD HTB To Practice.md",
-    "AD-Mental-Model/Mind Graph.md",
-    "PortSwigger_WebSecurity/PrototypePollution/Proto intro.md",
     "AD-Mental-Model",
     "PortSwigger_WebSecurity/PrototypePollution",
     "Tools/Recon/MasScan",
