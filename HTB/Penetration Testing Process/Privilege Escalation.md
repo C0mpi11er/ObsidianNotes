@@ -64,6 +64,7 @@
 - If you can read a user's `.ssh` directory:
     - Copy `id_rsa` → log in with `ssh -i id_rsa user@host`
     - Must set proper permissions: `chmod 600 id_rsa`
+    - open is_rsa with vim to avoid complications and copy 
 - If you have **write access** to `.ssh`:
     - Add your **public key** to `authorized_keys`:
         
