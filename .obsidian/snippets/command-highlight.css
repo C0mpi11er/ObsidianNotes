@@ -1,0 +1,99 @@
+/* =========================
+   GLOBAL CODE BLOCK STYLE
+========================= */
+.markdown-preview-view pre {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* =========================
+   BASH (RED GLOW)
+========================= */
+code[class*="language-bash"],
+pre[class*="language-bash"] {
+  background: #0f1117 !important;
+  border-left: 4px solid #ff4d4d;
+  box-shadow: 0 0 8px rgba(255, 77, 77, 0.3);
+}
+
+/* =========================
+   POWERSHELL (BLUE GLOW)
+========================= */
+code[class*="language-powershell"],
+pre[class*="language-powershell"] {
+  background: #0f1117 !important;
+  border-left: 4px solid #4da6ff;
+  box-shadow: 0 0 8px rgba(77, 166, 255, 0.3);
+}
+
+/* =========================
+   CMD (GREEN GLOW)
+========================= */
+code[class*="language-cmd"],
+pre[class*="language-cmd"] {
+  background: #0f1117 !important;
+  border-left: 4px solid #33cc33;
+  box-shadow: 0 0 8px rgba(51, 204, 51, 0.3);
+}
+
+/* =========================
+   TITLE STYLE (CODE BLOCK LABELS)
+========================= */
+pre code::before {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+
+/* =========================
+   HIGHLIGHT PLACEHOLDERS
+========================= */
+
+/* <IP>, <TOKEN>, etc */
+.cm-tag, .token.tag {
+  color: #ffcc00 !important;
+  font-weight: bold;
+}
+
+/* ^USER^ ^PASS^ */
+code {
+  --highlight-user: #ff66cc;
+}
+
+code:contains("^USER^"),
+code:contains("^PASS^") {
+  color: var(--highlight-user) !important;
+  font-weight: bold;
+}
+
+/* FUZZ keyword */
+code:contains("FUZZ") {
+  color: #00ffcc !important;
+  font-weight: bold;
+}
+
+/* =========================
+   INLINE CODE IMPROVEMENT
+========================= */
+.markdown-preview-view code {
+  background: rgba(255,255,255,0.05);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+/* =========================
+   SCROLLBAR CLEANUP
+========================= */
+.markdown-preview-view pre::-webkit-scrollbar {
+  height: 6px;
+}
+.markdown-preview-view pre::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}

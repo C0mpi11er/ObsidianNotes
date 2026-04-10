@@ -3,5 +3,9 @@
   "interfaceFontFamily": "Source Code Pro",
   "textFontFamily": "Source Code Pro",
   "baseFontSize": 18,
-  "baseFontSizeAction": true
+  "baseFontSizeAction": true,
+  "enabledCssSnippets": [
+    "command-highlight"
+  ],
+  "cssTheme": "PLN"
 }
