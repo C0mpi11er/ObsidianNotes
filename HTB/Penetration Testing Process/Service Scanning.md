@@ -185,3 +185,5 @@ command summary-----------------------------------------------------------------
 |`onesixtyone -c dict.txt 10.129.42.254`|Brute force SNMP secret string|
 
 
+>#[!TIP]!!!! very vital command to help find vuln
+>searchsploit   --nmap  nmap-scan.xml

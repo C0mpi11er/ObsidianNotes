@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_WebSecurity/XSS/XSS.md",
+                "file": "PortSwigger_WebSecurity/Authentication/Keeping Users Logged in.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "XSS"
+              "title": "Keeping Users Logged in"
             }
           },
           {
@@ -27,16 +27,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Penetration Testing Process/Navigating HTB.md",
+                "file": "HTB/Penetration Testing Process/Types of shells.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Navigating HTB"
+              "title": "Types of shells"
+            }
+          },
+          {
+            "id": "857d72f8fd1b57a7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "HTB/NMAP/NMAP-Scripting-Engine.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "NMAP-Scripting-Engine"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -157,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "HTB/Penetration Testing Process/Navigating HTB.md",
+                "file": "HTB/NMAP/NMAP-Scripting-Engine.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Navigating HTB"
+              "title": "Outline of NMAP-Scripting-Engine"
             }
           }
         ],
@@ -186,35 +200,37 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "0014ada47e37827e",
+  "active": "857d72f8fd1b57a7",
   "lastOpenFiles": [
-    "HTB/Penetration Testing Process/Transfering Files.md",
+    "HTB/NMAP/HOST & PORT SCANNING.md",
+    "HTB/NMAP/NMAP-Scripting-Engine.md",
+    "HTB/NMAP/NMAP-Service-Enum.md",
+    "HTB/NMAP/NMAP-SAVING Results.md",
+    "HTB/NMAP/NMAP-HOST-DISCOVERY.md",
+    "HTB/NMAP/INTRO-NMAP.md",
     "HTB/Penetration Testing Process/Navigating HTB.md",
-    "HTB/Penetration Testing Process/Privilege Escalation.md",
+    "HTB/NMAP",
     "HTB/Penetration Testing Process/Types of shells.md",
-    "COMMANDS/EXPLOIT COMMANDS ===============.md",
-    "HTB/Penetration Testing Process/Web Enumeration.md",
-    "Kali/Kali package manager.md",
-    "AD-Mental-Model/AD Tools And Commands.md",
-    "THM hack notes/Tar unziping.md",
-    "COMMANDS",
-    "THM hack notes/CyberChef.md",
-    "🛡️ Penetration Test Report – ICBM Educational Platform.md",
-    "HTB/Penetration Testing Process/PT Common Terms.md",
-    "THM hack notes/Types_PrivEsc(Linux).md",
-    "PortSwigger_WebSecurity/XSS/XSS.md",
-    "THM hack notes/XXS (web hacking).md",
-    "PortSwigger_WebSecurity/CSRF/CSRF Summary.md",
-    "PortSwigger_WebSecurity/CORS/cross-origin resource sharing.md",
-    "THM hack notes/Linux Priv Esc.md",
-    "THM hack notes/GTFOBins.md",
     "HTB/Penetration Testing Process/Service Scanning.md",
+    "COMMANDS/EXPLOIT COMMANDS ===============.md",
+    "ICBM PENTEST REPORTS/ICBM PENTEST Sun Apr 12 14-39-40 2026.md",
+    "THM hack notes/Hacking Notes.md",
+    "ICBM PENTEST REPORTS",
+    "PortSwigger_WebSecurity/DomBasedVuln/Dom Based intro.md",
+    "HTB/Penetration Testing Process/TCP and UDP Ports list.md",
+    "THM hack notes/Protocols.md",
+    "PortSwigger_WebSecurity/SQL/Port_Swig (SQLI pos payloads ).md",
+    "PortSwigger_WebSecurity/SQL/Port_SQLI_Part3 CHEAT.md",
+    "THM hack notes/Telnet.md",
+    "THM hack notes/Nmap.md",
+    "THM hack notes/Hydra.md",
+    "THM hack notes/HashCat.md",
+    "PortSwigger_WebSecurity/WebSockets/Web Socket.md",
+    "THM hack notes/WAF Bypass Skills.md",
+    "PortSwigger_WebSecurity/WebCacheDeception/WebCache Intro.md",
     "PortSwigger_WebSecurity/WebCacheDeception/Web Cache Deception continuation.md",
-    "PortSwigger_WebSecurity/Authentication/Multi Factor Auth.md",
-    "PortSwigger_WebSecurity/Authentication/Port_Auth.md",
-    "PortSwigger_WebSecurity/Authentication/Resetting user password.md",
-    "PortSwigger_WebSecurity/Authentication/Preventing auth attacks.md",
-    "PortSwigger_WebSecurity/Authentication/Bruteforcing password in change password page.md",
+    "HTB/Penetration Testing Process/Web Enumeration.md",
+    "COMMANDS",
     "0-PT-Process.png",
     "HTB/Penetration Testing Process",
     "HTB",
@@ -223,8 +239,6 @@
     "PortSwigger_WebSecurity/PrototypePollution",
     "Tools/Recon/MasScan",
     "Tools/Recon",
-    "PortSwigger_WebSecurity/Race Conditions",
-    "PortSwigger_WebSecurity/DomBasedVuln",
     "images/waffw00f.png",
     "images/sql.png",
     "images/githubpoc.png",
