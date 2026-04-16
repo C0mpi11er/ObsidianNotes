@@ -40,3 +40,19 @@
         - `:q` quit
         - `:wq` save & quit
         - `dd` delete line, `yy` copy line, `p` paste
+
+
+
+   >[!TIP] show keys- tmux show-options -gw | grep mode-keys
+
+- **`Ctrl + b`**, then **`[`**
+
+2. Select and Copy
+
+- **Move cursor**: Use **Arrow Keys** or **`Ctrl + n`** (down), **`Ctrl + p`** (up), **`Ctrl + f`** (right), **`Ctrl + b`** (left).
+- **Start Selection**: **`Ctrl + Space`** (Sets the "mark").
+- **Copy Selection**: **`Alt + w`** (This copies the text to the tmux buffer and exits copy mode).
+
+3. Paste
+
+- **`Ctrl + b`**, then **`]`**

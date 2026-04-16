@@ -22,17 +22,31 @@
             }
           },
           {
-            "id": "262a0e8c1b716285",
+            "id": "0e71265bfccdd3ae",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_WebSecurity/PrototypePollution/Proto Pollution.md",
+                "file": "HTB/NMAP=========COMMANDS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Proto Pollution"
+              "title": "NMAP=========COMMANDS"
+            }
+          },
+          {
+            "id": "ac98cf81d978aed8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "HTB/Penetration Testing Process/Basic Tools.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Basic Tools"
             }
           }
         ],
@@ -68,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tmu",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -157,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "PortSwigger_WebSecurity/PrototypePollution/Proto Pollution.md",
+                "file": "HTB/NMAP=========COMMANDS.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Proto Pollution"
+              "title": "Outline of NMAP=========COMMANDS"
             }
           }
         ],
@@ -186,10 +200,25 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "262a0e8c1b716285",
+  "active": "0e71265bfccdd3ae",
   "lastOpenFiles": [
-    "NoteTaking CallOuts/CallOuts.md",
+    "HTB/Penetration Testing Process/Basic Tools.md",
+    "202604161124.md",
+    "HTB/NMAP=========COMMANDS.md",
+    "HTB/NMAP/NMAP-Performance.md",
+    "HTB/NMAP/NMAP-Service-Enum.md",
+    "HTB/Penetration Testing Process/Service Scanning.md",
+    "HTB/NMAP/NMAP-Scripting-Engine.md",
+    "HTB/NMAP/NMAP-HOST-DISCOVERY.md",
+    "HTB/SHELLS==============Commands.md",
+    "HTB/Penetration Testing Process/Types of shells.md",
+    "HTB/Penetration Testing Process/Web Enumeration.md",
+    "HTB/CURL=============COMMANDS.md",
+    "HTB/FUFF===========Commands.md",
+    "HTB/GOBUSTER========COMMANDS.md",
+    "HTB/NMAP/INTRO-NMAP.md",
     "PortSwigger_WebSecurity/PrototypePollution/Proto Pollution.md",
+    "NoteTaking CallOuts/CallOuts.md",
     "PortSwigger_WebSecurity/Authentication/Keeping Users Logged in.md",
     "NoteTaking CallOuts",
     "PortSwigger_WebSecurity/XSS/Reflected XSS.md",
@@ -200,23 +229,8 @@
     "PortSwigger_WebSecurity/CSRF/CSRF Summary.md",
     "THM hack notes/BurpeSuite.md",
     "PortSwigger_WebSecurity/DomBasedVuln/Dom Based intro.md",
-    "HTB/Penetration Testing Process/Types of shells.md",
-    "HTB/NMAP/NMAP-Scripting-Engine.md",
-    "HTB/NMAP/HOST & PORT SCANNING.md",
-    "HTB/NMAP/NMAP-Service-Enum.md",
-    "HTB/NMAP/NMAP-SAVING Results.md",
-    "HTB/NMAP/NMAP-HOST-DISCOVERY.md",
-    "HTB/NMAP/INTRO-NMAP.md",
-    "HTB/Penetration Testing Process/Navigating HTB.md",
     "HTB/NMAP",
-    "HTB/Penetration Testing Process/Service Scanning.md",
-    "COMMANDS/EXPLOIT COMMANDS ===============.md",
-    "ICBM PENTEST REPORTS/ICBM PENTEST Sun Apr 12 14-39-40 2026.md",
     "ICBM PENTEST REPORTS",
-    "HTB/Penetration Testing Process/TCP and UDP Ports list.md",
-    "THM hack notes/Protocols.md",
-    "PortSwigger_WebSecurity/SQL/Port_Swig (SQLI pos payloads ).md",
-    "PortSwigger_WebSecurity/SQL/Port_SQLI_Part3 CHEAT.md",
     "COMMANDS",
     "0-PT-Process.png",
     "HTB/Penetration Testing Process",
