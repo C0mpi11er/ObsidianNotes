@@ -61,12 +61,19 @@ Bash
 sudo nmap -sV -sC -O -p- --version-intensity 8 --reason --script-updatedb 10.10.10.15 -oA deep_audit
 ```
 
+>[!CHECK] use netcat for banner grabbing sometimes using 53 as source port {DNS} fire walls weak against it 
+BASH
+```
+  nc -nv -p 53 <target-ip> 50000
+```
+
 > [!NOTE] silent....
 
 Bash
 ```
 sudo nmap -sS -sV --version-intensity 0 -p 50000 -T2 --source-port 53 --data-length 28 -D RND:10 --open 10.129.72.39 -oA service_audit
 ```
+
 
 
 > [!TIP] **Analysis Profile**

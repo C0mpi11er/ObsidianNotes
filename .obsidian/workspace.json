@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/NMAP=========COMMANDS.md",
+                "file": "HTB/Vulnerability Assessment/Assessment Standards.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "NMAP=========COMMANDS"
+              "title": "Assessment Standards"
             }
           },
           {
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "HTB/NMAP=========COMMANDS.md",
+                "file": "HTB/Vulnerability Assessment/Assessment Standards.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of NMAP=========COMMANDS"
+              "title": "Outline of Assessment Standards"
             }
           }
         ],
@@ -202,23 +202,27 @@
   },
   "active": "0e71265bfccdd3ae",
   "lastOpenFiles": [
-    "HTB/Penetration Testing Process/Basic Tools.md",
-    "202604161124.md",
+    "HTB/Vulnerability Assessment/Vulnerability Assessment-Cont.md",
+    "HTB/Vulnerability Assessment/Assessment Standards.md",
+    "HTB/Vulnerability Assessment/Vulnerability Assessment==Intro.md",
     "HTB/NMAP=========COMMANDS.md",
+    "HTB/Vulnerability Assessment",
+    "NoteTaking CallOuts/CallOuts.md",
+    "HTB/Penetration Testing Process/Basic Tools.md",
+    "HTB/Penetration Testing Process/Web Enumeration.md",
+    "HTB/NMAP/NMAP-Scripting-Engine.md",
+    "202604161124.md",
     "HTB/NMAP/NMAP-Performance.md",
     "HTB/NMAP/NMAP-Service-Enum.md",
     "HTB/Penetration Testing Process/Service Scanning.md",
-    "HTB/NMAP/NMAP-Scripting-Engine.md",
     "HTB/NMAP/NMAP-HOST-DISCOVERY.md",
     "HTB/SHELLS==============Commands.md",
     "HTB/Penetration Testing Process/Types of shells.md",
-    "HTB/Penetration Testing Process/Web Enumeration.md",
     "HTB/CURL=============COMMANDS.md",
     "HTB/FUFF===========Commands.md",
     "HTB/GOBUSTER========COMMANDS.md",
     "HTB/NMAP/INTRO-NMAP.md",
     "PortSwigger_WebSecurity/PrototypePollution/Proto Pollution.md",
-    "NoteTaking CallOuts/CallOuts.md",
     "PortSwigger_WebSecurity/Authentication/Keeping Users Logged in.md",
     "NoteTaking CallOuts",
     "PortSwigger_WebSecurity/XSS/Reflected XSS.md",
@@ -226,9 +230,6 @@
     "THM hack notes/XXS (web hacking).md",
     "PortSwigger_WebSecurity/XSS/XSS.md",
     "PortSwigger_WebSecurity/XSS/Stored Xss.md",
-    "PortSwigger_WebSecurity/CSRF/CSRF Summary.md",
-    "THM hack notes/BurpeSuite.md",
-    "PortSwigger_WebSecurity/DomBasedVuln/Dom Based intro.md",
     "HTB/NMAP",
     "ICBM PENTEST REPORTS",
     "COMMANDS",
@@ -238,7 +239,6 @@
     "Bash",
     "AD-Mental-Model",
     "PortSwigger_WebSecurity/PrototypePollution",
-    "Tools/Recon/MasScan",
     "images/waffw00f.png",
     "images/sql.png",
     "images/githubpoc.png",
