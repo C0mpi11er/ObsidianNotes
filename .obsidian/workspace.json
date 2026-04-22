@@ -27,16 +27,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Vulnerability Assessment/Executive Sum ---Vuln Assesment.md",
+                "file": "HTB/File-Transfer/Windows-FileTranfer Method.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Executive Sum ---Vuln Assesment"
+              "title": "Windows-FileTranfer Method"
+            }
+          },
+          {
+            "id": "2c5b7571189cf5b9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "HTB/Linux==============File Tranfer.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux==============File Tranfer"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -157,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "HTB/Vulnerability Assessment/Executive Sum ---Vuln Assesment.md",
+                "file": "HTB/Linux==============File Tranfer.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Executive Sum ---Vuln Assesment"
+              "title": "Outline of Linux==============File Tranfer"
             }
           }
         ],
@@ -186,10 +200,20 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "f9d0954063bbf3ba",
+  "active": "2c5b7571189cf5b9",
   "lastOpenFiles": [
-    "HTB/Vulnerability Assessment/Vuln Scan Overview.md",
+    "HTB/SHELLS==============Commands.md",
+    "HTB/Linux==============File Tranfer.md",
+    "HTB/File-Transfer/Linux-File-Transfer Method.md",
+    "HTB/File-Transfer/Windows-FileTranfer Method.md",
+    "HTB/Window=========File Transfer Techniques.md",
+    "AD-Mental-Model/AD Tools And Commands.md",
+    "Tools/Chisel.md",
+    "HTB/PS=======DOWNLOD==COMMANDS.md",
+    "HTB/File-Transfer/Intro-FileTransfers.md",
     "HTB/Vulnerability Assessment/Executive Sum ---Vuln Assesment.md",
+    "HTB/File-Transfer",
+    "HTB/Vulnerability Assessment/Vuln Scan Overview.md",
     "HTB/Vulnerability Assessment/Common Vuln Exposure.md",
     "HTB/Vulnerability Assessment/Common Vuln Scoring System.md",
     "HTB/Vulnerability Assessment/Assessment Standards.md",
@@ -197,7 +221,6 @@
     "NoteTaking CallOuts/CallOuts.md",
     "OSCP Cur/AOC.md",
     "HTB/Penetration Testing Process/Types of shells.md",
-    "HTB/SHELLS==============Commands.md",
     "HTB/HTTPx================Commands.md",
     "HTB/SUBFINDER=============COMMANDS.md",
     "HTB/NMAP=========COMMANDS.md",
@@ -207,14 +230,6 @@
     "THM hack notes/Windows Networking commands (cmd.exe).md",
     "HTB/Vulnerability Assessment/Vulnerability Assessment==Intro.md",
     "HTB/Vulnerability Assessment",
-    "HTB/Penetration Testing Process/Web Enumeration.md",
-    "HTB/NMAP/NMAP-Scripting-Engine.md",
-    "202604161124.md",
-    "HTB/NMAP/NMAP-Performance.md",
-    "HTB/NMAP/NMAP-Service-Enum.md",
-    "HTB/Penetration Testing Process/Service Scanning.md",
-    "HTB/NMAP/NMAP-HOST-DISCOVERY.md",
-    "HTB/CURL=============COMMANDS.md",
     "NoteTaking CallOuts",
     "HTB/NMAP",
     "ICBM PENTEST REPORTS",
@@ -224,7 +239,6 @@
     "HTB",
     "Bash",
     "AD-Mental-Model",
-    "PortSwigger_WebSecurity/PrototypePollution",
     "images/waffw00f.png",
     "images/sql.png",
     "images/githubpoc.png",
