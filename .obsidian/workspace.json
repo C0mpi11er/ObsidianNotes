@@ -22,31 +22,31 @@
             }
           },
           {
-            "id": "f9d0954063bbf3ba",
+            "id": "b5349176bef196e9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/File-Transfer/Windows-FileTranfer Method.md",
+                "file": "COMMANDS/EXPLOIT COMMANDS ===============.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Windows-FileTranfer Method"
+              "title": "EXPLOIT COMMANDS ==============="
             }
           },
           {
-            "id": "2c5b7571189cf5b9",
+            "id": "d02416a90a7aa385",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Linux==============File Tranfer.md",
+                "file": "COMMANDS/File-Transfer-Living of the land Binaries===============COMMANDS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linux==============File Tranfer"
+              "title": "File-Transfer-Living of the land Binaries===============COMMANDS"
             }
           }
         ],
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "HTB/Linux==============File Tranfer.md",
+                "file": "COMMANDS/File-Transfer-Living of the land Binaries===============COMMANDS.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Linux==============File Tranfer"
+              "title": "Outline of File-Transfer-Living of the land Binaries===============COMMANDS"
             }
           }
         ],
@@ -200,16 +200,25 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "2c5b7571189cf5b9",
+  "active": "d02416a90a7aa385",
   "lastOpenFiles": [
-    "HTB/SHELLS==============Commands.md",
-    "HTB/Linux==============File Tranfer.md",
-    "HTB/File-Transfer/Linux-File-Transfer Method.md",
+    "COMMANDS/File-Trransfer-Https==============.md",
+    "COMMANDS/File-Transfer-Living of the land Binaries===============COMMANDS.md",
+    "COMMANDS/Protected-File-Transfer========COMMANDS.md",
+    "COMMANDS/Misc-FileTranfer-Method(RDP,NC..)============COMMANDS.md",
+    "COMMANDS/Window=========File Transfer Techniques.md",
+    "COMMANDS/SHELLS==============Commands.md",
+    "COMMANDS/NMAP=========COMMANDS.md",
+    "COMMANDS/Linux==============File Tranfer.md",
+    "COMMANDS/GOBUSTER========COMMANDS.md",
+    "COMMANDS/EXPLOIT COMMANDS ===============.md",
+    "NoteTaking CallOuts/CallOuts.md",
+    "COMMANDS/Codes-File-Transfer==============COMMANDS.md",
     "HTB/File-Transfer/Windows-FileTranfer Method.md",
-    "HTB/Window=========File Transfer Techniques.md",
+    "HTB/File-Transfer/Linux-File-Transfer Method.md",
     "AD-Mental-Model/AD Tools And Commands.md",
     "Tools/Chisel.md",
-    "HTB/PS=======DOWNLOD==COMMANDS.md",
+    "COMMANDS/PS=======DOWNLOD==COMMANDS.md",
     "HTB/File-Transfer/Intro-FileTransfers.md",
     "HTB/Vulnerability Assessment/Executive Sum ---Vuln Assesment.md",
     "HTB/File-Transfer",
@@ -218,17 +227,8 @@
     "HTB/Vulnerability Assessment/Common Vuln Scoring System.md",
     "HTB/Vulnerability Assessment/Assessment Standards.md",
     "HTB/Vulnerability Assessment/Vulnerability Assessment-Cont.md",
-    "NoteTaking CallOuts/CallOuts.md",
     "OSCP Cur/AOC.md",
     "HTB/Penetration Testing Process/Types of shells.md",
-    "HTB/HTTPx================Commands.md",
-    "HTB/SUBFINDER=============COMMANDS.md",
-    "HTB/NMAP=========COMMANDS.md",
-    "HTB/Penetration Testing Process/Basic Tools.md",
-    "THM hack notes/OSINT.md",
-    "THM hack notes/Sublisr3r.md",
-    "THM hack notes/Windows Networking commands (cmd.exe).md",
-    "HTB/Vulnerability Assessment/Vulnerability Assessment==Intro.md",
     "HTB/Vulnerability Assessment",
     "NoteTaking CallOuts",
     "HTB/NMAP",

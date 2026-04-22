@@ -74,8 +74,10 @@ Standard shells are "dumb" (no Tab-complete, no `Ctrl+C`). Follow this exact seq
 >         
 >     - Back in your shell, run: `stty rows <X> cols <Y>`
 >         
->     - `export TERM=xterm-256color`
->         
+>     -`export TERM=xterm-256color`
+>       
+
+the ssh direct login just user export command to stabilize shell
 
 ---
 
