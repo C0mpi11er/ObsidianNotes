@@ -2,10 +2,13 @@
   "theme": "obsidian",
   "interfaceFontFamily": "Source Code Pro",
   "textFontFamily": "Source Code Pro",
-  "baseFontSize": 18,
+  "baseFontSize": 19,
   "baseFontSizeAction": true,
   "enabledCssSnippets": [
     "command-highlight"
   ],
-  "cssTheme": "PLN"
+  "cssTheme": "PLN",
+  "accentColor": "",
+  "nativeMenus": true,
+  "showRibbon": true
 }
