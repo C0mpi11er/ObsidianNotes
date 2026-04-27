@@ -69,12 +69,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Shells and Payloads/Anatomy of Shell.md",
+                "file": "HTB/Shells and Payloads/Bind-Shell||Reverse-Shell.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Anatomy of Shell"
+              "title": "Bind-Shell||Reverse-Shell"
             }
           }
         ],
@@ -110,7 +110,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "linpeas",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -199,13 +199,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "HTB/Shells and Payloads/Anatomy of Shell.md",
+                "file": "HTB/Shells and Payloads/Bind-Shell||Reverse-Shell.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Anatomy of Shell"
+              "title": "Outline of Bind-Shell||Reverse-Shell"
             }
           }
         ],
@@ -231,10 +231,22 @@
   "active": "3b9c1319fe74145c",
   "lastOpenFiles": [
     "HTB/Shells and Payloads/Shells Payloads Lecture Summary.md",
+    "HTB/Shells and Payloads/Bind-Shell||Reverse-Shell.md",
+    "COMMANDS/Misc-FileTranfer-Method(RDP,NC..)============COMMANDS.md",
+    "THM hack notes/Eye Witness.md",
+    "AD-Mental-Model/AD Mental Model.md",
+    "THM_RedTeam_Notes/Active Directory/Lateral Movement/Abusing user behavior.md",
+    "THM hack notes/Protocols Uses and summary.md",
+    "THM hack notes/Hydra.md",
+    "AD-Mental-Model/AD Tools And Commands.md",
+    "Tools/Chisel.md",
+    "THM_RedTeam_Notes/Active Directory/Lateral Movement/Alternate Auth Material.md",
+    "COMMANDS/EXPLOIT COMMANDS ===============.md",
     "HTB/Shells and Payloads/Anatomy of Shell.md",
+    "COMMANDS/SHELLS==============Commands.md",
+    "HTB/Penetration Testing Process/Types of shells.md",
     "HTB/Shells and Payloads",
     "THM hack notes/Linux Priv Esc.md",
-    "COMMANDS/SHELLS==============Commands.md",
     "COMMANDS/Auto-Recon ===============COMMANDS.md",
     "COMMANDS/NMAP=========COMMANDS.md",
     "HTB/Penetration Testing Process/Service Scanning.md",
@@ -247,25 +259,13 @@
     "PortSwigger_WebSecurity/CSRF/CSRF=======Vuln-Check.md",
     "PortSwigger_WebSecurity/AccessControl/Access-Control ===========Vuln Check.md",
     "PortSwigger_WebSecurity/SSTI/SSTI=========VulnCheck.md",
-    "PortSwigger_WebSecurity/OAuth/OAuth==========Vuln.md",
     "PortSwigger_WebSecurity/SSTI",
-    "PortSwigger_WebSecurity/JWT/JWT=========VulnCheck.md",
     "PortSwigger_WebSecurity/OAuth",
-    "PortSwigger_WebSecurity/Insecure-Disent/Insecure-Disentralization=============VulnCheck.md",
     "PortSwigger_WebSecurity/JWT",
-    "PortSwigger_WebSecurity/HTTP-Request-Smugle/HTTP-Req-Smuggle=============Vuln Check.md",
     "PortSwigger_WebSecurity/Insecure-Disent",
-    "PortSwigger_WebSecurity/Untitled.md",
-    "PortSwigger_WebSecurity/HTTP-Host-Header/HTTP-Host-Header=========VulnCheck.md",
     "PortSwigger_WebSecurity/HTTP-Request-Smugle",
-    "PortSwigger_WebSecurity/Graph QL/Graph QL============Vuln Check.md",
     "PortSwigger_WebSecurity/HTTP-Host-Header",
-    "PortSwigger_WebSecurity/ClickJacking/ClickJacking=========Vuln Check.md",
     "PortSwigger_WebSecurity/Graph QL",
-    "PortSwigger_WebSecurity/XXE Injection/XML external entity========Vuln Check.md",
-    "PortSwigger_WebSecurity/Bussines Logic/Business Logic ==========Vuln Check.md",
-    "PortSwigger_WebSecurity/Business Logic Vul.md",
-    "PortSwigger_WebSecurity/Web Cache Poison/WebCache Poison=====Vuln Check.md",
     "PortSwigger_WebSecurity/Bussines Logic",
     "0-PT-Process.png",
     "images/waffw00f.png",
