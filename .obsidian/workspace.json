@@ -55,16 +55,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PortSwigger_WebSecurity/FileUpload/File-upload=========Vuln-Check.md",
+                "file": "THM hack notes/Linux Priv Esc.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "File-upload=========Vuln-Check"
+              "title": "Linux Priv Esc"
+            }
+          },
+          {
+            "id": "3b9c1319fe74145c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "HTB/Shells and Payloads/Anatomy of Shell.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Anatomy of Shell"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -96,7 +110,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "linpeas",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -185,13 +199,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "PortSwigger_WebSecurity/FileUpload/File-upload=========Vuln-Check.md",
+                "file": "HTB/Shells and Payloads/Anatomy of Shell.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of File-upload=========Vuln-Check"
+              "title": "Outline of Anatomy of Shell"
             }
           }
         ],
@@ -214,13 +228,19 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "50f890f2750a547f",
+  "active": "3b9c1319fe74145c",
   "lastOpenFiles": [
-    "Pasted image 20260425112326.png",
-    "PortSwigger_WebSecurity/Prototype Pollution/Proto-Pollution ==============Vuln Check.md",
+    "HTB/Shells and Payloads/Shells Payloads Lecture Summary.md",
+    "HTB/Shells and Payloads/Anatomy of Shell.md",
+    "HTB/Shells and Payloads",
+    "THM hack notes/Linux Priv Esc.md",
+    "COMMANDS/SHELLS==============Commands.md",
+    "COMMANDS/Auto-Recon ===============COMMANDS.md",
     "COMMANDS/NMAP=========COMMANDS.md",
     "HTB/Penetration Testing Process/Service Scanning.md",
-    "COMMANDS/Auto-Recon ===============COMMANDS.md",
+    "PortSwigger_WebSecurity/FileUpload/File-upload=========Vuln-Check.md",
+    "Pasted image 20260425112326.png",
+    "PortSwigger_WebSecurity/Prototype Pollution/Proto-Pollution ==============Vuln Check.md",
     "NoteTaking CallOuts/CallOuts.md",
     "PortSwigger_WebSecurity/Prototype Pollution",
     "PortSwigger_WebSecurity/XSS/XSS===========Vuln-Check.md",
@@ -247,11 +267,6 @@
     "PortSwigger_WebSecurity/Business Logic Vul.md",
     "PortSwigger_WebSecurity/Web Cache Poison/WebCache Poison=====Vuln Check.md",
     "PortSwigger_WebSecurity/Bussines Logic",
-    "PortSwigger_WebSecurity/Web Cache Poison",
-    "PortSwigger_WebSecurity/WebSockets/Web Socket===========Vuln Check.md",
-    "PortSwigger_WebSecurity/SSRF/SSRF==============Vuln-Check.md",
-    "PortSwigger_WebSecurity/SQL/SQL========Vuln-Check.md",
-    "PortSwigger_WebSecurity/Race conditions/Race-Condition======Vuln Check.md",
     "0-PT-Process.png",
     "images/waffw00f.png",
     "images/sql.png",
@@ -260,7 +275,6 @@
     "images/dnsrecord.png",
     "images/dnsmap.png",
     "images/cvevuln.png",
-    "images/burp.png",
-    "waffw00f.png"
+    "images/burp.png"
   ]
 }
