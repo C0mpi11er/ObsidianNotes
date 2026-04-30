@@ -197,3 +197,23 @@ nmap -p80 --packet-trace --reason --version-trace --disable-arp-ping 10.10.10.15
 > ```
 > sudo nmap -sV --version-all -p <port> <target>
 > ```
+
+
+
+> [!TIP] During Tunelling e.g Ligolo
+
+```
+#get life host faster and reduce stress for nmap
+>fping -a -g 172.16.0.0/23 
+# scan range of ip fping got
+> nmap -sT -Pn -T4 --min-rate 1000 <ip1> <ip2> 
+
+```
+
+
+
+> [!Tip] Search Scripts
+> nmap --script-help http*
+> nmap --script-help smb*
+> nmap --script-help rdp*
+

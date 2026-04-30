@@ -69,12 +69,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Shells and Payloads/Bind-Shell||Reverse-Shell.md",
+                "file": "COMMANDS/GOBUSTER========COMMANDS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Bind-Shell||Reverse-Shell"
+              "title": "GOBUSTER========COMMANDS"
             }
           }
         ],
@@ -199,13 +199,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "HTB/Shells and Payloads/Bind-Shell||Reverse-Shell.md",
+                "file": "COMMANDS/GOBUSTER========COMMANDS.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Bind-Shell||Reverse-Shell"
+              "title": "Outline of GOBUSTER========COMMANDS"
             }
           }
         ],
@@ -230,35 +230,35 @@
   },
   "active": "3b9c1319fe74145c",
   "lastOpenFiles": [
+    "COMMANDS/GOBUSTER========COMMANDS.md",
+    "HTB/Shells and Payloads/🧰 Laudanum — Webshell Overview.md",
+    "HTB/Shells and Payloads/Windows Exploitation & Enumeration — Summary.md",
+    "COMMANDS/NMAP=========COMMANDS.md",
+    "HTB/Penetration Testing Process/Service Scanning.md",
+    "COMMANDS/Ligolo-NG============COMMANDS.md",
+    "Subneting.md",
+    "HTB/Shells and Payloads/Spawn-interactive-shell.md",
+    "HTB/Shells and Payloads/Linux-Exploit-Enum.md",
+    "COMMANDS/SHELLS==============Commands.md",
+    "COMMANDS/PowerShell==============Command.md",
+    "THM_RedTeam_Notes/living off the land/white list bypass.md",
+    "HTB/Penetration Testing Process/Types of shells.md",
+    "COMMANDS/Misc-FileTranfer-Method(RDP,NC..)============COMMANDS.md",
+    "THM_RedTeam_Notes/Active Directory/Lateral Movement/Alternate Auth Material.md",
+    "COMMANDS/File-Transfer-Living of the land Binaries===============COMMANDS.md",
+    "HTB AD/Examin GPO.md",
+    "COMMANDS/TTL-Fingerprinting-Values.md",
+    "COMMANDS/MSVenom-Payloads===========Commands.md",
+    "COMMANDS/MSFConsole-Search=======COMMANDS.md",
+    "HTB/Shells and Payloads/Automating Payloads and Metasploit.md",
     "HTB/Shells and Payloads/Shells Payloads Lecture Summary.md",
     "HTB/Shells and Payloads/Bind-Shell||Reverse-Shell.md",
-    "COMMANDS/Misc-FileTranfer-Method(RDP,NC..)============COMMANDS.md",
     "THM hack notes/Eye Witness.md",
     "AD-Mental-Model/AD Mental Model.md",
     "THM_RedTeam_Notes/Active Directory/Lateral Movement/Abusing user behavior.md",
-    "THM hack notes/Protocols Uses and summary.md",
-    "THM hack notes/Hydra.md",
-    "AD-Mental-Model/AD Tools And Commands.md",
-    "Tools/Chisel.md",
-    "THM_RedTeam_Notes/Active Directory/Lateral Movement/Alternate Auth Material.md",
-    "COMMANDS/EXPLOIT COMMANDS ===============.md",
-    "HTB/Shells and Payloads/Anatomy of Shell.md",
-    "COMMANDS/SHELLS==============Commands.md",
-    "HTB/Penetration Testing Process/Types of shells.md",
     "HTB/Shells and Payloads",
-    "THM hack notes/Linux Priv Esc.md",
-    "COMMANDS/Auto-Recon ===============COMMANDS.md",
-    "COMMANDS/NMAP=========COMMANDS.md",
-    "HTB/Penetration Testing Process/Service Scanning.md",
-    "PortSwigger_WebSecurity/FileUpload/File-upload=========Vuln-Check.md",
     "Pasted image 20260425112326.png",
-    "PortSwigger_WebSecurity/Prototype Pollution/Proto-Pollution ==============Vuln Check.md",
-    "NoteTaking CallOuts/CallOuts.md",
     "PortSwigger_WebSecurity/Prototype Pollution",
-    "PortSwigger_WebSecurity/XSS/XSS===========Vuln-Check.md",
-    "PortSwigger_WebSecurity/CSRF/CSRF=======Vuln-Check.md",
-    "PortSwigger_WebSecurity/AccessControl/Access-Control ===========Vuln Check.md",
-    "PortSwigger_WebSecurity/SSTI/SSTI=========VulnCheck.md",
     "PortSwigger_WebSecurity/SSTI",
     "PortSwigger_WebSecurity/OAuth",
     "PortSwigger_WebSecurity/JWT",
