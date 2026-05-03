@@ -1,442 +1,410 @@
+Absolutely — the best way is to turn your notes into a **practical AutoRecon cheat sheet that includes normal scans + pivot/tunnel-safe scans**, because using AutoRecon through Ligolo-ng or proxy tunnels needs a different approach from direct scanning.
 
+# 🚀 AutoRecon Cheat Sheet (Standard + Tunnel/Pivot Mode)
 
 ---
 
-### 🚀 1. The "Fire-and-Forget" Default Scan (Baseline Enumeration)
+# 🔥 1. Standard Fast Recon (Direct Target)
 
-Your go-to when you land on a box and want **broad automated coverage fast**.
+For HTB / labs when you're directly connected.
 
-Bash
-
-```
+```bash
 autorecon 10.10.10.15 -o autorecon_results
 ```
 
-> [!ABSTRACT] **What AutoRecon Actually Does**
-> 
-> - Runs **Nmap port scans first**, then chains **service-specific enumeration**
->     
-> - Automatically launches tools like:
->     
->     - Web → dir busting (feroxbuster/ffuf)
->         
->     - SMB → enum4linux
->         
->     - SNMP → onesixtyone
->         
-> - Organizes output into structured folders (**scans / loot / report**)
->     
+> **Use when**
 
-> [!NOTE] **Default Behavior**
-> 
-> - Uses built-in **plugin system** (tag-based execution)
->     
-> - Default Nmap flags:
->     
->     ```
->     -vv --reason -Pn -T4
->     ```
->     
-> - Parallel execution = **fast but noisy**
->     
+* Direct VPN connection
+* No pivoting
+* Fast broad recon needed
+
+### Default behavior
+
+* Full TCP discovery
+* Service detection
+* Plugin execution
+* Web enum
+* SMB enum
+* Report generation
 
 ---
 
-### ⚡ 2. The "Blitz Recon" (CTF / OSCP Speed Run)
+# ⚡ 2. Aggressive CTF Mode
 
-Max speed, minimal patience—great for labs where stealth is irrelevant.
+Faster but noisier.
 
-Bash
-
-```
-autorecon 10.10.10.15 -m 100 --max-port-scans 20 --timeout 30 -o fast_scan
-```
-
-> [!DANGER] **Aggression Profile**
-> 
-> - `-m 100`: Massive parallelism (default 50 → doubled)
->     
-> - `--max-port-scans 20`: More simultaneous Nmap scans
->     
-> - `--timeout 30`: Kill scan after 30 mins (don’t get stuck)
->     
-> 
-> ⚠️ Expect:
-> 
-> - Dropped packets
->     
-> - Missed services
->     
-> - Loud traffic signature
->     
-
----
-
-### 🕵️ 3. The "Controlled Recon" (Real Engagement Mode)
-
-When you want **clean, reliable results without flooding the network**.
-
-Bash
-
-```
-autorecon 10.10.10.15 -m 20 --max-port-scans 5 --nmap "-T3 -sS -Pn --max-retries 2" -o controlled_scan
-```
-
-> [!WARNING] **Stealth Trade-offs**
-> 
-> - `-m 20`: Reduces concurrency → less noise
->     
-> - `--nmap`: Overrides default aggressive flags
->     
-> - `-T3`: Balanced timing (safer than T4)
->     
-> 
-> ⚠️ Slower, but:
-> 
-> - More accurate results
->     
-> - Less IDS/IPS attention
->     
-
----
-
-### 🎯 4. Targeted Port / Service Recon
-
-When you **already know ports** and want to skip full discovery.
-
-Bash
-
-```
-autorecon 10.10.10.15 -p 80,443,22
-```
-
-> [!NOTE] **Precision Mode**
-> 
-> - `-p`: Skip full port scan → go straight to enumeration
->     
-> - Supports:
->     
->     - TCP: `T:80,443`
->         
->     - UDP: `U:53`
->         
->     - Both: `B:53`
->         
-
----
-
-### 🧠 5. Plugin Control (Selective Enumeration)
-
-Control exactly **what AutoRecon runs**.
-
-Bash
-
-```
-autorecon 10.10.10.15 --tags default,web
-```
-
-> [!ABSTRACT] **Plugin Tag Logic**
-> 
-> - Plugins are grouped by tags:
->     
->     - `default` → core scans
->         
->     - `web` → HTTP enumeration
->         
->     - `smb`, `snmp`, etc.
->         
-> - Logic:
->     
->     - `+` → AND condition
->         
->     - `,` → OR condition
->         
-
----
-
-### 🚫 6. Excluding Noisy or Useless Scans
-
-Avoid wasting time or triggering defenses.
-
-Bash
-
-```
-autorecon 10.10.10.15 --exclude-tags brute,dirbuster
-```
-
-> [!CAUTION] **Why This Matters**
-> 
-> - Dirbusting can:
->     
->     - Be extremely noisy
->         
->     - Take hours
->         
-> - Bruteforce plugins:
->     
->     - Risk lockouts
->         
->     - Trigger alerts
->         
-
----
-
-### 🌐 7. Web Enumeration Customization (Dirbuster Control)
-
-Fine-tune web fuzzing aggressively.
-
-Bash
-
-```
+```bash
 autorecon 10.10.10.15 \
---dirbuster.tool ffuf \
---dirbuster.wordlist /usr/share/seclists/Discovery/Web-Content/common.txt \
---dirbuster.threads 50 \
---dirbuster.ext php,html,txt \
---dirbuster.recursive
+-m 50 \
+--max-port-scans 10 \
+--timeout 30 \
+-o fast_scan
 ```
 
-> [!WARNING] **Web Fuzzing Impact**
-> 
-> - `threads 50` = very aggressive
->     
-> - `recursive` = exponential scan time
->     
-> 
-> ⚠️ Can:
-> 
-> - Crash fragile apps
->     
-> - Trigger WAF bans
->     
+> **Best for**
+
+* CTFs
+* OSCP labs
+* Non-sensitive environments
 
 ---
 
-### 🧩 8. Forcing Service Enumeration (Bypass Detection Failures)
+# 🛡 3. Controlled Reliable Recon
 
-When AutoRecon **misses a service**.
+More accurate, less noisy.
 
-Bash
-
+```bash
+autorecon 10.10.10.15 \
+-m 15 \
+--max-port-scans 4 \
+--nmap "-sS -sV -Pn -T3 --max-retries 2" \
+-o controlled_scan
 ```
-autorecon 10.10.10.15 --force-services tcp/80/http tcp/443/https
-```
 
-> [!ATTENTION] **Critical Use Case**
-> 
-> - If Nmap misidentifies a service → plugins won’t run
->     
-> - This forces execution anyway
->     
-> 
-> Format:
-> 
-> ```
-> tcp/port/service
-> ```
+> Better for:
+
+* Slower targets
+* Less packet loss
+* Better service accuracy
 
 ---
 
-### 🧪 9. Manual Nmap Override (Full Control Mode)
+# 🌐 4. Tunnel / Pivot Safe Scan (Ligolo / Chisel / SOCKS)
 
-Take control of scanning behavior completely.
+This is the important one.
 
-Bash
-
-```
-autorecon 10.10.10.15 --nmap "-sS -sV -p- -T4 --min-rate 2000"
-```
-
-> [!TIP] **Operator Mode**
-> 
-> - Overrides ALL default Nmap flags
->     
-> - Combine with your custom Nmap methodology
->     
-> 
-> 💡 Best practice:
-> 
-> - Use your proven Nmap profiles inside AutoRecon
->     
-
----
-
-### 🧬 10. Output Control & Loot Management
-
-Keep your workspace clean and efficient.
-
-Bash
-
-```
-autorecon 10.10.10.15 -o results --only-scans-dir --no-port-dirs
+```bash
+autorecon 10.10.20.15 \
+-m 5 \
+--max-port-scans 1 \
+--target-timeout 10 \
+--timeout 20 \
+--nmap "-sT -sV -Pn -T2 --max-retries 1" \
+--exclude-tags brute,dirbuster \
+-o tunnel_scan
 ```
 
-> [!NOTE] **Output Structure**
-> 
-> Default:
-> 
-> ```
-> results/
-> ├── scans/
-> ├── loot/
-> ├── report/
-> ```
-> 
-> Options:
-> 
-> - `--only-scans-dir`: Skip loot/report folders
->     
-> - `--no-port-dirs`: Flatten structure
->     
+> **Why this works better over tunnels**
+
+* `-sT` works better than SYN through tunnels
+* low concurrency avoids packet loss
+* avoids overwhelming pivot host
+* prevents broken plugin scans
 
 ---
 
-### ⏱️ 11. Time-Bound Engagements
+## 🔥 Why `-sT` instead of `-sS`
 
-Prevent wasting time on dead targets.
+Through tunnels:
 
-Bash
+❌ Bad:
 
-```
-autorecon 10.10.10.15 --target-timeout 20 --timeout 60
+```bash
+-sS
 ```
 
-> [!CHECK] **Time Control**
-> 
-> - `--target-timeout 20`: Per-target limit (minutes)
->     
-> - `--timeout 60`: Global scan limit
->     
+✅ Better:
 
----
-
-### 🔗 12. Proxy / Pivoting Mode
-
-For internal network pivots.
-
-Bash
-
-```
-proxychains autorecon 10.10.10.15 --proxychains
+```bash
+-sT
 ```
 
-> [!WARNING] **Pivot Reality**
-> 
-> - VERY slow
->     
-> - Many plugins will break or timeout
->     
-> 
-> 💡 Reduce:
-> 
-> - Threads
->     
-> - Parallel scans
->     
+Because:
+
+* tunnels handle TCP connect scans better
+* SYN scans may fail
+* more stable through Ligolo
 
 ---
 
-### 📂 Quick Reference: High-Value Flags
+# 🎯 5. Target Specific Ports Only
 
-|Flag|Purpose|
-|---|---|
-|`-m`|Max concurrent scans|
-|`--max-port-scans`|Parallel Nmap scans|
-|`-p`|Target specific ports|
-|`--nmap`|Override scan flags|
-|`--tags`|Select plugins|
-|`--exclude-tags`|Skip plugins|
-|`--force-services`|Force enum|
-|`-o`|Output directory|
+Skip discovery if you already know ports.
+
+```bash
+autorecon 10.10.10.15 -p 80,135,445,3389
+```
+
+Useful after manual Nmap.
 
 ---
 
-### 💡 Pro-Tips (Real Operator Notes)
+# 🧠 6. Plugin Selection
 
-> [!QUESTION] **AutoRecon missed a service I KNOW exists?**
-> 
-> **Fix:**
-> 
-> - Run manual Nmap
->     
-> - Then:
->     
-> 
-> ```
-> --force-services tcp/PORT/service
-> ```
+Run only required modules.
 
----
+```bash
+autorecon 10.10.10.15 --tags default,web,smb
+```
 
-> [!FAILURE] **AutoRecon is too slow / stuck**
-> 
-> Cause:
-> 
-> - Recursive dirbusting
->     
-> - Too many plugins
->     
-> 
-> Fix:
-> 
-> ```
-> --exclude-tags dirbuster
-> --timeout 30
-> ```
+Examples:
+
+* `web`
+* `smb`
+* `snmp`
+* `ldap`
 
 ---
 
-> [!ATTENTION] **Blind trust = missed foothold**
-> 
-> AutoRecon is:
-> 
-> - Automation ≠ intelligence
->     
-> 
-> ALWAYS:
-> 
-> - Manually review:
->     
->     - Nmap output
->         
->     - Web responses
->         
->     - Odd ports
->         
+# 🚫 7. Exclude Noisy Modules
+
+Avoid crashing tunnel scans.
+
+```bash
+autorecon 10.10.20.15 --exclude-tags brute,dirbuster
+```
+
+Recommended for:
+
+* pivots
+* slow networks
+* stealthier engagements
 
 ---
 
-> [!SUCCESS] **Best Workflow (OSCP/CTF)**
-> 
-> 1. Run:
->     
-> 
-> ```
-> autorecon <target> &
-> ```
-> 
-> 2. While it runs:
->     
-> 
-> - Manual Nmap
->     
-> - Quick web check
->     
-> - Enum interesting ports
->     
-> 
-> 3. Use AutoRecon results as:
->     
-> 
-> - **Parallel recon assistant**, not primary brain
->     
+# 🔥 8. Force Enumeration if Detection Fails
+
+When Nmap identifies incorrectly.
+
+```bash
+autorecon 10.10.10.15 \
+--force-services tcp/80/http tcp/445/microsoft-ds
+```
+
+Format:
+
+```bash
+tcp/PORT/SERVICE
+```
 
 ---
 
-If you want next-level refinement, I can:
+# ⚙ 9. Full Custom Nmap
 
-- Integrate this with your **Nmap + manual enum workflow**
-    
-- Add **service-specific follow-ups (SMB, LDAP, Web, etc.)**
-    
-- Or convert this into a **full OSCP methodology playbook in your exact Obsidian style**
+Override defaults.
+
+```bash
+autorecon 10.10.10.15 \
+--nmap "-sV -sC -p- -T4 --min-rate 1500"
+```
+
+Useful if you already have your own Nmap style.
+
+---
+
+# 📂 10. Clean Output Structure
+
+```bash
+autorecon 10.10.10.15 \
+-o results \
+--only-scans-dir \
+--no-port-dirs
+```
+
+Keeps output cleaner.
+
+---
+
+# 🔎 11. Best Workflow for Tunnel Scans
+
+---
+
+## Step 1 – verify tunnel
+
+Ligolo route:
+
+```bash
+ip route
+```
+
+Should show:
+
+```bash
+10.10.20.0/24 dev ligolo
+```
+
+---
+
+## Step 2 – quick port scan first
+
+```bash
+nmap -Pn -sT -p- --min-rate 300 10.10.20.15
+```
+
+---
+
+## Step 3 – feed ports into AutoRecon
+
+```bash
+autorecon 10.10.20.15 -p 80,445,3389
+```
+
+This avoids slow full scans through tunnel.
+
+---
+
+# 🔗 12. Useful Ligolo Commands During Recon
+
+Using Ligolo-ng:
+
+## Show agents
+
+```bash
+session
+```
+
+---
+
+## Select agent
+
+```bash
+session 1
+```
+
+---
+
+## Start tunnel
+
+```bash
+start
+```
+
+---
+
+## Add route
+
+```bash
+sudo ip route add 10.10.20.0/24 dev ligolo
+```
+
+---
+
+## Test target
+
+```bash
+nc -vz 10.10.20.15 445
+```
+
+or
+
+```bash
+curl http://10.10.20.15
+```
+
+---
+
+# 🌍 13. Manual Web Enum Through Tunnel
+
+Safer than plugin enum.
+
+```bash
+ffuf -u http://10.10.20.15/FUZZ \
+-w /usr/share/seclists/Discovery/Web-Content/common.txt \
+-t 10
+```
+
+Keep threads low:
+
+```bash
+-t 10
+```
+
+Not:
+
+```bash
+-t 50
+```
+
+because tunnels drop packets.
+
+---
+
+# 🪟 14. SMB Through Tunnel
+
+```bash
+smbclient -L //10.10.20.15 -N
+```
+
+or
+
+```bash
+crackmapexec smb 10.10.20.15 --timeout 15
+```
+
+---
+
+# ⚠ Common Tunnel Problems
+
+---
+
+## Problem: Missing ports
+
+Cause:
+
+* scan too aggressive
+
+Fix:
+
+```bash
+-sT -T2 -m 5
+```
+
+---
+
+## Problem: Web enum hangs
+
+Cause:
+
+* dirbuster too many threads
+
+Fix:
+
+```bash
+--exclude-tags dirbuster
+```
+
+Then run ffuf manually.
+
+---
+
+## Problem: Service detection wrong
+
+Fix:
+
+```bash
+--force-services
+```
+
+---
+
+# 🏆 Best Tunnel-Safe AutoRecon Command
+
+My recommended profile:
+
+```bash
+autorecon 10.10.20.15 \
+-p 80,445,3389 \
+-m 5 \
+--max-port-scans 1 \
+--nmap "-sT -sV -Pn -T2 --max-retries 1" \
+--exclude-tags brute,dirbuster \
+-o pivot_scan
+```
+
+---
+
+# 💡 Best Practice
+
+AutoRecon should be:
+
+✅ assistant
+❌ your brain
+
+Always combine with:
+
+* manual Nmap
+* manual web checks
+* service-specific tools
+
+---
+
