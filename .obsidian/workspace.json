@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/FootPrinting/Linux-Remote-Manage-Protocol.md",
+                "file": "COMMANDS/NMAP=========COMMANDS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linux-Remote-Manage-Protocol"
+              "title": "NMAP=========COMMANDS"
             }
           }
         ],
@@ -203,6 +203,10 @@
   },
   "active": "b0bebddb95e47942",
   "lastOpenFiles": [
+    "NoteTaking CallOuts/CallOuts.md",
+    "PortSwigger_WebSecurity/XXE Injection/XML external entity========Vuln Check.md",
+    "COMMANDS/NMAP=========COMMANDS.md",
+    "HTB/FootPrinting/Linux-Remote-Manage-Protocol.md",
     "HTB/FootPrinting/Win-Remote-Management.md",
     "HTB/FootPrinting/IPMI.md",
     "HTB/FootPrinting/ORacle-TNS.md",
@@ -219,16 +223,12 @@
     "COMMANDS/Msql=========COMMANDS.md",
     "COMMANDS/ODAT=====COMMANDS.md",
     "COMMANDS/SQL+======COMMANDS.md",
-    "HTB/FootPrinting/Linux-Remote-Manage-Protocol.md",
     "COMMANDS/MSFConsole-Search=======COMMANDS.md",
-    "COMMANDS/NMAP=========COMMANDS.md",
     "HTB/FootPrinting/# 🧠 FTP & TFTP Enumeration + Exploitation Cheat Sheet.md",
     "COMMANDS/FTP========COMMANDS.md",
     "HTB/FootPrinting/Cloud-Resource.md",
     "HTB/FootPrinting/Domain info.md",
     "COMMANDS/Cracking-Protected-Archives======COMMANDS.md",
-    "COMMANDS/CMD.EXE========COMMANDS.md",
-    "HTB/FootPrinting/Enum-Methodology.md",
     "HTB/FootPrinting",
     "HTB/Password Attacks",
     "inlanefreight",

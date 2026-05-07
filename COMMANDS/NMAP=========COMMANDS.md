@@ -1,219 +1,140 @@
+---
 
+# 🛠️ Nmap Master Cheat Sheet (Tactical Edition)
 
 ---
 
+## 🛰️ 1. Host Discovery & Recon
+*Map the network boundary and identify live targets without full port scans.*
 
-### 🔍 1. The Stealthy "Ping Sweep" (Live Host Discovery)
-
-Before scanning ports, map the active landscape of a `/24` without being noisy.
-
-Bash
-
-```
-sudo nmap -sn -PE -PP -PM -n --stats-every 10s 10.10.10.0/24 -oN discovery_sweep.nmap
-```
-
-> [!NOTE] **Tactical Breakdown**
+> [!ABSTRACT] **Tactical Sweep**
+> Quick identification of the attack surface.
+> ```bash
+> sudo nmap -sn -n 10.10.10.0/24 -oN discovery.nmap
 > 
-> - `-sn`: Disable port scanning (Host discovery only).
->     
-> - `-PE -PP -PM`: **The ICMP Trifecta.** Uses Echo, Timestamp, and Address Mask queries to bypass firewalls that only block standard Echo (ping) requests.
->     
-> - `-n`: No DNS resolution (maximum speed/prevents logging on DNS servers).
->     
-> - `--stats-every 10s`: Real-time progress updates for large subnets.
->     
+``
 
----
-
-### 🕵️ 2. The "Ghost" SYN Scan (IDS/IPS Evasion)
-
-Use this when you suspect a firewall is watching for high-rate connection attempts.
-
-Bash
-
-```
-sudo nmap -sS -Pn -T2 -D RND:10 -g 53 --max-retries 1 --initial-rtt-timeout 100ms 10.10.10.15
-```
-
-> [!WARNING] **Evasion Profile**
-> 
-> - `-sS`: Stealth SYN scan (half-open scan, never completes the TCP handshake).
->     
-> - `-T2`: **Polite** timing. Slower, but less likely to trigger rate-limiting alerts.
->     
-> - `-D RND:10`: Generates **10 random IP decoys** to hide your real IP in the noise.
->     
-> - `-g 53`: Sets the **source port to 53** (DNS), often trusted by legacy firewall rules.
->     
-> - `--max-retries 1`: Limits retransmissions to prevent "heavy" traffic signatures.
->     
-
----
-
-### 🛡️ 3. The "Deep-Dive" Service Audit 
-
-Once you find a target, you need to know exactly what is running and if it's vulnerable.
-
-Bash
-> [!NOTE] Loud!!!
-```
-sudo nmap -sV -sC -O -p- --version-intensity 8 --reason --script-updatedb 10.10.10.15 -oA deep_audit
-```
-
->[!CHECK] use netcat for banner grabbing sometimes using 53 as source port {DNS} fire walls weak against it 
-BASH
-```
-  nc -nv -p 53 <target-ip> 50000
-```
-
-> [!NOTE] silent....
-
-Bash
-```
-sudo nmap -sS -sV --version-intensity 0 -p 50000 -T2 --source-port 53 --data-length 28 -D RND:10 --open 10.129.72.39 -oA service_audit
-```
-
-
-
-> [!TIP] **Analysis Profile**
-> 
-> - `-sV`: Probes open ports to determine service/version info.
->     
-> - `--version-intensity 8`: Highly aggressive service probing (checks more signatures).
->     
-> - `-sC`: Runs **Default NSE scripts** (safe but thorough).
->     
-> - `--reason`: Displays the specific packet response that caused a port to be marked "open."
->     
-> - `-p-`: Scans all **65,535 ports**—essential for finding non-standard backdoors.
->     
-
----
-
-### ⚡ 4. The "Blitz" Scan (For Fast-Paced Labs/CTFs)
-
-When accuracy is less important than raw speed in a stable network.
-
-Bash
-
-```
-sudo nmap -T5 --min-rate 5000 --max-retries 0 --open -F 10.10.10.0/24
-```
-
-> [!DANGER] **Aggression Level: High**
-> 
-> - `-T5`: **Insane** timing. Best used on local/high-bandwidth lab networks.
->     
-> - `--min-rate 5000`: Forces Nmap to maintain at least 5,000 packets per second.
->     
-> - `--max-retries 0`: If a port doesn't answer instantly, ignore it and move on.
->     
-> - `--open`: Only shows ports that responded, cutting down the "noise" in your terminal.
->     
-> - `-F`: Fast mode (scans the **Top 100** most common ports).
->     
-
----
-
-### 🌐 5. The Active Directory / Network Admin Special
-
-Targets specific Windows/AD ports and uses the updated script engine logic.
-
-Bash
-
-```
-sudo nmap -Pn -p 88,135,139,389,445,3389 --script=smb-os-discovery,smb-vuln* --script-args=unsafe=1 10.10.10.0/24
-```
-
-> [!ABSTRACT] **AD Discovery**
-> 
-> - `-p 88...3389`: Targets Kerberos, RPC, SMB, LDAP, and RDP.
->     
-> - `--script=smb-os-discovery`: Grabs OS version and Domain Name via SMB.
->     
-> - `--script=smb-vuln*`: Checks for critical vulnerabilities (like EternalBlue).
->     
-> - `--script-args=unsafe=1`: Forces the execution of scripts that might crash older services (use with extreme caution).
->     
-
----
-
-### 🧪 6. The "Under-the-Hood" Debugger
-
-When Nmap gives weird results and you need to see the raw packet exchange.
-
-Bash
-
-```
-nmap -p80 --packet-trace --reason --version-trace --disable-arp-ping 10.10.10.15
-```
-
-> [!IMPORTANT] **Developer View**
-> 
-> - `--packet-trace`: Displays every packet sent and received in the terminal.
->     
-> - `--version-trace`: Shows detailed version scan activity (shows which probe "hit").
->     
-> - `--disable-arp-ping`: Forces Nmap to use the requested discovery method rather than local ARP pings.
->     
-
----
-
-### 📂 Quick Reference: Output Formats
-
-|**Flag**|**Name**|**Use Case**|
-|---|---|---|
-|`-oN`|**Normal**|Direct reading/Human readable notes.|
-|`-oG`|**Grepable**|Extract IPs or ports using `grep`, `awk`, or `cut`.|
-|`-oX`|**XML**|Professional reporting or importing into **Metasploit**.|
-|`-oS`|**s|<rIpt kIddi3**|
-|`-oA`|**All**|Saves `.nmap`, `.gnmap`, and `.xml` simultaneously.|
-
----
-
-### 💡 Pro-Tips for v7.98
-
-> [!QUESTION] **Nmap says the host is down, but I know it's up?**
-> 
-> **Solution:** Use `-Pn`. Many modern firewalls drop ICMP packets.
-> 
-> Bash
-> 
-> ```
-> sudo nmap -Pn -p 80,443 <target>
+> [!CHECK] **The ICMP Trifecta**
+> Bypasses firewalls that only block standard Echo requests by using Timestamp and Address Mask queries.
+> ```bash
+> sudo nmap -sn -PE -PP -PM -n --stats-every 10s 10.10.10.0/24 -oN aggressive_discovery.nmap
 > ```
 
-> [!EXAMPLE] **The scan is taking forever! How do I see what's happening?**
-> 
-> **Solution:** While running, press **Spacebar** for a status line, **v** to increase verbosity on the fly, or **V** to decrease it.
+---
 
-> [!ATTENTION] **I found an open port but -sV didn't give me a version?**
-> 
-> **Solution:** Use `--version-all`. This forces Nmap to try every single version probe in its database against that port.
-> 
-> Bash
-> 
+## 🕵️ 2. Deep Audit & Service Identification
+*Full profiling of identified targets. Essential for finding versions and entry points.*
+
+> [!SUCCESS] **The Full Service Audit**
+> Scans all 65,535 ports with service versioning and default scripts.
+> ```bash
+> sudo nmap -sV -sC -p- -T4 --reason 10.10.10.15 -oA full_audit_report
 > ```
+
+> [!ATTENTION] **Surgical Version Detection**
+> Use high intensity for service fingerprinting while keeping timing polite to avoid crashing fragile services.
+> ```bash
+> sudo nmap -sS -sV --version-intensity 9 -T2 10.10.10.15 -oN surgical_audit.nmap
+> ```
+
+---
+
+## 🔓 3. Vulnerability Scanning (NSE Engine)
+*Automated detection of CVEs and common misconfigurations.*
+
+> [!BUG] **General Vuln Scan**
+> Runs the "vuln" category scripts against the target to find known exploits.
+> ```bash
+> sudo nmap --script vuln 10.10.10.15 -oN vuln_scan.nmap
+> ```
+
+> [!WARNING] **Web Vulnerability Check**
+> Aggressively enumerates directories and methods on web servers.
+> ```bash
+> sudo nmap -p 80,443 --script http-enum,http-vhosts,http-methods,http-title 10.10.10.15
+> ```
+
+---
+
+## 🏢 4. Active Directory & SMB Special
+*Optimized for Windows internal environments and lateral movement prep.*
+
+> [!INFO] **AD Service Audit**
+> Targets the specific ports required for Domain Controller interaction (DNS, Kerberos, RPC, LDAP, SMB, RDP).
+> ```bash
+> sudo nmap -Pn -p 53,88,135,139,389,445,636,3268,3389 10.10.10.15 -oN ad_services.nmap
+> ```
+
+> [!EXAMPLE] **SMB OS Discovery**
+> Grabs OS version, Domain name, and security mode signatures via SMB.
+> ```bash
+> sudo nmap -p 139,445 --script smb-os-discovery,smb-security-mode 10.10.10.15
+> ```
+
+> [!DANGER] **Unsafe SMB Enumeration**
+> Forces the enumeration of users and shares; `unsafe=1` can crash legacy Windows systems.
+> ```bash
+> sudo nmap -p 445 --script smb-enum-shares,smb-enum-users --script-args unsafe=1 10.10.10.15
+> ```
+
+---
+
+## 👻 5. Evasion & Stealth
+*Tactics to bypass IDS/IPS monitoring and firewall filters.*
+
+> [!CAUTION] **Decoy Noise**
+> Generates 10 random IP decoys to make your real IP address harder to identify in logs.
+> ```bash
+> sudo nmap -sS -Pn -D RND:10 10.10.10.15
+> ```
+
+> [!NOTE] **The Fragmented Sneak**
+> Fragments packets and spoofs the source port to 53 (DNS) to trick simple packet filters.
+> ```bash
+> sudo nmap -f -g 53 --data-length 24 10.10.10.15
+> ```
+
+---
+
+## ⚡ 6. Speed & Lab Performance
+*High-speed commands for CTFs or stable lab networks.*
+
+> [!TLDR] **The Blitz Scan**
+> Max speed, zero retries, scanning the top 100 most common ports.
+> ```bash
+> sudo nmap -T5 --min-rate 5000 --max-retries 0 --open -F 10.10.10.0/24
+> ```
+
+---
+
+## 🛠️ 7. Debugging & Analysis
+
+> [!QUESTION] **Packet Trace Analysis**
+> Use this when Nmap returns "Filtered" to see exactly why the probe failed.
+> ```bash
+> nmap -p80 --packet-trace --reason --disable-arp-ping 10.10.10.15
+> ```
+
+> [!FAILURE] **Missing Version Info?**
+> Forces Nmap to try every single version probe in the database if the standard scan fails.
+> ```bash
 > sudo nmap -sV --version-all -p <port> <target>
+
+
+---
+
+### 📂 Quick Reference: Output Flags
+
+| Flag | Description | Use Case |
+| :--- | :--- | :--- |
+| `-oN` | **Normal** | Direct reading for human notes. |
+| `-oG` | **Grepable** | Extracting IPs/Ports via `grep` or `awk`. |
+| `-oX` | **XML** | Importing results into Metasploit/Reporting tools. |
+| `-oA` | **All** | Saves `.nmap`, `.gnmap`, and `.xml` simultaneously. |
+
+> [!TIP] **Pivot Performance**
+> When scanning through a tunnel like **Ligolo-ng**, use **TCP Connect Scans** (`-sT`) as SYN scans often fail through proxied interfaces.
+> ```bash
+> nmap -sT -Pn -T4 --min-rate 1000 -p 1-10000 10.10.10.15
 > ```
-
-
-
-> [!TIP] During Tunelling e.g Ligolo
-
 ```
-#get life host faster and reduce stress for nmap
->fping -a -g 172.16.0.0/23 
-# scan range of ip fping got
-> nmap -sT -Pn -T4 --min-rate 1000 <ip1> <ip2> 
-
-```
-
-
-
-> [!Tip] Search Scripts
-> nmap --script-help http*
-> nmap --script-help smb*
-> nmap --script-help rdp*
-
