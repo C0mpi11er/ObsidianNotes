@@ -22,21 +22,35 @@
             }
           },
           {
-            "id": "8a11fc5515358f40",
+            "id": "90411695483df501",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "COMMANDS/NMAP=========COMMANDS.md",
+                "file": "HTB/FootPrinting/SMB.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "NMAP=========COMMANDS"
+              "title": "SMB"
+            }
+          },
+          {
+            "id": "4b10bc0e8dc8ebf7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "foot pring findings.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "foot pring findings"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -187,34 +201,35 @@
       "zk-prefixer:Create new unique note": false
     }
   },
-  "active": "8a11fc5515358f40",
+  "active": "4b10bc0e8dc8ebf7",
   "lastOpenFiles": [
-    "HTB/Penetration Testing Process/Basic Tools.md",
-    "Tools/Recon/MasScan.md",
-    "COMMANDS/NMAP=========COMMANDS.md",
-    "COMMANDS/FTP========COMMANDS.md",
-    "COMMANDS/Finger-Printing-Vuln.md",
-    "HTB/FootPrinting/SNMP.md",
-    "HTB/FootPrinting/NFS.md",
-    "COMMANDS/SMB-CLIENT======COMMANDS.md",
-    "HTB/FootPrinting/DNS.md",
-    "COMMANDS/NetExec========Commands.md",
-    "Tools/tmux.md",
-    "HTB/FootPrinting/SMB.md",
+    "COMMANDS/MSQL==========COMMANDS.md",
     "HTB/FootPrinting/ORacle-TNS.md",
-    "HTB/FootPrinting/Linux-Remote-Manage-Protocol.md",
-    "HTB/FootPrinting/MSQL.md",
-    "HTB/FootPrinting/FTP-PRoFTPD.md",
-    "HTB/FootPrinting/Enumeration.md",
+    "HTB/FootPrinting/Domain info.md",
     "HTB/FootPrinting/Enum-Methodology.md",
-    "NoteTaking CallOuts/CallOuts.md",
-    "PortSwigger_WebSecurity/XXE Injection/XML external entity========Vuln Check.md",
-    "HTB/FootPrinting/Win-Remote-Management.md",
-    "HTB/FootPrinting/IPMI.md",
-    "HTB/FootPrinting/Mysql.md",
-    "HTB/FootPrinting/SMTP.md",
+    "HTB/FootPrinting/DNS.md",
     "HTB/FootPrinting/Staff.md",
-    "HTB/FootPrinting/imap-pop.md",
+    "HTB/FootPrinting/SNMP.md",
+    "HTB/FootPrinting/SMTP.md",
+    "HTB/FootPrinting/Mysql.md",
+    "HTB/FootPrinting/MSQL.md",
+    "COMMANDS/Msql=========COMMANDS.md",
+    "THM_RedTeam_Notes/Active Directory/Lateral Movement/Alternate Auth Material.md",
+    "HTB AD/AD Protocols.md",
+    "foot pring findings.md",
+    "HTB/FootPrinting/SMB.md",
+    "HTB/Shells and Payloads/Linux-Exploit-Enum.md",
+    "Pasted image 20260511073214.png",
+    "COMMANDS/SMB-CLIENT======COMMANDS.md",
+    "COMMANDS/Finger-Printing-Vuln.md",
+    "AD-Mental-Model/AD Mental Model.md",
+    "COMMANDS/EVil-WinRM=========COMMANDS.md",
+    "HTB/FootPrinting/Enumeration.md",
+    "THM hack notes/Curl.md",
+    "HTB/FootPrinting/NFS.md",
+    "THM hack notes/Metasploit.md",
+    "COMMANDS/NMAP=========COMMANDS.md",
+    "HTB/Penetration Testing Process/Basic Tools.md",
     "HTB/FootPrinting",
     "HTB/Password Attacks",
     "inlanefreight",
@@ -233,7 +248,6 @@
     "images/favico.png",
     "images/dnsrecord.png",
     "images/dnsmap.png",
-    "images/cvevuln.png",
-    "images/burp.png"
+    "images/cvevuln.png"
   ]
 }
