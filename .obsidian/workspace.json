@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "foot pring findings.md",
+                "file": "HTB/Info Gathering Web/Virtual Hosts.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "foot pring findings"
+              "title": "Virtual Hosts"
             }
           }
         ],
@@ -191,23 +191,37 @@
   "left-ribbon": {
     "hiddenItems": {
       "bases:Create new base": false,
-      "obsidian-advanced-slides:Show Slide Preview": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "zk-prefixer:Create new unique note": false
+      "zk-prefixer:Create new unique note": false,
+      "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
   "active": "4b10bc0e8dc8ebf7",
   "lastOpenFiles": [
+    "HTB/Info Gathering Web/DNS Zone Transfers.md",
+    "HTB/Info Gathering Web/Virtual Hosts.md",
+    "HTB/Info Gathering Web/Subdomain Bruteforcing.md",
+    "HTB/Info Gathering Web/intro-Info Gathering.md",
+    "COMMANDS/AMASS==========COMMANDs.md",
+    "HTB/Info Gathering Web/SubDomains.md",
+    "HTB/Info Gathering Web/Digging DNS.md",
+    "HTB/Info Gathering Web/DNS.md",
+    "HTB/Info Gathering Web/Whois.md",
+    "HTB/FootPrinting/DNS.md",
+    "HTB/Untitled.md",
+    "HTB/Info Gathering Web",
+    "HTB/FootPrinting/imap-pop.md",
+    "COMMANDS/Finger-Printing-Vuln.md",
+    "foot pring findings.md",
     "COMMANDS/MSQL==========COMMANDS.md",
     "HTB/FootPrinting/ORacle-TNS.md",
     "HTB/FootPrinting/Domain info.md",
     "HTB/FootPrinting/Enum-Methodology.md",
-    "HTB/FootPrinting/DNS.md",
     "HTB/FootPrinting/Staff.md",
     "HTB/FootPrinting/SNMP.md",
     "HTB/FootPrinting/SMTP.md",
@@ -216,20 +230,7 @@
     "COMMANDS/Msql=========COMMANDS.md",
     "THM_RedTeam_Notes/Active Directory/Lateral Movement/Alternate Auth Material.md",
     "HTB AD/AD Protocols.md",
-    "foot pring findings.md",
-    "HTB/FootPrinting/SMB.md",
-    "HTB/Shells and Payloads/Linux-Exploit-Enum.md",
     "Pasted image 20260511073214.png",
-    "COMMANDS/SMB-CLIENT======COMMANDS.md",
-    "COMMANDS/Finger-Printing-Vuln.md",
-    "AD-Mental-Model/AD Mental Model.md",
-    "COMMANDS/EVil-WinRM=========COMMANDS.md",
-    "HTB/FootPrinting/Enumeration.md",
-    "THM hack notes/Curl.md",
-    "HTB/FootPrinting/NFS.md",
-    "THM hack notes/Metasploit.md",
-    "COMMANDS/NMAP=========COMMANDS.md",
-    "HTB/Penetration Testing Process/Basic Tools.md",
     "HTB/FootPrinting",
     "HTB/Password Attacks",
     "inlanefreight",
@@ -241,7 +242,6 @@
     "PortSwigger_WebSecurity/OAuth",
     "PortSwigger_WebSecurity/JWT",
     "PortSwigger_WebSecurity/Insecure-Disent",
-    "PortSwigger_WebSecurity/HTTP-Request-Smugle",
     "images/waffw00f.png",
     "images/sql.png",
     "images/githubpoc.png",

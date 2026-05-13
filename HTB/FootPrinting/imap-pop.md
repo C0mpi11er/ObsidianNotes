@@ -61,7 +61,8 @@
 > 1 LOGIN username password        # Authenticate
 > 1 LIST "" *                      # List all directories
 > 1 SELECT INBOX                   # Access a mailbox
-> 1 FETCH <ID> all                 # Retrieve message data
+> 1 FETCH <ID> all                 # Retrieve message datat,check for body data
+> 
 > 1 LOGOUT                         # Close connection
 > ```
 >
