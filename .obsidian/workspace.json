@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/FootPrinting/SMB.md",
+                "file": "HTB/Info Gathering Web/Web-Archives.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SMB"
+              "title": "Web-Archives"
             }
           },
           {
@@ -41,16 +41,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Info Gathering Web/Virtual Hosts.md",
+                "file": "COMMANDS/GOBUSTER========COMMANDS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Virtual Hosts"
+              "title": "GOBUSTER========COMMANDS"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -201,10 +201,25 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "4b10bc0e8dc8ebf7",
+  "active": "90411695483df501",
   "lastOpenFiles": [
-    "HTB/Info Gathering Web/DNS Zone Transfers.md",
+    "HTB/Info Gathering Web/Search-Engine-Discovery.md",
+    "HTB/Info Gathering Web/Web-Archives.md",
+    "HTB/Info Gathering Web/🕷️ Creepy Crawlies — Web Crawling.md",
+    "HTB/Info Gathering Web/Well Known uri.md",
+    "HTB/Info Gathering Web/Robots.txt.md",
+    "HTB/Info Gathering Web/Crawling.md",
+    "NoteTaking CallOuts/CallOuts.md",
+    "THM hack notes/🔒 Privilege Escalation via `SeTakeOwnershipPrivilege` & `utilman.exe` Abuse.md",
+    "PortSwigger_WebSecurity/XXE Injection/XML external entity========Vuln Check.md",
+    "HTB/Info Gathering Web/Fingerprinting.md",
+    "HTB/Info Gathering Web/Certificate Transparency Logs.md",
+    "COMMANDS/Feroxbuster ========COMMANDS.md",
+    "HTB/FootPrinting/SMB.md",
+    "COMMANDS/GOBUSTER========COMMANDS.md",
+    "THM hack notes/FeroxBuster.md",
     "HTB/Info Gathering Web/Virtual Hosts.md",
+    "HTB/Info Gathering Web/DNS Zone Transfers.md",
     "HTB/Info Gathering Web/Subdomain Bruteforcing.md",
     "HTB/Info Gathering Web/intro-Info Gathering.md",
     "COMMANDS/AMASS==========COMMANDs.md",
@@ -215,21 +230,6 @@
     "HTB/FootPrinting/DNS.md",
     "HTB/Untitled.md",
     "HTB/Info Gathering Web",
-    "HTB/FootPrinting/imap-pop.md",
-    "COMMANDS/Finger-Printing-Vuln.md",
-    "foot pring findings.md",
-    "COMMANDS/MSQL==========COMMANDS.md",
-    "HTB/FootPrinting/ORacle-TNS.md",
-    "HTB/FootPrinting/Domain info.md",
-    "HTB/FootPrinting/Enum-Methodology.md",
-    "HTB/FootPrinting/Staff.md",
-    "HTB/FootPrinting/SNMP.md",
-    "HTB/FootPrinting/SMTP.md",
-    "HTB/FootPrinting/Mysql.md",
-    "HTB/FootPrinting/MSQL.md",
-    "COMMANDS/Msql=========COMMANDS.md",
-    "THM_RedTeam_Notes/Active Directory/Lateral Movement/Alternate Auth Material.md",
-    "HTB AD/AD Protocols.md",
     "Pasted image 20260511073214.png",
     "HTB/FootPrinting",
     "HTB/Password Attacks",
