@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Info Gathering Web/Automating Recon.md",
+                "file": "Attack-Flow===/Red-Attack-Flow.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Automating Recon"
+              "title": "Red-Attack-Flow"
             }
           },
           {
@@ -203,8 +203,10 @@
   },
   "active": "90411695483df501",
   "lastOpenFiles": [
-    "Attack-Flow================/Attack Flow.md",
     "HTB/Info Gathering Web/Automating Recon.md",
+    "Attack-Flow===/Red-Attack-Flow.md",
+    "Attack-Flow===",
+    "Attack-Flow================/Attack Flow.md",
     "Attack-Flow================",
     "HTB/Info Gathering Web/🕷️ Creepy Crawlies — Web Crawling.md",
     "HTB/Info Gathering Web/Digging DNS.md",
@@ -229,7 +231,6 @@
     "HTB/Info Gathering Web/DNS Zone Transfers.md",
     "HTB/Info Gathering Web/Subdomain Bruteforcing.md",
     "COMMANDS/AMASS==========COMMANDs.md",
-    "HTB/Info Gathering Web/SubDomains.md",
     "HTB/Info Gathering Web",
     "Pasted image 20260511073214.png",
     "HTB/FootPrinting",
@@ -241,7 +242,6 @@
     "PortSwigger_WebSecurity/Prototype Pollution",
     "PortSwigger_WebSecurity/SSTI",
     "PortSwigger_WebSecurity/OAuth",
-    "PortSwigger_WebSecurity/JWT",
     "images/waffw00f.png",
     "images/sql.png",
     "images/githubpoc.png",
