@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/FootPrinting/SMB.md",
-                "mode": "preview",
+                "file": "HTB/Password Attacks/Cracking Network Serv.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SMB"
+              "title": "Cracking Network Serv"
             }
           },
           {
@@ -41,16 +41,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "installing Qemu.md",
+                "file": "Attack-Flow===/Red-Attack-Flow.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "installing Qemu"
+              "title": "Red-Attack-Flow"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -201,37 +200,37 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "66eb34069f587333",
+  "active": "90411695483df501",
   "lastOpenFiles": [
+    "HTB/Password Attacks/Cracking-Protected-Archives.md",
+    "HTB/Password Attacks/Cracking Network Serv.md",
+    "HTB/FootPrinting/Win-Remote-Management.md",
+    "HTB/FootPrinting/SMB.md",
+    "HTB/FootPrinting/DNS.md",
+    "Attack-Flow===/Red-Attack-Flow.md",
+    "HTB/FootPrinting/IPMI.md",
+    "HTB/Password Attacks/Remote-Pasword-Attacks.md",
+    "HTB/Networking/Cryptography.md",
+    "HTB/Networking/TCP-UDP Connect.md",
+    "HTB/Networking/Auth-Protocols.md",
+    "HTB/Networking/Key-Exchange.md",
+    "HTB/Networking/Common Protocols.md",
+    "HTB/Networking/Network-Terms.md",
+    "Subneting.md",
+    "HTB/Networking/IP-Adress.md",
+    "HTB/Networking/TCP-IP.md",
+    "HTB/Untitled.md",
+    "HTB/Networking/Network-Layer.md",
+    "HTB/Networking/Network-Types.md",
     "HTB/Networking/Networking Models.md",
     "installing Qemu.md",
     "HTB/Networking/Network-Proxies.md",
     "HTB/Networking/Network-Topologies.md",
-    "HTB/Networking/Network-Types.md",
     "HTB/Networking/Networking - overview.md",
-    "Attack-Flow===/Red-Attack-Flow.md",
     "HTB/Networking",
-    "HTB/FootPrinting/SMB.md",
     "HTB/Shells and Payloads/🧰 Laudanum — Webshell Overview.md",
-    "THM hack notes/🔒 Privilege Escalation via `SeTakeOwnershipPrivilege` & `utilman.exe` Abuse.md",
-    "THM_RedTeam_Notes/Data Exfiltration/exifltration with tcp socket.md",
-    "THM hack notes/CyberChef.md",
-    "HTB/Info Gathering Web/🕷️ Creepy Crawlies — Web Crawling.md",
-    "HTB/Info Gathering Web/Automating Recon.md",
-    "COMMANDS/SMB-CLIENT======COMMANDS.md",
     "Attack-Flow===",
-    "Attack-Flow================/Attack Flow.md",
     "Attack-Flow================",
-    "HTB/Info Gathering Web/Digging DNS.md",
-    "HTB/Info Gathering Web/Whois.md",
-    "HTB/Info Gathering Web/Well Known uri.md",
-    "HTB/Info Gathering Web/DNS.md",
-    "HTB/Info Gathering Web/intro-Info Gathering.md",
-    "HTB/Info Gathering Web/Robots.txt.md",
-    "COMMANDS/GOBUSTER========COMMANDS.md",
-    "HTB/Info Gathering Web/Web-Archives.md",
-    "HTB/Info Gathering Web/Search-Engine-Discovery.md",
-    "HTB/Info Gathering Web/Crawling.md",
     "HTB/Info Gathering Web",
     "Pasted image 20260511073214.png",
     "HTB/FootPrinting",
