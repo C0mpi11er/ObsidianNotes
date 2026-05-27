@@ -8,35 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "6a2665949ec34b0e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "HTB/Password Attacks/Windows Auth/Attack Sam,system,security.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Attack Sam,system,security"
-            }
-          },
-          {
-            "id": "aee896082b12df41",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "HTB/Password Attacks/Windows Auth/🪟Attacking Windows Credential Manager (Vault-CredMan).md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "🪟Attacking Windows Credential Manager (Vault-CredMan)"
-            }
-          },
-          {
-            "id": "2a74eea24fe3414d",
+            "id": "8cc5bc6b712c6498",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -48,9 +20,23 @@
               "icon": "lucide-file",
               "title": "Red-Attack-Flow"
             }
+          },
+          {
+            "id": "2a6159fc23d1575e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "HTB/Password Attacks/Linu Auth/Linux Authentication Process.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux Authentication Process"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -201,13 +187,22 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "2a74eea24fe3414d",
+  "active": "2a6159fc23d1575e",
   "lastOpenFiles": [
-    "HTB/Password Attacks/Windows Auth/Attack Sam,system,security.md",
-    "THM_RedTeam_Notes/UAC/UAC Bypass.md",
-    "HTB/Password Attacks/Windows Auth/🪟Attacking Windows Credential Manager (Vault-CredMan).md",
+    "HTB/Password Attacks/Windows Auth/Credential Hunting in Windows.md",
+    "HTB/Password Attacks/Linu Auth/Linux Authentication Process.md",
+    "HTB/Password Attacks/Linu Auth",
     "Attack-Flow===/Red-Attack-Flow.md",
+    "HTB/Password Attacks/Windows Auth/📌 Active Directory Credential Attacks & NTDS Extraction.md",
+    "HTB/FootPrinting/DNS.md",
+    "HTB/FootPrinting/Domain info.md",
     "HTB/Password Attacks/Windows Auth/🧠 LSASS Attacks (Correct Mental Model).md",
+    "HTB/Password Attacks/Windows Auth/🪟Attacking Windows Credential Manager (Vault-CredMan).md",
+    "HTB/Password Attacks/Windows Auth/Attack Sam,system,security.md",
+    "HTB/File-Transfer/Intro-FileTransfers.md",
+    "HTB/File-Transfer/Linux-File-Transfer Method.md",
+    "HTB/File-Transfer/Windows-FileTranfer Method.md",
+    "THM_RedTeam_Notes/UAC/UAC Bypass.md",
     "HTB/Password Attacks/Windows Auth/Windows Authentication Process.md",
     "THM_RedTeam_Notes/Active Directory/Breaching AD/Microsoft Deployement Kit.md",
     "HTB/Password Attacks/Windows Auth",
@@ -222,14 +217,6 @@
     "HTB/Password Attacks/JOHN.md",
     "COMMANDS/JOHN========COMMANDS.md",
     "COMMANDS/SMB-CLIENT======COMMANDS.md",
-    "COMMANDS/FTP========COMMANDS.md",
-    "HTB/Networking/Common Protocols.md",
-    "HTB/Networking/Networking Models.md",
-    "HTB/Password Attacks/Spraying, Stuffing, and Defaults.md",
-    "HTB/FootPrinting/Win-Remote-Management.md",
-    "HTB/FootPrinting/SMB.md",
-    "HTB/FootPrinting/DNS.md",
-    "HTB/FootPrinting/IPMI.md",
     "HTB/Networking",
     "Attack-Flow===",
     "Attack-Flow================",
@@ -241,7 +228,6 @@
     "0-PT-Process.png",
     "Pasted image 20260425112326.png",
     "HTB/Shells and Payloads",
-    "PortSwigger_WebSecurity/Prototype Pollution",
     "images/waffw00f.png",
     "images/sql.png",
     "images/githubpoc.png",
