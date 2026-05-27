@@ -22,17 +22,17 @@
             }
           },
           {
-            "id": "2a6159fc23d1575e",
+            "id": "cedb2bfb15689cb8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Password Attacks/Linu Auth/Linux Authentication Process.md",
-                "mode": "source",
+                "file": "HTB/Password Attacks/Windows Lateral Mov/Pass The Hash.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linux Authentication Process"
+              "title": "Pass The Hash"
             }
           }
         ],
@@ -68,7 +68,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "cmd.exe",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -89,7 +89,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -187,12 +188,24 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "2a6159fc23d1575e",
+  "active": "cedb2bfb15689cb8",
   "lastOpenFiles": [
-    "HTB/Password Attacks/Windows Auth/Credential Hunting in Windows.md",
-    "HTB/Password Attacks/Linu Auth/Linux Authentication Process.md",
-    "HTB/Password Attacks/Linu Auth",
     "Attack-Flow===/Red-Attack-Flow.md",
+    "HTB/Password Attacks/Windows Lateral Mov/Pass The Hash.md",
+    "HTB/Password Attacks/Network/Cred Hunt Network Shares.md",
+    "HTB/Password Attacks/Windows Lateral Mov",
+    "HTB/Password Attacks/Network/Cred Hunt Network Traffic.md",
+    "COMMANDS/ManSpider=========Commands.md",
+    "COMMANDS/NetExc==========Commands.md",
+    "HTB/Password Attacks/Linu Auth/Cred Hunt Linux.md",
+    "HTB/Password Attacks/Network",
+    "HTB/Password Attacks/Linu Auth/Linux Authentication Pro.md",
+    "HTB/Info Gathering Web/Web-Archives.md",
+    "THM_RedTeam_Notes/Active Directory/AD_Enum/AD Enum BloodHound.md",
+    "HTB/Password Attacks/Cracking-Protected-Archives.md",
+    "NoteTaking CallOuts/CallOuts.md",
+    "HTB/Password Attacks/Windows Auth/Credential Hunting in Windows.md",
+    "HTB/Password Attacks/Linu Auth",
     "HTB/Password Attacks/Windows Auth/📌 Active Directory Credential Attacks & NTDS Extraction.md",
     "HTB/FootPrinting/DNS.md",
     "HTB/FootPrinting/Domain info.md",
@@ -207,16 +220,6 @@
     "THM_RedTeam_Notes/Active Directory/Breaching AD/Microsoft Deployement Kit.md",
     "HTB/Password Attacks/Windows Auth",
     "HTB/Password Attacks/Cracking Network Serv.md",
-    "COMMANDS/Msql=========COMMANDS.md",
-    "THM hack notes/Fixing SQL Corruption.md",
-    "HTB/FootPrinting/Mysql.md",
-    "HTB/FootPrinting/MSQL.md",
-    "HTB/Password Attacks/Cracking-Protected-Archives.md",
-    "THM hack notes/John.md",
-    "THM_RedTeam_Notes/Password Attacks/password profiling.md",
-    "HTB/Password Attacks/JOHN.md",
-    "COMMANDS/JOHN========COMMANDS.md",
-    "COMMANDS/SMB-CLIENT======COMMANDS.md",
     "HTB/Networking",
     "Attack-Flow===",
     "Attack-Flow================",
@@ -224,10 +227,8 @@
     "Pasted image 20260511073214.png",
     "HTB/FootPrinting",
     "HTB/Password Attacks",
-    "inlanefreight",
     "0-PT-Process.png",
     "Pasted image 20260425112326.png",
-    "HTB/Shells and Payloads",
     "images/waffw00f.png",
     "images/sql.png",
     "images/githubpoc.png",
