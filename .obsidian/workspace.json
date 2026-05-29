@@ -22,17 +22,17 @@
             }
           },
           {
-            "id": "cedb2bfb15689cb8",
+            "id": "ee519c5ed2482c31",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Password Attacks/Windows Lateral Mov/Pass The Hash.md",
+                "file": "HTB/Password Attacks/Windows Lateral Mov/Pass the Ticket (PtT) from Linux.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Pass The Hash"
+              "title": "Pass the Ticket (PtT) from Linux"
             }
           }
         ],
@@ -68,7 +68,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "cmd.exe",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -89,8 +89,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -188,9 +187,12 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "cedb2bfb15689cb8",
+  "active": "ee519c5ed2482c31",
   "lastOpenFiles": [
     "Attack-Flow===/Red-Attack-Flow.md",
+    "HTB/Password Attacks/Windows Lateral Mov/Pass the Ticket (PtT) from Linux.md",
+    "HTB/Password Attacks/Windows Lateral Mov/PTT Pass The Ticket.md",
+    "COMMANDS/🧾Kerberos Attacks ======.md",
     "HTB/Password Attacks/Windows Lateral Mov/Pass The Hash.md",
     "HTB/Password Attacks/Network/Cred Hunt Network Shares.md",
     "HTB/Password Attacks/Windows Lateral Mov",
@@ -216,10 +218,7 @@
     "HTB/File-Transfer/Linux-File-Transfer Method.md",
     "HTB/File-Transfer/Windows-FileTranfer Method.md",
     "THM_RedTeam_Notes/UAC/UAC Bypass.md",
-    "HTB/Password Attacks/Windows Auth/Windows Authentication Process.md",
-    "THM_RedTeam_Notes/Active Directory/Breaching AD/Microsoft Deployement Kit.md",
     "HTB/Password Attacks/Windows Auth",
-    "HTB/Password Attacks/Cracking Network Serv.md",
     "HTB/Networking",
     "Attack-Flow===",
     "Attack-Flow================",
