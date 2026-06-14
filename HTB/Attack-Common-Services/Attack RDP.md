@@ -210,3 +210,18 @@
 > ```
 > 
 > 💡 If you compromise a local administrator account, the network interface boundaries dissolve. Treat every active user session as an immediate escalation bridge to full domain takeover.
+
+
+>[!NOTE]
+>best rdp command 
+```
+>xfreerdp3 /v:10.129.26.171 /u:hbt-student /p:'HTB_@cademy_stdnt!' /cert:ignore /sec:tls /gdi:sw -audio -clipboard +fonts
+```
+
+> [!NOTE]
+share drive with rdp 
+```
+xfreerdp /u:htb-student /p:'HTB_@cademy_stdnt!' /v:10.129.40.69 /cert:ignore +clipboard /drive:share,/tmp +sec-ntlm
+```
+
+
