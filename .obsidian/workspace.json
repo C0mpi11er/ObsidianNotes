@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/AD/Password-Policy.md",
+                "file": "Attack-Flow===/Attack-Flow-NG.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Password-Policy"
+              "title": "Attack-Flow-NG"
             }
           },
           {
@@ -96,7 +96,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "rpc",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -117,8 +117,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -218,10 +217,11 @@
   },
   "active": "907089f0ee2cb4fb",
   "lastOpenFiles": [
+    "HTB/AD/Password Spraying - Making a Target User List.md",
+    "HTB/AD/Password-Policy.md",
     "Attack-Flow===/Finger-Printing-Vuln.md",
     "Attack-Flow===/Attack-Flow-NG.md",
     "COMMANDS/NMAP=========COMMANDS.md",
-    "HTB/AD/Password-Policy.md",
     "HTB/AD/Domain Enum.md",
     "HTB/AD/Password Spraying.md",
     "HTB/FootPrinting/Domain info.md",
@@ -243,7 +243,6 @@
     "HTB/Shells and Payloads/Automating Payloads and Metasploit.md",
     "HTB/Shells and Payloads/Anatomy of Shell.md",
     "HTB/Shells and Payloads/🧰 Laudanum — Webshell Overview.md",
-    "HTB/AD/AD Attack Tools.md",
     "HTB/AD",
     "PivotingandTunnelingVisualized.gif",
     "HTB/Pivoting",
