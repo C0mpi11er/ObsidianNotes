@@ -191,24 +191,38 @@ wpscan --url http://example.com --enumerate u --wordlist /path/to/custom_userlis
 Combine multiple features for an in-depth scan:
 
 ```bash
-wpscan --url https://example.com --enumerate u,p,t --random-agent --follow-redirection --api-token YOUR_API_TOKEN --output wpscan_results.txt --format cli
+wpscan --url https://fctirs.gov.ng --enumerate u,vp,vt,cb,dbe --plugins-detection aggressive --detection-mode aggressive --random-user-agent --follow-redirection --api-token YOUR_API_TOKEN --output wpscan_report.txt --format cli-no-color --throttle 150
 ```
 
-- This command will:
-    - Scan the target URL using HTTPS.
-    - Enumerate users, plugins, and themes.
-    - Use a random user agent and follow redirections.
-    - Use your API token to retrieve vulnerability data.
-    - Save the output in CLI format to `wpscan_results.txt`.
+- ### Technical Breakdown of Enhancements
 
----
+#### 1. Corrected and Expanded Enumeration flags (`--enumerate u,vp,vt,cb,dbe`)
 
-## ⚠️ Best Practices & Tips
+- **`u`**: Usernames (via author archives and REST API loops).
+    
+- **`vp`**: **Vulnerable Plugins exclusively**. This drastically cuts down on scan noise compared to searching for thousands of generic plugins, saving your daily API token request allocation for actual exposures.
+    
+- **`vt`**: **Vulnerable Themes exclusively**.
+    
+- **`cb`**: Config Backups. Automatically checks for exposed developer left-overs (like `wp-config.php.bak`, `wp-config.old`, or `.env`).
+    
+- **`dbe`**: Database Exports. Searches for common raw database dumps (like `dump.sql`, `backup.sql`, `wordpress.sql`) sitting in public root storage folders.
+    
 
-- **Legal Use:** Only scan WordPress sites that you have explicit permission to test.
-- **Update Regularly:** Keep WPScan updated to benefit from the latest vulnerability definitions.
-- **Combine with Other Tools:** Use WPScan as part of a broader WordPress security assessment, combining it with tools like Burp Suite, Nikto, or manual testing.
-- **Interpret Results Carefully:** Not every "vulnerability" indicated is exploitable; verify findings with additional research or manual testing.
+#### 2. Maximizing Finding Precision
+
+- **`--plugins-detection aggressive`**: Forces `wpscan` to explicitly fuzz the plugin directories via a dictionary loop of known assets, rather than blindly relying on reading the landing page HTML content. This is essential for discovering hidden backend plugins (like your target's legacy `revslider` or rogue `/gacor/` injection artifacts).
+    
+- **`--detection-mode aggressive`**: Ensures deep-dive analysis across all structural file checks.
+    
+
+#### 3. Operational Performance & Evasion Tweaks
+
+- **`--random-user-agent`**: The correct modern syntax parameter (replaces your legacy `--random-agent` flag) to cycle web browser request headers.
+    
+- **`--format cli-no-color`**: Changes the output style from raw standard terminal markup (`cli`) to a clean, non-colored layout format. This makes the resulting output text file significantly cleaner when importing the data directly into your Obsidian technical vault or writing a penetration test report.
+    
+- **`--throttle 150`**: Adds a micro-delay millisecond spacer between HTTP requests. This helps prevent crashing weak target application servers and reduces the likelihood of triggering edge firewall blocks during intense folder fuzzing sweeps.
 
 ---
 
