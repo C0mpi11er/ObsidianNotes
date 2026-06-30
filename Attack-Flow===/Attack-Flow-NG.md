@@ -3553,7 +3553,10 @@ raiseChild.py -target-exec 172.16.5.5 -child-fqdn LOGISTICS.INLANEFREIGHT.LOCAL 
 
 ```
 
-
+> [!check] cross forest trust abuse 
+````
+ 
+````
 
 > [!example] 💾 Windows CMD: Native Assembly Forging of Persistent Active Directory Corporate Golden Tickets
 > 

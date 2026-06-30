@@ -2,7 +2,7 @@
   "theme": "obsidian",
   "interfaceFontFamily": "Source Code Pro",
   "textFontFamily": "Source Code Pro",
-  "baseFontSize": 23,
+  "baseFontSize": 21,
   "baseFontSizeAction": true,
   "enabledCssSnippets": [
     "command-highlight"
