@@ -8,27 +8,27 @@
         "type": "tabs",
         "children": [
           {
-            "id": "429423898a818059",
+            "id": "c65c94e13bc5a840",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "COMMANDS/Powerview======Commands.md",
+                "file": "HTB/FootPrinting/SMB.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Powerview======Commands"
+              "title": "SMB"
             }
           },
           {
-            "id": "8367ce685e2458d6",
+            "id": "5068a705492498d2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "COMMANDS/NMAP=========COMMANDS.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -36,17 +36,17 @@
             }
           },
           {
-            "id": "a9822a71b18f58f7",
+            "id": "0927a5be81db897f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Attack-Flow===/Attack-Flow-NG.md",
+                "file": "COMMANDS/hashcat=====formats.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Attack-Flow-NG"
+              "title": "hashcat=====formats"
             }
           }
         ],
@@ -82,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "rpcclient",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -201,37 +201,38 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "a9822a71b18f58f7",
+  "active": "0927a5be81db897f",
   "lastOpenFiles": [
-    "COMMANDS/NMAP=========COMMANDS.md",
-    "HTB/AD/Cross-Forest Trust Abuse.md",
+    "HTB/Password Attacks/Linu Auth/Cred Hunt Linux.md",
+    "HTB/Password Attacks/Windows Auth/Credential Hunting in Windows.md",
     "Attack-Flow===/Attack-Flow-NG.md",
-    "COMMANDS/Powerview======Commands.md",
-    "COMMANDS/secretsDump.py.md",
-    "HTB/Attack-Common-Services/Attacking Email.md",
-    "THM hack notes/Web Pentest Tools.md",
-    "THM WEB hacking/Authentication module/JWT/JWT tool cheat sheet.md",
-    "THM hack notes/Hacking Notes.md",
-    "HTB/Password Attacks/Windows Auth/📌 Active Directory Credential Attacks & NTDS Extraction.md",
-    "COMMANDS/SubBrute====Commands.md",
-    "HTB/FootPrinting/imap-pop.md",
-    "THM hack notes/WpScan.md",
-    "HTB/FootPrinting/Cloud-Resource.md",
-    "THM_RedTeam_Notes/Phishing/Choosing a phishing domain.md",
-    "OSCP Cur/AOC.md",
+    "HTB/FootPrinting/SMB.md",
+    "COMMANDS/NMAP=========COMMANDS.md",
+    "HTB/AD/Password-Policy.md",
+    "HTB/AD/Password Spraying - Making a Target User List.md",
+    "HTB/Attack-Common-Services/Attacking-SMB.md",
     "Attack-Flow===/Red-Attack-Flow.md",
-    "HTB/Attack-Common-Services/Attcking-FTP.md",
-    "HTB/FootPrinting/SMTP.md",
-    "HTB/Info Gathering Web/Automating Recon.md",
-    "COMMANDS/MSQL==========COMMANDS.md",
+    "HTB/Password Attacks/Remote-Pasword-Attacks.md",
+    "HTB/Password Attacks/Windows Auth/🪟Attacking Windows Credential Manager (Vault-CredMan).md",
+    "COMMANDS/hashcat=====formats.md",
+    "HTB/File-Transfer/Windows-FileTranfer Method.md",
+    "COMMANDS/Nishange===.md",
+    "THM hack notes/Metasploit.md",
+    "HTB/Shells and Payloads/Windows Exploitation & Enumeration — Summary.md",
+    "HTB/Password Attacks/JOHN.md",
+    "HTB/Password Attacks/Hash-Cat.md",
+    "HTB/Password Attacks/Cracking-Protected-Archives.md",
+    "HTB/Password Attacks/🔐 Password Managers & Passwordless Authentication.md",
+    "HTB/Password Attacks/Windows Lateral Mov/Pass The Hash.md",
+    "HTB/Password Attacks/Windows Lateral Mov/Pass The Cert.md",
+    "HTB/Password Attacks/Windows Auth/📌 Active Directory Credential Attacks & NTDS Extraction.md",
+    "HTB/Password Attacks/Windows Auth/🧠 LSASS Attacks (Correct Mental Model).md",
+    "HTB/Password Attacks/Windows Auth/Windows Authentication Process.md",
     "HTB/Password Attacks/Windows Auth/Attack Sam,system,security.md",
-    "COMMANDS/EXPLOIT COMMANDS ===============.md",
-    "Subneting.md",
-    "Recon-ng.md",
+    "Attack-Flow===/Defence==Flow",
     "PivotingandTunnelingVisualized.gif",
     "Pasted image 20260511073214.png",
     "Pasted image 20260425112326.png",
-    "mtu.md",
     "HTB_Campaign_Notes.zip",
     "zifbpemv",
     "HTB.zip",
@@ -241,7 +242,6 @@
     "HTB/Attack-Common-Services",
     "HTB/Password Attacks/Windows Lateral Mov",
     "HTB/Password Attacks/Network",
-    "HTB/Password Attacks/Linu Auth",
     "0-PT-Process.png",
     "images/waffw00f.png",
     "images/sql.png",

