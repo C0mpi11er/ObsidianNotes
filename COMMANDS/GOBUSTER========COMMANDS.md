@@ -56,7 +56,7 @@ Use this for external reconnaissance when you have a domain name and want to fin
 Bash
 
 ```
-gobuster dns -d target.com -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -i
+gobuster dns --domain target.com -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --ne -t 50
 ```
 
 > [!ABSTRACT] **DNS Profile**
