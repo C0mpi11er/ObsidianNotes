@@ -9,5 +9,6 @@
   ],
   "cssTheme": "PLN",
   "accentColor": "",
-  "nativeMenus": true
+  "nativeMenus": true,
+  "showRibbon": true
 }
