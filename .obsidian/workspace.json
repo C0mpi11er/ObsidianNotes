@@ -8,35 +8,34 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e95a617f3bb5a2e5",
+            "id": "aabc9fd52fa740c2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CPTS-PREP/active-directory-attacks/username-enumeration-and-osint.md",
-                "mode": "source",
+                "file": "PortSwigger_WebSecurity/AccessControl/Access-Control ===========Vuln Check.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "username-enumeration-and-osint"
+              "title": "Access-Control ===========Vuln Check"
             }
           },
           {
-            "id": "26a73f5f7f9e0e3f",
+            "id": "928e3067c5a96788",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/9. Service Enumeration Research.md",
-                "mode": "source",
+                "file": "CPTS-PREP/command-injection/bypassing-character-filters.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "9. Service Enumeration Research"
+              "title": "bypassing-character-filters"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -189,34 +188,34 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "26a73f5f7f9e0e3f",
+  "active": "aabc9fd52fa740c2",
   "lastOpenFiles": [
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/8. Vulnerability Scan Research.md",
+    "THM_RedTeam_Notes/Active Directory/AD_Enum/AD Enum BloodHound.md",
+    "CPTS-PREP/databases/sql-injection-cheatsheet.md",
+    "CPTS-PREP/command-injection/bypassing-character-filters.md",
+    "CPTS-PREP/databases/sql-basics.md",
+    "CPTS-PREP/database-enumeration/oracle-tns-port-1521-sid-enumeration-privilege-escalation.md",
+    "CPTS-PREP/database-enumeration/mssql-port-1433-windows-authentication-xp_cmdshell.md",
+    "CPTS-PREP/attacking-common-applications/drupal-attacks.md",
     "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/7. Web Application Research.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/6. Credentials.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/5. OSINT Data.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/4. Payload Log.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/3. Activity Log.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/2. Scoping Information.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes/1. Administrative Information.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings/M2 - Weak Domain Group Config (RDP).md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings/H10 - Command Injection.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings/H7 - IPMI Hash Disclosure.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings/H6 - Password in Description Field.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings/H5 - Local Admin Password Reuse.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings/H3 - LLMNR&NBT-NS Response Spoofing.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings/H2 - ASREPRoasting.md",
-    "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings/H1 - Kerberoasting.md",
-    "CPTS-PREP/documentation-and-reporting/htb_academy_example/example-high-finding-kerberoasting-documentation-reporting-htb_academy_example-inlanefreight-penetra.md",
-    "CPTS-PREP/documentation-and-reporting/htb_academy_example/credentials-tracking-documentation-reporting-htb_academy_example-inlanefreight-penetration-test-evid.md",
-    "CPTS-PREP/documentation-and-reporting/htb_academy_example/attack-path-documentation-documentation-reporting-htb_academy_example-inlanefreight-penetration-test.md",
-    "CPTS-PREP/documentation-and-reporting/htb_academy_example/administrative-information-documentation-reporting-htb_academy_example-inlanefreight-penetration-tes.md",
-    "CPTS-PREP/attacking-enterprise-networks/active-directory-compromise.md",
-    "CPTS-PREP/active-directory-enumeration-attacks/bleeding-edge-vulnerabilities.md",
-    "CPTS-PREP/active-directory-enumeration-attacks/skills-assessment-part-1.md",
-    "CPTS-PREP/attacking-common-applications/binary-reverse-engineering.md",
-    "CPTS-PREP/active-directory-enumeration-attacks/llmnr-nbt-ns-poisoning-windows.md",
-    "CPTS-PREP/active-directory-enumeration-attacks/llmnr-nbt-ns-poisoning-linux.md",
+    "CPTS-PREP/active-directory-attacks/dictionary-and-brute-force-attacks.md",
+    "CPTS-PREP/command-injection/advanced-operators.md",
+    "CPTS-PREP/command-injection/evasion-tools.md",
+    "Attack-Flow===/Attack-Flow-NG.md",
+    "CPTS-PREP/command-injection/bypassing-space-filters.md",
+    "CPTS-PREP/command-injection/bypassing-blacklisted-commands.md",
+    "CPTS-PREP/command-injection/README.md",
+    "CPTS-PREP/command-injection/detection-methods.md",
+    "CPTS-PREP/command-injection/basic-exploitation.md",
+    "CPTS-PREP/command-injection/filter-identification.md",
+    "CPTS-PREP/command-injection/advanced-command-obfuscation.md",
+    "CPTS-PREP/web-attacks/xxe-injection.md",
+    "CPTS-PREP/xss-cross-site-scripting.md",
+    "CPTS-PREP/vulnerability-assessment.md",
+    "CPTS-PREP/SUMMARY.md",
+    "CPTS-PREP/web-application-attacks-1/php-filters-source-code-disclosure-php-filter-read-convert.base64-encode-resource-config.md",
+    "CPTS-PREP/web-application-attacks-1/php-fuzzing-ffuf-u-http-target.com-fuzz.php-common-files-config.php-database.php.md",
+    "CPTS-PREP/web-application-attacks-1/php-security-disable_functions-open_basedir-allow_url_include-off-container-isolation.md",
     "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Notes",
     "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence/Findings",
     "CPTS-PREP/documentation-reporting/HTB_Academy_EXAMPLE/Inlanefreight Penetration Test/Evidence",
